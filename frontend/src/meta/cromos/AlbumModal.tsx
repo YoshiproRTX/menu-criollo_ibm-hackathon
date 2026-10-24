@@ -179,16 +179,80 @@ export const AlbumModal: React.FC = () => {
                     </div>
                     {obtenido && cfg ? (
                       <>
+                        {/* Miniatura visual del entorno y personaje */}
+                        <div
+                          style={{
+                            height: 68,
+                            borderRadius: 10,
+                            overflow: 'hidden',
+                            position: 'relative',
+                            margin: '6px 0',
+                            background: '#0b1030',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            padding: '0 8px',
+                          }}
+                        >
+                          <img
+                            src={
+                              id === 'pelusa'
+                                ? '/assets/images/sala_cozy.jpg'
+                                : id === 'lavanderia'
+                                  ? '/assets/images/lavanderia_cozy.jpg'
+                                  : id === 'fregadero' || id === 'chef'
+                                    ? '/assets/images/comedor_cocina.jpg'
+                                    : '/assets/images/casa_isometrica.jpg'
+                            }
+                            alt="Entorno"
+                            style={{
+                              position: 'absolute',
+                              inset: 0,
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                              opacity: 0.5,
+                            }}
+                          />
+                          <span
+                            style={{
+                              position: 'relative',
+                              zIndex: 2,
+                              color: '#fff',
+                              fontSize: 10,
+                              fontWeight: 800,
+                            }}
+                          >
+                            {cfg.cromo.concepto}
+                          </span>
+                          <img
+                            src={
+                              ['doble-hueso', 'trucos', 'pista', 'copa'].includes(id)
+                                ? '/assets/images/qboby_avatar.png'
+                                : '/assets/images/qanacleto_avatar.png'
+                            }
+                            alt="Avatar"
+                            style={{
+                              position: 'relative',
+                              zIndex: 2,
+                              width: 32,
+                              height: 32,
+                              borderRadius: '50%',
+                              border: '1.5px solid #fff',
+                            }}
+                          />
+                        </div>
+
                         <div
                           style={{
                             fontWeight: 800,
-                            fontSize: 15,
-                            marginBottom: 4,
+                            fontSize: 14,
+                            marginBottom: 2,
                           }}
                         >
                           {cfg.cromo.titulo}
                         </div>
-                        <div style={{ fontSize: 12, opacity: 0.85 }}>
+                        <div style={{ fontSize: 11.5, opacity: 0.85 }}>
                           {cfg.cromo.lineas[0]}
                         </div>
                       </>

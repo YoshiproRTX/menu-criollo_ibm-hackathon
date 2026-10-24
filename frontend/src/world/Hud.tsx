@@ -6,6 +6,7 @@ import {
 } from '../content/catalog';
 import { useGameStore } from '../state/store';
 import { Level2Host } from './Level2Host';
+import { RoomViewerModal } from './RoomViewerModal';
 
 export const Hud: React.FC = () => {
   const {
@@ -33,15 +34,16 @@ export const Hud: React.FC = () => {
     qiskit: '...',
   });
   const [mostrarNota, setMostrarNota] = useState(true);
+  const [visorDisenosAbierto, setVisorDisenosAbierto] = useState(false);
 
   useEffect(() => {
     getHealth().then(setHealth);
   }, []);
 
-  // Nota adhesiva de ~1.5s al cargar un minijuego (no bloquea)
+  // Nota adhesiva de ~2s al cargar un minijuego (no bloquea)
   useEffect(() => {
     setMostrarNota(true);
-    const timer = setTimeout(() => setMostrarNota(false), 2000);
+    const timer = setTimeout(() => setMostrarNota(false), 2400);
     return () => clearTimeout(timer);
   }, [minijuegoId]);
 
@@ -49,6 +51,19 @@ export const Hud: React.FC = () => {
   const estrellas = '⭐'.repeat(Math.max(1, Math.min(3, config.dificultad || 1)));
   const esClasificacion = (config.tipo ?? 'clasificacion') === 'clasificacion';
   const nombreRobot = escena === 'parque' ? 'Q-Boby' : 'Q-Anacleto';
+  const robotAvatarSrc =
+    escena === 'parque'
+      ? '/assets/images/qboby_avatar.png'
+      : '/assets/images/qanacleto_avatar.png';
+
+  const roomThumbnail =
+    minijuegoId === 'pelusa'
+      ? '/assets/images/sala_cozy.jpg'
+      : minijuegoId === 'fregadero' || minijuegoId === 'chef'
+        ? '/assets/images/comedor_cocina.jpg'
+        : minijuegoId === 'lavanderia'
+          ? '/assets/images/lavanderia_cozy.jpg'
+          : '/assets/images/qboby_perspective.png';
 
   const listaObjetosNota = Object.entries(config.objetos ?? {}).slice(0, 3);
 
@@ -77,7 +92,7 @@ export const Hud: React.FC = () => {
             alignItems: 'center',
             gap: 8,
             flexWrap: 'wrap',
-            background: 'rgba(255, 255, 255, 0.92)',
+            background: 'rgba(255, 255, 255, 0.94)',
             padding: '8px 12px',
             borderRadius: 18,
             border: '2px solid var(--color-azul-pastel)',
@@ -97,9 +112,12 @@ export const Hud: React.FC = () => {
               background:
                 escena === 'casa' ? 'var(--color-azul-tinta)' : 'transparent',
               color: escena === 'casa' ? '#fff' : 'var(--color-azul-tinta)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
             }}
           >
-            🏠 Casa (Nivel 1)
+            <span>🏠 Casa (Nivel 1)</span>
           </button>
           <button
             type="button"
@@ -113,9 +131,12 @@ export const Hud: React.FC = () => {
               background:
                 escena === 'parque' ? 'var(--color-azul-tinta)' : 'transparent',
               color: escena === 'parque' ? '#fff' : 'var(--color-azul-tinta)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
             }}
           >
-            🌳 Parque (Nivel 2)
+            <span>🌳 Parque (Nivel 2)</span>
           </button>
 
           <span style={{ opacity: 0.3 }}>|</span>
@@ -151,14 +172,14 @@ export const Hud: React.FC = () => {
           </div>
         </div>
 
-        {/* Bloque derecho: Info de minijuego, Acierto, Abrir Cerebro y Álbum */}
+        {/* Bloque derecho: Avatar del robot, Info de minijuego, Galería, Cerebro y Álbum */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: 10,
             flexWrap: 'wrap',
-            background: 'rgba(255, 255, 255, 0.92)',
+            background: 'rgba(255, 255, 255, 0.94)',
             padding: '8px 14px',
             borderRadius: 18,
             border: '2px solid var(--color-azul-pastel)',
@@ -166,24 +187,73 @@ export const Hud: React.FC = () => {
             pointerEvents: 'auto',
           }}
         >
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 800 }}>
-              {config.titulo}{' '}
-              <span title="Dificultad fija informativa">{estrellas}</span>
-            </div>
-            <div style={{ fontSize: 11.5, opacity: 0.85 }}>
-              Chip:{' '}
-              <strong>
-                {modo === 'simple' ? '📏 Simple' : '⚛️ Cuántico'}
-              </strong>{' '}
-              · Último acierto:{' '}
-              <strong>
-                {ultimoResultado
-                  ? `${Math.round(ultimoResultado.acierto * 100)}%`
-                  : '—'}
-              </strong>
+          {/* Avatar oficial del robot extraído del model sheet */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              cursor: 'pointer',
+            }}
+            onClick={() => setVisorDisenosAbierto(true)}
+            title="Haz clic para ver el model sheet original de los personajes"
+          >
+            <img
+              src={robotAvatarSrc}
+              alt={nombreRobot}
+              style={{
+                width: 38,
+                height: 38,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border:
+                  escena === 'parque'
+                    ? '2px solid #38bdf8'
+                    : '2px solid #4ef5e4',
+                background: '#0b1030',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.15)',
+              }}
+            />
+            <div>
+              <div style={{ fontSize: 13, fontWeight: 800 }}>
+                {config.titulo}{' '}
+                <span title="Dificultad fija informativa">{estrellas}</span>
+              </div>
+              <div style={{ fontSize: 11.5, opacity: 0.85 }}>
+                {nombreRobot} · Chip:{' '}
+                <strong>
+                  {modo === 'simple' ? '📏 Simple' : '⚛️ Cuántico'}
+                </strong>{' '}
+                · Acierto:{' '}
+                <strong>
+                  {ultimoResultado
+                    ? `${Math.round(ultimoResultado.acierto * 100)}%`
+                    : '—'}
+                </strong>
+              </div>
             </div>
           </div>
+
+          {/* Botón para ver la Galería de Diseños Originales */}
+          <button
+            type="button"
+            onClick={() => setVisorDisenosAbierto(true)}
+            style={{
+              padding: '7px 12px',
+              borderRadius: 999,
+              border: '1.5px solid #0284c7',
+              background: '#e0f2fe',
+              color: '#0369a1',
+              fontWeight: 800,
+              fontSize: 12,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 5,
+            }}
+            title="Ver los artes conceptuales de personajes y entornos de la carpeta imágenes"
+          >
+            🎨 Diseños Originales
+          </button>
 
           {esClasificacion && (
             <button
@@ -222,7 +292,24 @@ export const Hud: React.FC = () => {
         </div>
       </header>
 
-      {/* Nota adhesiva ilustrada (~1.5s al cargar un minijuego, no bloquea) */}
+      {/* Modal de Galería de Diseños Originales */}
+      <RoomViewerModal
+        abierto={visorDisenosAbierto}
+        onCerrar={() => setVisorDisenosAbierto(false)}
+        initialId={
+          minijuegoId === 'pelusa'
+            ? 'sala'
+            : minijuegoId === 'lavanderia'
+              ? 'lavanderia'
+              : minijuegoId === 'fregadero' || minijuegoId === 'chef'
+                ? 'cocina'
+                : escena === 'parque'
+                  ? 'qboby'
+                  : 'casa'
+        }
+      />
+
+      {/* Nota adhesiva ilustrada con miniatura del entorno (~2s al cargar) */}
       {mostrarNota && listaObjetosNota.length > 0 && (
         <div
           style={{
@@ -232,33 +319,49 @@ export const Hud: React.FC = () => {
             zIndex: 25,
             background: '#fef9c3',
             border: '2px solid #facc15',
-            borderRadius: 14,
-            padding: '10px 16px',
+            borderRadius: 16,
+            padding: '10px 14px',
             boxShadow: '0 10px 24px rgba(0,0,0,0.12)',
             transform: 'rotate(-1.5deg)',
             pointerEvents: 'none',
+            display: 'flex',
+            gap: 12,
+            alignItems: 'center',
           }}
         >
-          <div
+          <img
+            src={roomThumbnail}
+            alt="Entorno de hoy"
             style={{
-              fontSize: 11,
-              fontWeight: 800,
-              color: '#854d0e',
-              textTransform: 'uppercase',
-              marginBottom: 4,
+              width: 54,
+              height: 54,
+              borderRadius: 10,
+              objectFit: 'cover',
+              border: '1.5px solid #ca8a04',
             }}
-          >
-            📌 Nota adhesiva · Regla de hoy
-          </div>
-          {listaObjetosNota.map(([nombre, obj]) => (
+          />
+          <div>
             <div
-              key={nombre}
-              style={{ fontSize: 13.5, fontWeight: 700, color: '#422006' }}
+              style={{
+                fontSize: 11,
+                fontWeight: 800,
+                color: '#854d0e',
+                textTransform: 'uppercase',
+                marginBottom: 2,
+              }}
             >
-              {obj.emoji} {nombre} ➔{' '}
-              <span style={{ textTransform: 'uppercase' }}>{obj.accion}</span>
+              📌 Regla del día · {config.titulo}
             </div>
-          ))}
+            {listaObjetosNota.map(([nombre, obj]) => (
+              <div
+                key={nombre}
+                style={{ fontSize: 13, fontWeight: 700, color: '#422006' }}
+              >
+                {obj.emoji} {nombre} ➔{' '}
+                <span style={{ textTransform: 'uppercase' }}>{obj.accion}</span>
+              </div>
+            ))}
+          </div>
         </div>
       )}
 
@@ -307,7 +410,7 @@ export const Hud: React.FC = () => {
         </div>
       )}
 
-      {/* Montaje de pantallas propias del Nivel 2 (2.2 Doble Hueso y 2.1 Trucos) */}
+      {/* Montaje de pantallas del Nivel 2 (2.2 Doble Hueso y 2.1 Trucos) */}
       {!esClasificacion && (
         <Level2Host
           config={config}
@@ -323,7 +426,7 @@ export const Hud: React.FC = () => {
         />
       )}
 
-      {/* Botón principal de ejecución en la esquina inferior derecha */}
+      {/* Botón principal de ejecución en la esquina inferior derecha con avatar */}
       <div
         style={{
           position: 'fixed',
@@ -341,7 +444,7 @@ export const Hud: React.FC = () => {
             type="button"
             onClick={() => void runTask()}
             style={{
-              padding: '14px 24px',
+              padding: '12px 24px',
               borderRadius: 999,
               border: '3px solid var(--color-azul-tinta)',
               background: 'linear-gradient(135deg, #ffd166, #f2b79e)',
@@ -349,9 +452,23 @@ export const Hud: React.FC = () => {
               fontWeight: 900,
               fontSize: 16,
               boxShadow: '0 10px 28px rgba(36, 59, 83, 0.22)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
             }}
           >
-            ▶ ¡Hazlo, {nombreRobot}!
+            <img
+              src={robotAvatarSrc}
+              alt={nombreRobot}
+              style={{
+                width: 28,
+                height: 28,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border: '1.5px solid #000',
+              }}
+            />
+            <span>▶ ¡Hazlo, {nombreRobot}!</span>
           </button>
         )}
 

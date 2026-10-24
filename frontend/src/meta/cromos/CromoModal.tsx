@@ -163,6 +163,74 @@ export const CromoModal: React.FC = () => {
           🏆 {cfgCromo.titulo}
         </h2>
 
+        {/* Ilustración oficial del cromo con el personaje y el entorno */}
+        <div
+          style={{
+            position: 'relative',
+            borderRadius: 16,
+            overflow: 'hidden',
+            marginBottom: 14,
+            height: 140,
+            background: '#0b1030',
+            border: '2px solid rgba(255,255,255,0.7)',
+            boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0 18px',
+          }}
+        >
+          <img
+            src={
+              cromoRevelado.minijuegoId === 'pelusa'
+                ? '/assets/images/sala_cozy.jpg'
+                : cromoRevelado.minijuegoId === 'lavanderia'
+                  ? '/assets/images/lavanderia_cozy.jpg'
+                  : cromoRevelado.minijuegoId === 'fregadero' ||
+                      cromoRevelado.minijuegoId === 'chef'
+                    ? '/assets/images/comedor_cocina.jpg'
+                    : '/assets/images/casa_isometrica.jpg'
+            }
+            alt="Entorno"
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              opacity: 0.45,
+            }}
+          />
+          <div
+            style={{
+              position: 'relative',
+              zIndex: 2,
+              color: '#ffffff',
+              textShadow: '0 2px 6px rgba(0,0,0,0.8)',
+            }}
+          >
+            <div style={{ fontSize: 11, fontWeight: 800, textTransform: 'uppercase', color: '#78ddd9' }}>
+              Colección Oficial Villa Qubit
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 900 }}>{cfgCromo.titulo}</div>
+          </div>
+          <img
+            src={
+              ['doble-hueso', 'trucos', 'pista', 'copa'].includes(cromoRevelado.minijuegoId)
+                ? '/assets/images/qboby_front.png'
+                : '/assets/images/qanacleto_front.png'
+            }
+            alt="Personaje"
+            style={{
+              position: 'relative',
+              zIndex: 2,
+              height: 120,
+              objectFit: 'contain',
+              filter: 'drop-shadow(0 6px 12px rgba(0,0,0,0.6))',
+            }}
+          />
+        </div>
+
         <div
           style={{
             background: 'rgba(255, 255, 255, 0.78)',

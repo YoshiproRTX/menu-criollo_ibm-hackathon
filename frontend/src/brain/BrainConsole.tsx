@@ -203,21 +203,36 @@ export const BrainConsole: React.FC = () => {
             marginBottom: 14,
           }}
         >
-          <div>
-            <div
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+            <img
+              src="/assets/images/qanacleto_avatar.png"
+              alt="Q-Anacleto"
               style={{
-                fontSize: 11,
-                textTransform: 'uppercase',
-                letterSpacing: 1.2,
-                color: '#78ddd9',
-                fontWeight: 700,
+                width: 44,
+                height: 44,
+                borderRadius: '50%',
+                objectFit: 'cover',
+                border: '2px solid #78ddd9',
+                boxShadow: '0 0 14px rgba(120, 221, 217, 0.45)',
+                background: '#0b1030',
               }}
-            >
-              ⚛️ Taller de Mentes Cuánticas · Consola del Cerebro
+            />
+            <div>
+              <div
+                style={{
+                  fontSize: 11,
+                  textTransform: 'uppercase',
+                  letterSpacing: 1.2,
+                  color: '#78ddd9',
+                  fontWeight: 700,
+                }}
+              >
+                ⚛️ Taller de Mentes Cuánticas · Cerebro de Q-Anacleto
+              </div>
+              <h2 style={{ margin: '2px 0 0', fontSize: 20 }}>
+                {config.titulo}
+              </h2>
             </div>
-            <h2 style={{ margin: '2px 0 0', fontSize: 20 }}>
-              {config.titulo}
-            </h2>
           </div>
 
           {/* Interruptor gigante Simple / Cuántico */}

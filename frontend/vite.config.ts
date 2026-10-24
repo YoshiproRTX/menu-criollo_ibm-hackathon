@@ -18,6 +18,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       port: 5173,
+      allowedHosts: true,
       fs: {
         allow: [path.resolve(__dirname, '..')],
       },
