@@ -18,6 +18,7 @@ un concepto de Estadística o ML clásico a su equivalente cuántico (QML).
 | [goal.md](goal.md) | **Fuente de verdad:** alcance, prioridades, decisiones y arquitectura |
 | [minijuegos.md](minijuegos.md) | Diseño detallado de temática, personajes y los 8 minijuegos |
 | [breadboard-fregadero.md](breadboard-fregadero.md) | Pantallas, código, contrato de la API y formato de configuración del motor compartido |
+| [docs/spec.md](docs/spec.md) | Spec del producto: historias de usuario, decisiones de implementación y de pruebas |
 | [siguiente-sesion.md](siguiente-sesion.md) | Plan de la prueba del QAE y de los demás desconocidos |
 | [AGENTS.md](AGENTS.md) | Instrucciones para los agentes de IA del equipo |
 

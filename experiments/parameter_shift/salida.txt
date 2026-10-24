@@ -1,0 +1,24 @@
+1. Parameter-shift vs diferencias finitas (50 θ al azar): diferencia máx 2.6e-11
+2. 20 inicios al azar, 40 iteraciones, tasa 1.0: pérdida final mediana 0.0002 (máx 0.0002); obedece las 4 órdenes en 100% de los inicios
+3. Con la perilla 1 congelada, la mejor pérdida que alcanza la perilla 2:
+   θ1 = -3.14 rad → pérdida mínima 0.000
+   θ1 = -2.62 rad → pérdida mínima 0.004
+   θ1 = -2.09 rad → pérdida mínima 0.062
+   θ1 = -1.57 rad → pérdida mínima 0.250
+   θ1 = -1.05 rad → pérdida mínima 0.063
+   θ1 = -0.52 rad → pérdida mínima 0.004
+   θ1 = +0.00 rad → pérdida mínima 0.000
+   θ1 = +0.52 rad → pérdida mínima 0.004
+   θ1 = +1.05 rad → pérdida mínima 0.062
+   θ1 = +1.57 rad → pérdida mínima 0.250
+   θ1 = +2.09 rad → pérdida mínima 0.063
+   θ1 = +2.62 rad → pérdida mínima 0.004
+   θ1 = +3.14 rad → pérdida mínima 0.000
+4. Entrenamiento de 30 iteraciones desde θ = (2.4, −1.9): 232 ms (20 circuitos por iteración)
+   {'iteracion': 0, 'theta': [2.4, -1.9], 'perdida': 0.14501}
+   {'iteracion': 5, 'theta': [2.7534, -2.6163], 'perdida': 0.00992}
+   {'iteracion': 10, 'theta': [2.8659, -2.7733], 'perdida': 0.00262}
+   {'iteracion': 15, 'theta': [2.9172, -2.8429], 'perdida': 0.00116}
+   {'iteracion': 20, 'theta': [2.9478, -2.8841], 'perdida': 0.00065}
+   {'iteracion': 25, 'theta': [2.9686, -2.912], 'perdida': 0.00042}
+   {'iteracion': 30, 'theta': [2.9839, -2.9325], 'perdida': 0.00029}

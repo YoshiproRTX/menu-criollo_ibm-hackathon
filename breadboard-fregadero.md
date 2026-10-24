@@ -38,8 +38,10 @@ robot.»* Matiz del paper: Schuld evita el término «feature map cuántico»; u
 «modelo cuántico» y «kernel cuántico».
 
 Extra para 1.3 Panqueques: con solo dos RY y leyendo `00` sale una isla central
-(P = 1.0 en el centro, 0.1 en el borde), **sin necesitar CX**. Pendiente de
-rediseño (ver `siguiente-sesion.md`).
+**sin necesitar CX**. Rediseño verificado (`experiments/rediseno_1_3/resultados.md`):
+la lección es la **escala de codificación** (D14). Con 1 ranura por cable y la
+escala de fábrica, ningún circuito pasa del 67 %; con la perilla entre 2.5 y
+5.5 rad se llega al 96–100 %. La regla recta se queda en 79 %.
 
 ---
 
@@ -60,6 +62,11 @@ rediseño (ver `siguiente-sesion.md`).
 | D11 | Persistencia de álbumes | **`localStorage`** |
 | D12 | Rayos-X | **Diagrama en texto** (`qc.draw("text")`) y código Qiskit |
 | D13 | Comando único | **`package.json` en la raíz con `concurrently`** (`uv run uvicorn` y `vite`), con proxy de Vite de `/api` a `:8000` |
+| D14 | Perilla de escala (1.3) | **Campo opcional `escala` en cada ficha de giro,** con rango en el JSON del minijuego. Los cuerpos sin `escala` siguen siendo válidos y usan la del JSON. Las Perillas Doradas del Nivel 2 siguen el mismo patrón (campo numérico opcional en la ficha, rango en el JSON) |
+| D15 | Endpoint del 2.2 | **Una llamada por método** que devuelve la trayectoria completa de una corrida real (sección 8) |
+| D16 | Ruido en el 2.4 | **Límite de fichas como regla del juego y estática solo decorativa.** El robot decide siempre con el circuito real sin ruido. Sin `qiskit-aer` |
+| D17 | Endpoint del 2.1 | **`train`** devuelve el historial real de pérdida y de θ; las perillas a mano usan `predictions` |
+| D18 | Pruebas | **pytest** (backend, con uv) y **Vitest** (frontend) |
 
 ---
 
@@ -130,6 +137,7 @@ rediseño (ver `siguiente-sesion.md`).
 | U23 | P4 | Diagrama del circuito y código Qiskit | render | — | S7 |
 | U24 | P5 | Grilla de cromos | render | — | S8 |
 | U25 | P5 | Grilla de desastres | render | — | S9 |
+| U26 | P2.3 | Perilla de escala en un Giro-Sensor (solo si el minijuego define `perilla_escala`, p. ej. 1.3) | drag | → N23 | S4 |
 
 ## 5. Código del frontend (N)
 
@@ -145,6 +153,7 @@ rediseño (ver `siguiente-sesion.md`).
 | N20 | `brain/` | `setMode(modo)` | call | → S2 | — |
 | N21 | `brain/` | `updateRuler(angulo, desplazamiento)` | call | → S3, → N11 (vista previa) | — |
 | N22 | `brain/` | `placeFicha(cable, pos, ficha)` | call | → S4, → N40 y N43 (conjunto `ejemplos`, espera 150 ms) | — |
+| N23 | `brain/` | `setEscala(cable, pos, escala)`: al soltar la perilla | call | → S4, → N40 y N43 (conjunto `ejemplos`, espera 150 ms) | — |
 | N30 | `meta/` | `revealCromo()` | call | → N41, → P3 | — |
 | N40 | `api/` | `getPredictions(id, circuito, conjunto)` | call | → N50 | → S5 |
 | N41 | `api/` | `drawRarity(id, circuito)` | call | → N55 | → S8 |
@@ -218,7 +227,10 @@ Cuerpo común más `"conjunto": "ejemplos" | "prueba"`.
 
 ### `POST /api/minigames/{id}/decision-map`
 
-Cuerpo común más `"resolucion": 32` (opcional).
+Cuerpo común más `"resolucion": 32` (opcional). Orden de `valores`:
+`valores[fila * resolucion + columna]`. La columna es el sensor 0, de 0 a 1;
+la fila es el sensor 1, de 0 a 1, con la fila 0 abajo. La animación que lo
+consume está descrita en `experiments/gelatina/resultados.md`.
 
 ```json
 {
@@ -248,14 +260,60 @@ Cuerpo común más `"resolucion": 32` (opcional).
 }
 ```
 
+### Endpoints propios del 2.2 y el 2.1 (borrador, D15 y D17)
+
+`POST /api/minigames/doble-hueso/estimates`: una llamada por método. La
+trayectoria sale de **una sola corrida real**; el frontend la anima punto a
+punto, sin suavizarla.
+
+```json
+{ "metodo": "qae", "tunel": "a", "presupuesto": 200, "semilla": 7 }
+```
+
+```json
+{
+  "metodo": "qae",
+  "tunel": "a",
+  "trayectoria": [
+    { "consultas": 10, "estimacion": 0.27, "error": 0.03 },
+    { "consultas": 40, "estimacion": 0.31, "error": 0.01 }
+  ],
+  "estimacion": 0.31,
+  "consultas_usadas": 190,
+  "meta": { "qiskit": "2.5.2", "simulador": "StatevectorSampler", "ms": 120 }
+}
+```
+
+`metodo` es `monte_carlo` o `qae`; ambos usan el mismo oráculo A. Las
+consultas se cuentan como Σ shots·(2k+1). `error` es |estimación − p real|,
+con la p real del JSON del minijuego. `semilla` es opcional (pruebas y video).
+Valores verificados (`experiments/qae/resultados.md`): QAE con potencias
+k = 0, 1, 2, 4 y 5 shots por potencia, es decir, 90 consultas por túnel.
+Batería del minijuego: 180 consultas. Con ella QAE elige bien el túnel el
+95 % de las veces y Monte Carlo cerca del 77 %. Monte Carlo usa las mismas
+90 consultas por túnel, cada una con k = 0. Una estimación tarda unos 15 ms.
+
+`POST /api/minigames/{id}/train` (2.1): recibe `theta_inicial`, `iteraciones`
+y `tasa`; devuelve `historial` (`iteracion`, `theta`, `perdida`) y `meta`. El
+gradiente es parameter-shift (dos ejecuciones por perilla, ±π/2). Corre bajo
+demanda, nunca por fotograma. Pérdida: promedio de (1 − P(truco correcto))²,
+entre 0 y 1 (`experiments/parameter_shift/resultados.md`).
+
 ### Errores
 
 | Código | Cuándo |
 | --- | --- |
 | `404` | El minijuego no existe |
-| `422` | Ficha no permitida, ranura ocupada o cable fuera de rango |
+| `422` | Ficha no permitida, ranura ocupada, cable fuera de rango, `escala` enviada en un minijuego sin perilla o fuera de su rango, o más fichas que `limite_fichas` |
 
 ### Catálogo de fichas (común a todos los minijuegos)
+
+`escala` es opcional en `giro_y` y `giro_z`: si no viene, se usa la de
+`codificacion.escala`. Solo se acepta si el minijuego define `perilla_escala`.
+
+```json
+{ "ficha": "giro_y", "cable": 0, "pos": 0, "escala": 3.5 }
+```
 
 | Ficha | Compuerta | Ocupa | Efecto |
 | --- | --- | --- | --- |
@@ -265,6 +323,13 @@ Cuerpo común más `"resolucion": 32` (opcional).
 | `cable_gemelo` | `CX(cable → otro)` | ambos cables en esa posición | Combina los dos sensores en el qubit destino |
 
 ## 9. Borrador del formato de configuración
+
+Campos opcionales que no usa el 1.2:
+
+| Campo | Lo usa | Formato |
+| --- | --- | --- |
+| `perilla_escala` | 1.3 | `{ "min": 0.5, "max": 8, "paso": 0.25 }`, en radianes por unidad de sensor. El 1.3 usa además `ranuras: 1` y `codificacion.escala: 1.5` |
+| `limite_fichas` | 2.4 | Número máximo de fichas; pasarse dispara la Tormenta NISQ (D16) |
 
 `content/minigames/fregadero.json`
 
@@ -316,12 +381,12 @@ Cuerpo común más `"resolucion": 32` (opcional).
 
 ## 10. Fronteras por carril
 
-Tres agentes (propuesta):
+Tres agentes (confirmado):
 
 | Carril | Es dueño de | Carpeta |
 | --- | --- | --- |
 | 1. QML y contenido | P6, N50–N56, S10 (recibe los textos del carril 3) | `backend/`, `content/` |
-| 2. Cerebro e integración | P2, U10–U18, N1, N10, N11, N14, N20–N22, cliente de la API N40–N43, store S1–S7 | `frontend/src/brain/`, `frontend/src/api/`, `frontend/src/state/` |
+| 2. Cerebro e integración | P2, U10–U18, U26, N1, N10, N11, N14, N20–N23, cliente de la API N40–N43, store S1–S7 | `frontend/src/brain/`, `frontend/src/api/`, `frontend/src/state/` |
 | 3. Mundo y meta | P0, P1, P3–P5, U0–U9, U19–U25, N12, N13, N15, N30, S8–S9 | `frontend/src/world/`, `frontend/src/meta/` |
 
 El store (S1–S9), el contrato (sección 8) y el formato (sección 9) se fijan en

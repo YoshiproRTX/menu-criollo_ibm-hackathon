@@ -1,0 +1,143 @@
+Q1. P(1) de Q^k·A contra sin²((2k+1)θ):
+    diferencia máx (4 valores de p, k = 0..16): 2.7e-15
+        ┌────────────┐┌───┐┌─────────────┐┌───┐┌───┐┌───┐┌────────────┐ ░ ┌─┐
+     q: ┤ Ry(1.1593) ├┤ Z ├┤ Ry(-1.1593) ├┤ X ├┤ Z ├┤ X ├┤ Ry(1.1593) ├─░─┤M├
+        └────────────┘└───┘└─────────────┘└───┘└───┘└───┘└────────────┘ ░ └╥┘
+meas: 1/═══════════════════════════════════════════════════════════════════╩═
+                                                                           0 
+    StatevectorSampler k=2: frecuencia 0.0574 vs exacta 0.0581 (0.6 σ)
+
+Q3/Q4. RMSE contra consultas, p = 0.30, 200 semillas:
+    método | shots/k | potencias                   | consultas | RMSE   | mediana | errores > 0.1
+    MLAE   |      30 | [0]                         |        30 | 0.0852 | 0.0667  | 24%
+    MLAE   |      30 | [0, 1]                      |       120 | 0.0559 | 0.0350  | 12%
+    MLAE   |      30 | [1]                         |        90 | 0.0400 | 0.0288  | 2%
+    MLAE   |      30 | [0, 1, 2]                   |       270 | 0.0212 | 0.0106  | 0%
+    MLAE   |      30 | [1, 2]                      |       240 | 0.0184 | 0.0094  | 0%
+    MLAE   |      30 | [0, 1, 2, 4]                |       540 | 0.0080 | 0.0045  | 0%
+    MLAE   |      30 | [1, 2, 4]                   |       510 | 0.0066 | 0.0039  | 0%
+    MLAE   |      30 | [0, 1, 2, 4, 8]             |      1050 | 0.0042 | 0.0027  | 0%
+    MLAE   |      30 | [1, 2, 4, 8]                |      1020 | 0.0052 | 0.0029  | 0%
+    MLAE   |      30 | [0, 1, 2, 4, 8, 16]         |      2040 | 0.0040 | 0.0015  | 0%
+    MLAE   |      30 | [1, 2, 4, 8, 16]            |      2010 | 0.0036 | 0.0015  | 0%
+    MLAE   |      30 | [0, 1, 2, 4, 8, 16, 32]     |      3990 | 0.0009 | 0.0006  | 0%
+    MLAE   |      30 | [1, 2, 4, 8, 16, 32]        |      3960 | 0.0009 | 0.0006  | 0%
+    MLAE   |      30 | [0, 1, 2, 4, 8, 16, 32, 64] |      7860 | 0.0006 | 0.0004  | 0%
+    MLAE   |      30 | [1, 2, 4, 8, 16, 32, 64]    |      7830 | 0.0006 | 0.0004  | 0%
+    pendientes log-log (MLAE con k=0 y al menos 3 potencias):
+      mlae_10_rmse           -1.15
+      mlae_10_mediana        -1.03
+      mlae_30_rmse           -1.05
+      mlae_30_mediana        -0.97
+      mlae_100_rmse          -1.04
+      mlae_100_mediana       -1.03
+      mc_rmse                -0.50
+      mc_mediana             -0.51
+    Q4 (10 shots/k): errores gruesos con k=0: ['52%', '10%', '2%', '1%', '0%', '0%', '0%', '0%'] | sin k=0: ['34%', '4%', '2%', '1%', '2%', '0%', '1%'] 
+
+Q5. Elegir el túnel bueno (p = 0.36 frente a 0.30), 1000 semillas por fila:
+    shots/k | potencias            | consultas/túnel | QAE elige bien | MC elige bien
+          2 | [0, 1, 2]            |              18 |          49.3% |         59.6%
+          3 | [0, 1, 2]            |              27 |          57.2% |         62.2%
+          2 | [0, 1, 2, 4]         |              36 |          78.5% |         65.2%
+          5 | [0, 1, 2]            |              45 |          70.4% |         67.6%
+          3 | [0, 1, 2, 4]         |              54 |          88.5% |         73.3%
+          2 | [0, 1, 2, 4, 8]      |              70 |          76.1% |         75.0%
+          5 | [0, 1, 2, 4]         |              90 |          95.3% |         75.6%  <- QAE ≥ 95 % y MC no
+         10 | [0, 1, 2]            |              90 |          81.3% |         76.9%
+          3 | [0, 1, 2, 4, 8]      |             105 |          92.4% |         79.2%
+          2 | [0, 1, 2, 4, 8, 16]  |             136 |          81.3% |         85.7%
+          5 | [0, 1, 2, 4, 8]      |             175 |          96.5% |         86.9%  <- QAE ≥ 95 % y MC no
+         10 | [0, 1, 2, 4]         |             180 |          99.3% |         86.6%  <- QAE ≥ 95 % y MC no
+          3 | [0, 1, 2, 4, 8, 16]  |             204 |          87.2% |         88.8%
+          2 | [0, 1, 2, 4, 8, 16, 32] |             266 |          82.7% |         93.6%
+          5 | [0, 1, 2, 4, 8, 16]  |             340 |          95.6% |         94.8%  <- QAE ≥ 95 % y MC no
+         10 | [0, 1, 2, 4, 8]      |             350 |         100.0% |         95.5%
+          3 | [0, 1, 2, 4, 8, 16, 32] |             399 |          90.2% |         96.3%
+          5 | [0, 1, 2, 4, 8, 16, 32] |             665 |          97.4% |         99.1%
+         10 | [0, 1, 2, 4, 8, 16]  |             680 |          99.8% |         98.9%
+         10 | [0, 1, 2, 4, 8, 16, 32] |            1330 |         100.0% |        100.0%
+    MC con  100 consultas por túnel: elige bien 79.1%
+    MC con  200 consultas por túnel: elige bien 88.7%
+    MC con  300 consultas por túnel: elige bien 93.2%
+    MC con  400 consultas por túnel: elige bien 96.5%
+    MC con  500 consultas por túnel: elige bien 97.8%
+    MC con  700 consultas por túnel: elige bien 99.1%
+
+Q6. Tiempo de una estimación completa con StatevectorSampler (mediana de 20):
+    qae k=0,1,2,4,8 · 3 shots        13.9 ms
+    qae k=0,1,2,4,8,16 · 3 shots     21.6 ms
+    monte carlo 300 consultas         2.4 ms
+
+Ejemplo de trayectorias (semilla 7, p = 0.30):
+{
+ "qae": [
+  {
+   "consultas": 3,
+   "estimacion": 0.6666,
+   "error": 0.3666
+  },
+  {
+   "consultas": 12,
+   "estimacion": 0.3224,
+   "error": 0.0224
+  },
+  {
+   "consultas": 27,
+   "estimacion": 0.3379,
+   "error": 0.0379
+  },
+  {
+   "consultas": 54,
+   "estimacion": 0.2769,
+   "error": 0.0231
+  },
+  {
+   "consultas": 105,
+   "estimacion": 0.2506,
+   "error": 0.0494
+  }
+ ],
+ "monte_carlo": [
+  {
+   "consultas": 15,
+   "estimacion": 0.3333,
+   "error": 0.0333
+  },
+  {
+   "consultas": 30,
+   "estimacion": 0.3,
+   "error": 0.0
+  },
+  {
+   "consultas": 45,
+   "estimacion": 0.2667,
+   "error": 0.0333
+  },
+  {
+   "consultas": 60,
+   "estimacion": 0.2667,
+   "error": 0.0333
+  },
+  {
+   "consultas": 75,
+   "estimacion": 0.24,
+   "error": 0.06
+  },
+  {
+   "consultas": 90,
+   "estimacion": 0.2556,
+   "error": 0.0444
+  },
+  {
+   "consultas": 105,
+   "estimacion": 0.2571,
+   "error": 0.0429
+  }
+ ]
+}
+Traceback (most recent call last):
+  File "C:\Users\sebas\Documents\GitHub\menu-criollo_ibm-hackathon\experiments\qae\qae_spike.py", line 266, in <module>
+    graficar(filas)
+    ^^^^^^^^
+NameError: name 'graficar' is not defined

@@ -113,6 +113,7 @@ El jugador puede colocar diferentes fichas magnéticas.
 | 🌀 Ficha Prisma | H — Hadamard | «Moneda cuántica»: crea superposición; al medir, cada resultado sale con la probabilidad que dictan sus amplitudes. |
 | 🎛️ Ficha Giro-Sensor | RX / RY / RZ | Codificar datos de los sensores mediante rotaciones. |
 | ⚡ Cable Gemelo | CX / RZZ | Entrelazar qubits y representar combinaciones entre características. |
+| 🔍 Perilla de Escala | Escala de RY(escala · dato) | Ajustar cuánto gira el qubit por unidad de sensor (1.3). |
 | 🎚️ Perillas Doradas | Parámetros \(\theta\) | Ajustar parámetros del circuito. |
 | 🎲 Dial de Vistazos | Shots | Controlar cuántas mediciones se realizan. |
 
@@ -120,7 +121,7 @@ Las **Perillas Doradas** y el **Dial de Vistazos** se incorporan en el Nivel 2.
 
 ## 2.3. 🌩️ Tormenta NISQ
 
-No es un modo de juego ni un selector de dificultad: aparece solo en los minijuegos cuya dificultad fija la incluye (2.4). Sus efectos visuales pueden simularse.
+No es un modo de juego ni un selector de dificultad: aparece solo en los minijuegos cuya dificultad fija la incluye (2.4).
 
 ### Concepto
 
@@ -130,13 +131,15 @@ Cada **⚡ Cable Gemelo (CX)** incrementa una Barra de Estática.
 
 ### Efectos
 
-- Demasiadas fichas innecesarias generan estática morada.
-- El cerebro cuántico se marea.
-- El robot empieza a ejecutar acciones aleatorias y absurdas.
+- Cada ficha suma estática morada en la barra (efecto decorativo, simulado).
+- Si el circuito pasa el límite de fichas del minijuego, se desata la Tormenta: el cerebro se marea, el circuito no se ejecuta y ocurre el desastre.
+- Mientras no se pase del límite, el robot decide siempre con el circuito real, sin ruido. La estática nunca cambia sus decisiones: inventar acciones aleatorias sería falsear la decisión del robot.
 
 ### Objetivo educativo
 
 Premiar al jugador por resolver los retos utilizando circuitos más cortos y limpios.
+
+Chispa: «En un chip cuántico real, cada compuerta suma ruido: por eso ganan los circuitos cortos».
 
 ---
 
@@ -340,28 +343,28 @@ Las configuraciones alejadas producen resultados:
 
 - Q-Anacleto toca una campanita francesa y sirve un disco carbonizado en llamas, activando el rociador del techo.
 - Vierte mezcla cruda directamente en el bolsillo del jugador.
+- Isla gigante (escala baja): sirve como «perfectos» panqueques crudos y quemados.
+- Islas fantasma (escala excesiva): en los bordes del radar aparecen islas falsas y sirve un disco quemado con orgullo.
 
 ### Concepto educativo
 
-**Fronteras abiertas vs. islas cerradas: kernel clásico vs. feature map cuántico.**
+**Ancho del kernel: kernel clásico vs. escala de la codificación cuántica.**
 
-El Cerebro Simple no puede encerrar una región circular utilizando una única recta.
+El Cerebro Simple no puede encerrar una región circular utilizando una única recta (la mejor regla se queda en 79 %).
 
-El Cerebro Cuántico propone combinar:
+En el Cerebro Cuántico, dos Giro-Sensores RY con lectura `00` dibujan una isla en el centro del radar. Con la escala de fábrica la isla es demasiado grande (67 %). El jugador gira la **Perilla de Escala** de cada Giro-Sensor: la isla se encoge hasta abrazar los panqueques en su punto (96–100 %, entre 2.5 y 5.5 rad). Si la gira de más, aparecen islas fantasma, porque el giro es periódico: una vuelta completa es como no girar.
 
-- 🌀 Prisma H.
-- Rotaciones RY y RZ.
-- ⚡ Cable Gemelo.
+La ciencia: la escala es el ancho del kernel de fidelidad, cos²(escala·Δ₀/2)·cos²(escala·Δ₁/2). Cerca del centro se parece a un kernel RBF clásico con γ ≈ escala²/4. Coincide con Schuld (2021): la codificación fija el kernel.
 
-El feature map lleva los datos a un espacio donde la frontera puede cerrarse, y en el radar aparece una isla redonda alrededor de la configuración ideal.
+Chispa: «Un kernel clásico también tiene su perilla de ancho; aquí es cuánto gira el qubit».
+
+El 1.3 tiene **una sola ranura por cable**: con dos, apilar dos Giro-Sensores duplica la escala y se gana sin la perilla. Verificado con Qiskit y búsqueda exhaustiva en [experiments/rediseno_1_3/resultados.md](experiments/rediseno_1_3/resultados.md).
 
 (No se usa la metáfora de la Esfera de Bloch: describe un solo qubit, no el mapa de decisión de un circuito de dos.)
 
-⚠️ **Pendiente de rediseño:** verificado con Qiskit, la isla central ya aparece con solo dos Giro-Sensores RY leyendo `00`, sin H, RZ ni CX. Hay que decidir qué ficha «desbloquea» la isla para que la lección sea cierta (ver [siguiente-sesion.md](siguiente-sesion.md)).
-
 ### Dificultad fija
 
-⭐ Taller: panqueques caseros, región central grande.
+⭐ Taller: panqueques caseros, ventana ganadora ancha de la perilla.
 
 ## 4.4. Minijuego 1.4: «¡Lavandería en Remolino!»
 
@@ -394,6 +397,17 @@ El jugador conecta capas consecutivas:
 
 El objetivo es modificar el espacio de representación hasta ajustarse al patrón.
 
+Verificado con búsqueda exhaustiva ([experiments/verificacion.md](experiments/verificacion.md)): espiral doble de 1 vuelta, 5 ranuras.
+
+| Cerebro | Acierto en la cinta |
+| --- | --- |
+| Regla recta | 72 % |
+| Cada sensor se carga una sola vez | 85 % |
+| Giros apilados sin Cable Gemelo de por medio | 87 % |
+| Sensores → Cable Gemelo → sensores otra vez | 95 % |
+
+Base: Pérez-Salinas et al. (2020), *Data re-uploading for a universal quantum classifier*, Quantum 4, 226. Y Schuld, Sweke y Meyer (2021), Phys. Rev. A 103, 032430: repetir la codificación da acceso a frecuencias más ricas.
+
 ### Dificultad fija
 
 ⭐⭐ Centrifugado turbo: espiral doble completa, que una sola capa no alcanza a separar.
@@ -419,7 +433,7 @@ Mediante estos controles debe enseñar a Q-Boby a:
 - Dar la pata.
 - Girar.
 
-Sobre la cabeza de Q-Boby aparece un **Termómetro de Mareo**, que representa la función de pérdida (*Loss / Error*).
+Sobre la cabeza de Q-Boby aparece un **Termómetro de Mareo**, que representa la función de pérdida (*Loss / Error*): el promedio de (1 − P(truco correcto))², entre 0 (obedece) y 1 (hace todo al revés).
 
 ### Errores cómicos
 
@@ -450,6 +464,13 @@ Posteriormente, el jugador desbloquea:
 
 Este botón permite observar cómo un optimizador ajusta automáticamente los parámetros. El gradiente se calcula de verdad con la regla de parameter-shift: dos ejecuciones del circuito por perilla, con el ángulo desplazado ±π/2.
 
+Verificado ([experiments/parameter_shift/resultados.md](experiments/parameter_shift/resultados.md)):
+
+- El gradiente coincide con diferencias finitas (diferencia de 10⁻¹¹).
+- Desde 20 inicios al azar, Q-Boby aprende las cuatro órdenes.
+- Con una perilla congelada en un mal valor, la otra no basta.
+- 30 iteraciones tardan ~230 ms.
+
 ### Dificultad fija
 
 ⭐ Taller: dos trucos dentro de casa.
@@ -479,9 +500,17 @@ Si insiste en olfatear de más, se queda sin batería a mitad del parque y se du
 - **Cerebro Simple (Monte Carlo):** Q-Boby entra y sale del túnel muchas veces y promedia. El error baja lento, como 1/√N: para ganar el doble de precisión necesita cuatro veces más olfateos.
 - **Cerebro Cuántico (QAE):** Q-Boby codifica la probabilidad en la amplitud de un qubit y la amplifica con el operador de Grover. El error baja como 1/N: llega a la misma precisión con muchos menos olfateos.
 
-Una gráfica en vivo muestra ambas curvas de precisión contra batería gastada.
+Una gráfica en vivo muestra ambas curvas de precisión contra batería gastada. Cada curva es la trayectoria de una corrida real del backend (una llamada por método); el frontend solo la anima punto a punto.
 
-Es la **única ventaja cuántica real y demostrada** del juego (aceleración cuadrática). Chispa aclara que en el hardware ruidoso actual el ruido todavía se come esa ventaja.
+Es la **única ventaja cuántica real y demostrada** del juego (aceleración cuadrática en consultas). Chispa aclara que en los chips ruidosos de hoy el error deja de bajar pasado cierto punto: el ruido le pone un piso a la ventaja (Tanaka et al., 2021, arXiv:2006.16223).
+
+Verificado con Qiskit ([experiments/qae/resultados.md](experiments/qae/resultados.md)):
+
+- Sobre el mismo oráculo, el error de Monte Carlo baja con pendiente −0.50 y el de QAE con −1.05.
+- Batería del minijuego: 180 olfateos (90 por túnel, con potencias k = 0, 1, 2, 4 y 5 mediciones cada una).
+- Con túneles de p = 0.30 y 0.36, QAE elige bien el 95 % de las veces y Monte Carlo cerca del 77 %. Monte Carlo necesitaría unas 4.4 veces más olfateos.
+
+Frase de Chispa: «Con el mismo olfato, el chip cuántico necesitó unas 4 veces menos olfateos. La ventaja es en consultas, no en tiempo: aquí todo corre en una laptop».
 
 Implementación prevista: QAE simple hecho a mano con 1-2 qubits (potencias de Grover y estimación por máxima verosimilitud), sin depender de `qiskit-algorithms`.
 
@@ -529,6 +558,14 @@ Visualmente:
 - Las ondas asociadas a decisiones incorrectas se cancelan.
 - Las asociadas a decisiones correctas se refuerzan.
 
+Verificado con búsqueda exhaustiva ([experiments/verificacion.md](experiments/verificacion.md)), con fichas Prisma, Giro de Fase (RZ) y Cable Gemelo:
+
+- Sin Prisma, los giros de fase no cambian nada (50 %).
+- Con Prisma pero sin la H final, la fase sigue invisible (65 %).
+- El sándwich completo llega al 100 %.
+
+La regla recta se queda en 75 %. Lección: la fase solo se ve cuando una H la hace interferir.
+
 ### Dificultad fija
 
 ⭐ Taller: pista 2×2 guiada.
@@ -552,7 +589,7 @@ Q-Boby debe superar:
 
 ### Errores cómicos
 
-Si el jugador utiliza el Cerebro Simple o construye un circuito cuántico excesivamente largo, la estática afecta a Q-Boby.
+Si el jugador se pasa del límite de fichas, se desata la Tormenta NISQ sobre Q-Boby.
 
 En lugar de atrapar el frisbee:
 
@@ -565,6 +602,10 @@ En lugar de atrapar el frisbee:
 **Equilibrio entre expresividad del circuito y ruido en hardware cuántico NISQ.**
 
 El jugador debe diseñar un circuito cuántico compacto y eficiente para superar los desafíos sin generar un exceso de ruido.
+
+El ruido no se simula en la decisión: el límite de fichas representa el presupuesto de compuertas de un chip NISQ, y la estática es decorativa.
+
+Verificado con búsqueda exhaustiva ([experiments/verificacion.md](experiments/verificacion.md)): Q-Boby atrapa el frisbee cuando viento y giro se compensan (un pasillo diagonal). La regla recta se queda en 73 %, sin Cable Gemelo nada pasa del 63 %, y el circuito mínimo que gana tiene 5 fichas (96–97 %). **`limite_fichas`: 5.**
 
 ### Dificultad fija
 

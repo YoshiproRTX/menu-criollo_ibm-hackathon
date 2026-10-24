@@ -1,0 +1,119 @@
+qiskit 2.5.2 · semilla 21
+Simulador numpy vs Qiskit (200 circuitos al azar): diferencia máx 6.7e-16
+
+## 1.1 Pelusa Rebelde  (16 circuitos, 0 s) 
+   lectura q1=0, escala 1.00π, ranuras 2, fichas ['giro_y']
+   regla recta: cinta 100%
+   sin giro_y                         cinta   50% · ejemplos   50% · (vacío)
+   con giro_y                         cinta  100% · ejemplos  100% · RY1
+   circuito mínimo que pasa el 90%: 1 fichas · RY1
+
+## 1.2 Fiebre en el Fregadero  (14641 circuitos, 0 s) 
+   lectura q1=0, escala 1.00π, ranuras 4, fichas ['giro_y', 'prisma', 'cable_gemelo']
+   regla recta: cinta 75%
+   sin cable_gemelo                   cinta   45% · ejemplos   67% · RY1 → H1 → RY0·RY1
+   con cable_gemelo                   cinta  100% · ejemplos  100% · RY0·RY1 → CX(0→1)
+   circuito mínimo que pasa el 90%: 3 fichas · RY0·RY1 → CX(0→1)
+
+## 1.4 exploración (fichas giro_y, prisma, cable_gemelo; 50 puntos por brazo, ejemplos + cinta)
+   vueltas | ranuras | escala | lectura | una vez | repetido | sin recarga tras CX | recarga tras CX | regla
+      0.60 |       5 |  0.50π | q0=0    |     96% |      96% |                 81% |             96% | 99%
+      0.60 |       5 |  0.50π | q1=0    |     96% |      96% |                 81% |             96% | 99%
+      0.60 |       5 |  0.50π | 00      |     96% |      96% |                 76% |             96% | 99%
+      0.60 |       5 |  1.00π | q0=0    |     94% |      94% |                 81% |             94% | 99%
+      0.75 |       5 |  0.50π | q0=0    |     84% |      91% |                 91% |             91% | 88%
+      0.75 |       5 |  0.50π | q1=0    |     84% |      91% |                 91% |             91% | 88%
+      0.75 |       5 |  1.00π | q0=0    |     84% |      94% |                 86% |             94% | 88%
+      1.00 |       5 |  1.00π | q0=0    |     79% |      93% |                 83% |             93% | 77%
+      1.00 |       5 |  1.00π | q1=0    |     79% |      93% |                 83% |             93% | 77%
+      1.00 |       5 |  1.50π | q0=0    |     89% |      92% |                 79% |             92% | 77%
+   diseños donde la lección se sostiene (una vez < 90 %, repetido ≥ 90 %, regla < 90 %): 6
+
+## 1.4 Lavandería en Remolino (diseño elegido)  (161051 circuitos, 8 s) vueltas 1.0
+   lectura q0=0, escala 1.00π, ranuras 5, fichas ['giro_y', 'prisma', 'cable_gemelo']
+   regla recta: cinta 72%
+   cada sensor una vez                cinta   85% · ejemplos   70% · RY1 → H1 → CX(1→0) → CX(0→1) → RY0
+   sensor repetido                    cinta   95% · ejemplos   90% · H0·RY1 → CX(0→1) → RY1 → RY0·H1 → CX(1→0)
+   repetido, sin recarga tras CX      cinta   87% · ejemplos   78% · RY1 → RY1 → RY0·H1 → CX(1→0)
+   recarga tras Cable Gemelo          cinta   95% · ejemplos   90% · H0·RY1 → CX(0→1) → RY1 → RY0·H1 → CX(1→0)
+   circuito mínimo que pasa el 90%: 7 fichas · H0·RY1 → CX(0→1) → RY1 → RY0·H1 → CX(1→0)
+
+## 2.3 Pista Láser-Musical  (14641 circuitos, 1 s) 
+   lectura q0=0, escala 1.00π, ranuras 4, fichas ['prisma', 'giro_z', 'cable_gemelo']
+   regla recta: cinta 75%
+   sin prisma                         cinta   50% · ejemplos   50% · (vacío)
+   prisma pero sin H después de la fase cinta   65% · ejemplos   58% · H0 → RZ0·RZ1 → RZ0 → RZ0·RZ1
+   sándwich (H después de la fase)    cinta  100% · ejemplos  100% · H0·H1 → RZ0·RZ1 → H0·H1 → CX(1→0)
+   circuito mínimo que pasa el 90%: 6 fichas · H0·H1 → RZ0·RZ1 → CX(0→1) → H0
+
+## 2.3 Pista Láser-Musical  (14641 circuitos, 0 s) 
+   lectura q1=0, escala 1.00π, ranuras 4, fichas ['prisma', 'giro_z', 'cable_gemelo']
+   regla recta: cinta 75%
+   sin prisma                         cinta   50% · ejemplos   50% · (vacío)
+   prisma pero sin H después de la fase cinta   65% · ejemplos   58% · H1 → RZ0·RZ1 → RZ0 → RZ0·RZ1
+   sándwich (H después de la fase)    cinta  100% · ejemplos  100% · H0·H1 → RZ0·RZ1 → H0·H1 → CX(0→1)
+   circuito mínimo que pasa el 90%: 6 fichas · H0·H1 → RZ0·RZ1 → CX(1→0) → H1
+
+## 2.3 Pista Láser-Musical  (14641 circuitos, 0 s) 
+   lectura 00, escala 1.00π, ranuras 4, fichas ['prisma', 'giro_z', 'cable_gemelo']
+   regla recta: cinta 75%
+   sin prisma                         cinta   50% · ejemplos   50% · (vacío)
+   prisma pero sin H después de la fase cinta   65% · ejemplos   58% · H1 → RZ0·RZ1 → RZ0 → RZ0·RZ1
+   sándwich (H después de la fase)    cinta   75% · ejemplos   75% · H0·H1 → RZ0·RZ1 → H0·H1
+
+## 2.3 Pista Láser-Musical  (14641 circuitos, 0 s) 
+   lectura q0=0, escala 2.00π, ranuras 4, fichas ['prisma', 'giro_z', 'cable_gemelo']
+   regla recta: cinta 75%
+   sin prisma                         cinta   50% · ejemplos   50% · (vacío)
+   prisma pero sin H después de la fase cinta   70% · ejemplos   67% · H1 → H0·RZ1 → CX(0→1) → H0
+   sándwich (H después de la fase)    cinta   70% · ejemplos   67% · H1 → RZ1 → H1 → CX(1→0)
+
+## 2.3 Pista Láser-Musical  (14641 circuitos, 0 s) 
+   lectura q1=0, escala 2.00π, ranuras 4, fichas ['prisma', 'giro_z', 'cable_gemelo']
+   regla recta: cinta 75%
+   sin prisma                         cinta   50% · ejemplos   50% · (vacío)
+   prisma pero sin H después de la fase cinta   70% · ejemplos   58% · RZ0·H1 → RZ0 → RZ0·RZ1 → RZ0
+   sándwich (H después de la fase)    cinta   70% · ejemplos   67% · H1 → RZ1 → H1
+
+## 2.3 Pista Láser-Musical  (14641 circuitos, 0 s) 
+   lectura 00, escala 2.00π, ranuras 4, fichas ['prisma', 'giro_z', 'cable_gemelo']
+   regla recta: cinta 75%
+   sin prisma                         cinta   50% · ejemplos   50% · (vacío)
+   prisma pero sin H después de la fase cinta   70% · ejemplos   58% · H0·RZ1 → RZ0 → RZ0·RZ1 → RZ0·RZ1
+   sándwich (H después de la fase)    cinta   70% · ejemplos   67% · H1 → RZ1 → H1
+
+## 2.4 exploración (catálogo completo, 4 ranuras)
+   dataset            | escala | lectura | sin CX | con CX | mínimo de fichas ≥ 90 % | regla
+   pasillo diagonal   |  1.00π | q0=0    |    80% |    78% | None                    | 74%
+   pasillo diagonal   |  1.00π | q1=0    |    74% |    78% | None                    | 74%
+   pasillo diagonal   |  1.00π | 00      |    80% |    90% | 6                       | 74%
+   pasillo diagonal   |  2.00π | q0=0    |    72% |    96% | 5                       | 74%
+   pasillo diagonal   |  2.00π | q1=0    |    72% |    96% | 5                       | 74%
+   pasillo diagonal   |  2.00π | 00      |    78% |    80% | None                    | 74%
+   curva del frisbee  |  1.00π | q0=0    |    74% |    92% | 4                       | 100%
+   curva del frisbee  |  1.00π | q1=0    |    92% |    92% | 3                       | 100%
+   curva del frisbee  |  1.00π | 00      |    92% |    92% | 3                       | 100%
+   curva del frisbee  |  2.00π | q0=0    |    74% |    92% | 3                       | 100%
+   curva del frisbee  |  2.00π | q1=0    |    92% |    92% | 2                       | 100%
+   curva del frisbee  |  2.00π | 00      |    92% |    92% | 2                       | 100%
+   dos reflectores    |  1.00π | q0=0    |    68% |    98% | 3                       | 84%
+   dos reflectores    |  1.00π | q1=0    |    70% |    98% | 3                       | 84%
+   dos reflectores    |  1.00π | 00      |    70% |    92% | 4                       | 84%
+   dos reflectores    |  2.00π | q0=0    |    64% |    98% | 4                       | 84%
+   dos reflectores    |  2.00π | q1=0    |    64% |    98% | 4                       | 84%
+   dos reflectores    |  2.00π | 00      |    70% |    70% | None                    | 84%
+
+## 2.4 Gran Copa (diseño elegido: pasillo diagonal)  (104976 circuitos, 4 s) 
+   lectura 00, escala 1.00π, ranuras 4, fichas ['giro_y', 'giro_z', 'prisma', 'cable_gemelo']
+   regla recta: cinta 73%
+   sin cable_gemelo                   cinta   77% · ejemplos   85% · RY0 → RZ0·RY1 → RY0·RY1 → H0·H1
+   con cable_gemelo                   cinta   93% · ejemplos   85% · RY0·RY1 → RZ0·RZ1 → CX(0→1) → RY0
+   circuito mínimo que pasa el 90%: 6 fichas · RY0·RY1 → RZ0·RZ1 → CX(0→1) → RY0
+
+## 2.4 Gran Copa (pasillo diagonal, 2π, q1=0)  (104976 circuitos, 4 s) 
+   lectura q1=0, escala 2.00π, ranuras 4, fichas ['giro_y', 'giro_z', 'prisma', 'cable_gemelo']
+   regla recta: cinta 73%
+   sin cable_gemelo                   cinta   63% · ejemplos   80% · RZ1 → RY0·H1 → H0·RZ1 → RZ1
+   con cable_gemelo                   cinta   97% · ejemplos   95% · H1 → CX(1→0) → RY0·RY1 → CX(0→1)
+   circuito mínimo que pasa el 90%: 5 fichas · H1 → CX(1→0) → RY0·RY1 → CX(0→1)
+   mejor acierto por número de fichas: {0: 0.36, 1: 0.64, 2: 0.64, 3: 0.7, 4: 0.78, 5: 0.96, 6: 0.96, 7: 0.78, 8: 0.72}

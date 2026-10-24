@@ -8,7 +8,8 @@ y lo mapea a su equivalente cuántico (QML), como pide la consigna del reto.
 Diseño detallado de minijuegos: [minijuegos](minijuegos.md).
 Pantallas, código y contrato de la API del motor compartido:
 [breadboard-fregadero](breadboard-fregadero.md).
-Investigaciones pendientes: [siguiente-sesion](siguiente-sesion.md).
+Investigaciones (todas cerradas): [siguiente-sesion](siguiente-sesion.md).
+Spec del producto (historias de usuario y decisiones): [docs/spec](docs/spec.md).
 
 # Escenarios
 
@@ -52,7 +53,7 @@ Hay un video demo grabado en local donde todo funciona de principio a fin.
 | 1.2 Fiebre en el Fregadero | SVM ➔ modelo cuántico como método de kernel (XOR) | A |
 | 2.2 Doble Hueso ⭐ estrella | Monte Carlo ➔ Quantum Amplitude Estimation | A |
 | 2.1 Siéntate, Gira o Despega | Descenso de gradiente ➔ regla de parameter-shift | B |
-| 1.3 Chef Catástrofe | Kernel clásico ➔ feature map cuántico (anillo) | B |
+| 1.3 Chef Catástrofe | Ancho del kernel clásico ➔ escala de la codificación cuántica (isla) | B |
 | 1.4 Lavandería en Remolino | Red profunda ➔ QNN con data re-uploading | C |
 | 2.3 Pista Láser-Musical | Distribuciones ➔ superposición, amplitudes, interferencia | C |
 | 2.4 Gran Copa Canina | Red neuronal ➔ VQC con ruido NISQ | C |
@@ -76,8 +77,50 @@ Con el chip cuántico (QAE) llega a la misma precisión con muchos menos
 olfateos (error ~ 1/N). Gráfica en vivo con ambas curvas.
 QAE simple implementado a mano (1-2 qubits, potencias de Grover y máxima
 verosimilitud), sin depender de `qiskit-algorithms`.
-Chispa aclara que en hardware ruidoso actual el ruido se come esa ventaja.
+Chispa aclara que en los chips ruidosos de hoy el error se satura: el ruido
+le pone un piso a la ventaja (Tanaka et al. 2021; "se la come" exageraba).
+Verificado con Qiskit en `experiments/qae/`, sobre el mismo oráculo:
+- Pendiente del error: −0.50 para Monte Carlo y −1.05 para QAE.
+- Batería de 180 olfateos (90 por túnel, potencias k = 0, 1, 2, 4 con
+  5 mediciones cada una).
+- Con túneles de p = 0.30 y 0.36, QAE elige bien el 95 % de las veces y
+  Monte Carlo cerca del 77 %. Monte Carlo necesita ~4.4 veces más consultas.
+- Una estimación tarda ~15 ms.
+Citas verificadas en arXiv: Brassard et al. (2002) y Suzuki et al. (2020).
 Se eliminan los "perritos fantasma" por ambos puentes (metáfora engañosa).
+Endpoint: una llamada por método devuelve la trayectoria de una corrida real
+(estimación y error contra consultas); el frontend solo la anima.
+La frase de Chispa sobre el ruido se apoya en una fuente verificada, sin
+`qiskit-aer`.
+
+## Rediseño del 1.3 «Chef Catástrofe»
+
+La lección es la escala de la codificación: una Perilla de Escala en cada
+Giro-Sensor agranda o achica la isla, porque la escala es el ancho del kernel
+(como el gamma de un kernel RBF). Verificado con Qiskit en
+`experiments/rediseno_1_3/`: con una ranura por cable y la escala de fábrica
+ningún circuito pasa del 67 %; con la perilla entre 2.5 y 5.5 rad se llega al
+96–100 %; la regla recta se queda en 79 %. Con dos ranuras se ganaría
+apilando giros, por eso el 1.3 usa una sola.
+
+## Ruido en el 2.4 «Gran Copa Canina»
+
+El límite de fichas es una regla del juego y la estática es solo decorativa.
+El robot decide siempre con el circuito real sin ruido; pasarse del límite
+dispara la Tormenta NISQ y el desastre, sin ejecutar el circuito.
+`limite_fichas`: 5, el circuito mínimo que gana (verificado).
+
+## Verificación de los minijuegos
+
+En `experiments/verificacion.md`: búsqueda exhaustiva con Qiskit en cada
+minijuego del motor compartido. En todos, la ficha que enseña el concepto es
+la que cruza el 90 %. Esa misma tabla fija `lectura`, `codificacion`,
+`ranuras` y los datos de cada JSON.
+El 1.4 se rediseñó: espiral de 1 vuelta con 5 ranuras. Cargar cada sensor
+una vez da 85 %; apilar giros, 87 %; volver a cargar tras el Cable Gemelo,
+95 %.
+El 2.1 usa como pérdida el promedio de (1 − P(truco correcto))², con
+gradiente por parameter-shift verificado (`experiments/parameter_shift/`).
 
 ## Ganchos de adicción
 
@@ -106,9 +149,10 @@ Giro-Sensores codifican y el Cable Gemelo cambia lo que se mide.
 Chispa lo dice: "Una red neuronal clásica también podría;
 aquí lo hacemos con qubits para ver cómo piensan".
 La única ventaja real que se presenta es la de QAE (2.2).
-Corregir en minijuegos.md: "H explora varias posibilidades a la vez"
-(mito del paralelismo; usar "moneda cuántica"), "perritos fantasma" (2.2)
-y la Esfera de Bloch "envolviendo el mapa" (1.3; Bloch es de un solo qubit).
+Corregido en minijuegos.md: "H explora varias posibilidades a la vez"
+(mito del paralelismo; usar "moneda cuántica"), "perritos fantasma" (2.2),
+la Esfera de Bloch "envolviendo el mapa" (1.3; Bloch es de un solo qubit) y
+las "acciones aleatorias" por estática (2.4; falsearían la decisión).
 Cápsulas "¡Ajá!" y citas a papers se verifican con la skill de Qiskit
 y documentación oficial antes de escribirlas.
 
@@ -141,10 +185,13 @@ Backend: Python con uv, FastAPI y Qiskit 2.x corriendo en vivo
 (`StatevectorSampler` / `Statevector`, sin hardware real).
 Recibe el circuito del jugador; lee los datos del minijuego de `content/`.
 Endpoints REST separados por recurso (predicciones, mapa de decisión,
-rareza, Rayos-X): contrato en el breadboard.
+rareza, Rayos-X, estimaciones del 2.2 y entrenamiento del 2.1): contrato en
+el breadboard. Las fichas de giro aceptan un campo opcional `escala` (perilla
+del 1.3); las Perillas Doradas del Nivel 2 siguen el mismo patrón.
 Modelo del motor compartido: lectura fija (el jugador diseña el circuito
 y se lee la probabilidad de un resultado). Verificado: en el XOR da 50 %
 sin CX y 100 % con CX. Mapa 32×32 con `Statevector` en ~250 ms.
+Pruebas: pytest (backend, con uv) y Vitest (frontend), aprobadas.
 Chip simple (la regla) calculado en el frontend. Estado con zustand,
 álbumes en `localStorage`, Rayos-X en texto, comando único con `concurrently`.
 Frontend: Vite, TypeScript y React Three Fiber (`@react-three/drei`),
@@ -171,14 +218,13 @@ antes de tocar algo.
 Todo funciona en local y es reproducible con un comando.
 Entregable principal: video demo grabado en local.
 
-# Reparto del equipo (propuesta, por confirmar)
+# Reparto del equipo (confirmado)
 
 Primeros 15 minutos, entre todos: fijar el contrato de la API
 (circuito del jugador ➔ predicciones, acierto, mapa, diagrama)
 y el formato de configuración de minijuego. El frontend arranca con mocks.
 
-Tres agentes (propuesta; el detalle por pieza está en la sección 10
-del breadboard):
+Tres agentes (el detalle por pieza está en la sección 10 del breadboard):
 
 1. QML y contenido (`backend/`, `content/`): FastAPI con Qiskit, motor
    compartido, QAE (2.2), parameter-shift (2.1), rareza, pruebas, y los JSON

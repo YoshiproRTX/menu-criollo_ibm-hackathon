@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo gelatina</title>
+<style>
+  :root {
+    --fondo: #0b1030;        /* azul espacial de la consola */
+    --panel: #141a3a;
+    --tinta: #eef0ff;
+    --tinta-2: #b9bfe6;
+    --muda: #8088b8;
+    --lavar: #1197b3;        /* polo cian: P(lavar) = 1 */
+    --basura: #d93a90;       /* polo magenta: P(lavar) = 0 */
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: var(--fondo); color: var(--tinta);
+    font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .consola {
+    width: min(420px, calc(100vw - 32px)); padding: 16px; border-radius: 20px;
+    background: var(--panel); box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 20px 60px rgba(0,0,0,.5);
+  }
+  h1 { font-size: 16px; margin: 0 0 4px; }
+  p { margin: 0 0 12px; color: var(--tinta-2); font-size: 13px; }
+  canvas { width: 100%; aspect-ratio: 1; display: block; border-radius: 12px; touch-action: manipulation; }
+  .fila { display: flex; gap: 8px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+  button {
+    font: inherit; font-weight: 600; color: #fff; background: #6250d6; border: 0;
+    border-radius: 999px; padding: 10px 16px; cursor: pointer;
+  }
+  button:active { transform: scale(.97); }
+  label { color: var(--tinta-2); font-size: 13px; display: flex; gap: 6px; align-items: center; }
+  .leyenda { display: flex; gap: 14px; font-size: 13px; color: var(--tinta-2); margin-top: 10px; flex-wrap: wrap; }
+  .chip { display: inline-flex; gap: 6px; align-items: center; }
+  .chip i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  #estado { font-variant-numeric: tabular-nums; color: var(--muda); font-size: 12px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<main class="consola">
+  <h1>Radar del Fregadero</h1>
+  <p>Mapas reales de Qiskit (1.2, XOR). El botón alterna entre el circuito sin Cable Gemelo y con él.</p>
+  <canvas id="radar" aria-label="Mapa de decisión: probabilidad de lavar según humedad y peso"></canvas>
+  <div class="leyenda">
+    <span class="chip"><i style="background:var(--lavar)"></i>● lavar</span>
+    <span class="chip"><i style="background:var(--basura)"></i>✕ basura</span>
+    <span class="chip">😄 bien clasificado · 😱 mal</span>
+  </div>
+  <div class="fila">
+    <button id="alternar">Encajar Cable Gemelo</button>
+    <label>Duración <input id="duracion" type="range" min="150" max="1200" step="50" value="400"> <span id="ms">400 ms</span></label>
+  </div>
+  <div id="estado"></div>
+</main>
+<script src="mapas.js"></script>
+<script>
+// Prototipo descartable: describe el componente <MapaGelatina mapaAnterior mapaNuevo duracion />.
+// Los valores salen de Qiskit (mapas.js). La interpolación y el temblor son decorativos.
+const RES = MAPAS.resolucion;
+const css = getComputedStyle(document.documentElement);
+const hex = (v) => css.getPropertyValue(v).trim();
+const rgb = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+const POLO_LAVAR = rgb(hex("--lavar")), POLO_BASURA = rgb(hex("--basura")), NEUTRO = rgb("#44475a");
+
+// Divergente: magenta (0) → gris neutro (0.5) → cian (1).
+function color(v) {
+  const t = Math.min(1, Math.max(0, v));
+  const [a, b, u] = t < 0.5 ? [POLO_BASURA, NEUTRO, t / 0.5] : [NEUTRO, POLO_LAVAR, (t - 0.5) / 0.5];
+  return a.map((c, i) => Math.round(c + (b[i] - c) * u));
+}
+
+const canvas = document.getElementById("radar");
+const ctx = canvas.getContext("2d");
+const chico = new OffscreenCanvas(RES, RES);
+const cctx = chico.getContext("2d");
+const img = cctx.createImageData(RES, RES);
+
+function ajustarTamano() {
+  const lado = Math.round(canvas.clientWidth * devicePixelRatio);
+  canvas.width = canvas.height = lado;
+}
+
+let anterior = MAPAS.sin_cx, nuevo = MAPAS.sin_cx, inicio = -1, duracion = 400, conCx = false;
+const actual = new Float32Array(RES * RES);
+
+// Muestra bilineal del mapa en (x, y) ∈ [0, 1]², fila 0 abajo.
+function muestra(m, x, y) {
+  const fx = x * (RES - 1), fy = y * (RES - 1);
+  const i = Math.min(RES - 2, Math.floor(fx)), j = Math.min(RES - 2, Math.floor(fy));
+  const u = fx - i, w = fy - j, at = (c, f) => m[f * RES + c];
+  return (1 - w) * ((1 - u) * at(i, j) + u * at(i + 1, j)) + w * ((1 - u) * at(i, j + 1) + u * at(i + 1, j + 1));
+}
+
+// La celda c del mapa (x = c / (RES − 1)) se dibuja centrada en (c + 0.5) / RES del lado.
+// El mapa ocupa el lado menos un margen, para que los puntos de las esquinas se vean enteros.
+const margen = (L) => 0.07 * L;
+const aPantalla = (x, y, L) => {
+  const m = margen(L), lado = L - 2 * m;
+  return [m + ((x * (RES - 1) + 0.5) / RES) * lado, m + (1 - (y * (RES - 1) + 0.5) / RES) * lado];
+};
+
+const easeOutBack =(t) => 1 + 2.2 * Math.pow(t - 1, 3) + 1.2 * Math.pow(t - 1, 2);
+
+let cuadros = 0, ultimoFps = performance.now(), fps = 0;
+
+let costoMs = 0;
+
+function dibujar(ahora) {
+  const t0 = performance.now();
+  // La marca del cuadro puede ser anterior al clic: sin el Math.max, t < 0 dispara el temblor.
+  const t = inicio < 0 ? 1 : Math.min(1, Math.max(0, (ahora - inicio) / duracion));
+  const mezcla = easeOutBack(t);      // rebasa un poco y vuelve: efecto gelatina
+  for (let k = 0; k < actual.length; k++) actual[k] = anterior[k] + (nuevo[k] - anterior[k]) * mezcla;
+
+  // 32×32 → ImageData (la fila 0 del mapa va abajo en pantalla)
+  for (let f = 0; f < RES; f++) for (let c = 0; c < RES; c++) {
+    const [r, g, b] = color(actual[f * RES + c]);
+    const p = ((RES - 1 - f) * RES + c) * 4;
+    img.data[p] = r; img.data[p + 1] = g; img.data[p + 2] = b; img.data[p + 3] = 255;
+  }
+  cctx.putImageData(img, 0, 0);
+
+  // Escalado suave (bilineal del navegador) en franjas desplazadas: temblor amortiguado.
+  const L = canvas.width, m = margen(L), lado = L - 2 * m, franjas = 48, alto = lado / franjas;
+  const amp = t < 1 ? 0.03 * L * Math.exp(-4 * t) : 0;
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = "high";
+  ctx.fillStyle = "#0e1433";
+  ctx.fillRect(0, 0, L, L);
+  for (let s = 0; s < franjas; s++) {
+    const dx = amp * Math.sin(2 * Math.PI * 2.5 * t + s * 0.35);
+    ctx.drawImage(chico, 0, (s / franjas) * RES, RES, RES / franjas, m + dx, m + s * alto, lado, alto + 1);
+  }
+
+  // Ejemplos: forma + carita (codificación secundaria al color)
+  ctx.font = `${Math.round(L * 0.05)}px system-ui, sans-serif`;
+  ctx.textAlign = "center"; ctx.textBaseline = "middle";
+  for (const e of MAPAS.ejemplos) {
+    const [x, y] = e.x, [px, py] = aPantalla(x, y, L);
+    const pLavar = muestra(actual, x, y);
+    const bien = (pLavar > 0.5) === (e.accion === "lavar");
+    ctx.lineWidth = Math.max(2, L * 0.006); ctx.strokeStyle = "#fff";
+    const rr = L * 0.018;
+    ctx.beginPath();
+    if (e.accion === "lavar") ctx.arc(px, py, rr, 0, 2 * Math.PI);
+    else { ctx.moveTo(px - rr, py - rr); ctx.lineTo(px + rr, py + rr); ctx.moveTo(px + rr, py - rr); ctx.lineTo(px - rr, py + rr); }
+    ctx.stroke();
+    ctx.fillText(bien ? "😄" : "😱", px + (x > 0.5 ? -1 : 1) * rr * 2.4, py + (y > 0.5 ? 1 : -1) * rr * 2.4);
+  }
+
+  costoMs = 0.9 * costoMs + 0.1 * (performance.now() - t0);
+  cuadros++;
+  if (ahora - ultimoFps > 500) { fps = (cuadros * 1000) / (ahora - ultimoFps); cuadros = 0; ultimoFps = ahora; }
+  const aciertos = MAPAS.ejemplos.filter((e) => (muestra(nuevo, e.x[0], e.x[1]) > 0.5) === (e.accion === "lavar")).length;
+  document.getElementById("estado").textContent =
+    `${conCx ? "Con" : "Sin"} Cable Gemelo · ${aciertos}/${MAPAS.ejemplos.length} ejemplos bien · ${fps.toFixed(0)} fps · ${costoMs.toFixed(2)} ms por cuadro · Qiskit ${MAPAS.meta.qiskit}`;
+  requestAnimationFrame(dibujar);
+}
+
+document.getElementById("alternar").addEventListener("click", (ev) => {
+  conCx = !conCx;
+  anterior = Float32Array.from(actual);
+  nuevo = conCx ? MAPAS.con_cx : MAPAS.sin_cx;
+  inicio = performance.now();
+  ev.currentTarget.textContent = conCx ? "Quitar Cable Gemelo" : "Encajar Cable Gemelo";
+});
+const rango = document.getElementById("duracion");
+rango.addEventListener("input", () => { duracion = +rango.value; document.getElementById("ms").textContent = `${duracion} ms`; });
+addEventListener("resize", ajustarTamano);
+ajustarTamano();
+if (location.hash === "#con-cx") { document.getElementById("alternar").click(); inicio = -1; }  // para capturas
+if (location.hash === "#medir") {  // anima sin parar para medir el costo por cuadro
+  setInterval(() => document.getElementById("alternar").click(), duracion);
+}
+requestAnimationFrame(dibujar);
+</script>
+</body>
+</html>
