@@ -7,7 +7,7 @@ y aprende conceptos básicos de Quantum Machine Learning mientras juega.
 # Cómo se ve el éxito
 
 El jugador da una instrucción y ve al robot fallar de forma graciosa (loop de errores tontos y graciosos).
-El jugador abre el cerebro cuántico, ajusta un circuito (compuertas, parámetros) relacionado a Quantum Machine Learning (por definir mejor, ya que no sabemos casi nada de cuántica)
+El jugador abre el cerebro cuántico, ajusta un circuito (compuertas, parámetros) relacionado a Quantum Machine Learning (por definir mejor, ya que no sabemos casi nada de cuántica): Minijuegos tentativos en [minijuegos](minijuegos.md)
 y vuelve a intentarlo.
 Los ajustes cambian de verdad la salida de un circuito de Qiskit,
 y esa salida decide lo que hace el robot (no es una animación falsa).
