@@ -1,11 +1,25 @@
 # Goal
 
 Un videojuego 3D isométrico, corto, divertido y adictivo, donde el jugador
-entrena a robots torpes (Buddy, el robot doméstico, y Quark, el perrito)
-ajustando su "cerebro cuántico" hecho con Qiskit.
+entrena a robots torpes (Q-Anacleto, el robot doméstico humanoide,
+y Q-Boby, el perrito robótico) ajustando su "cerebro cuántico" hecho con Qiskit.
 Cada minijuego toma un concepto de Estadística o Machine Learning clásico
 y lo mapea a su equivalente cuántico (QML), como pide la consigna del reto.
 Diseño detallado de minijuegos: [minijuegos](minijuegos.md).
+Pantallas, código y contrato de la API del motor compartido:
+[breadboard-fregadero](breadboard-fregadero.md).
+Investigaciones pendientes: [siguiente-sesion](siguiente-sesion.md).
+
+# Escenarios
+
+Dos escenarios:
+
+1. **La casa (Nivel 1, Q-Anacleto).** Recorrido natural: se empieza en la
+   sala y se pasa a la cocina. Sala: 1.1 Pelusa Rebelde. Cocina: 1.2
+   Fregadero y 1.3 Chef Catástrofe. Lavandería: 1.4 Lavandería en Remolino.
+   Baño y habitación existen como habitaciones simples, sin minijuego por ahora.
+2. **El parque (Nivel 2, Q-Boby).** Un parque genérico para perros.
+   Minijuegos 2.1 a 2.4.
 
 # Consigna del reto
 
@@ -35,7 +49,7 @@ Hay un video demo grabado en local donde todo funciona de principio a fin.
 | Minijuego | Clásico ➔ Cuántico | Prioridad |
 | --- | --- | --- |
 | 1.1 Pelusa Rebelde (tutorial) | SVM lineal ➔ codificación por rotación RY | A |
-| 1.2 Fiebre en el Fregadero | SVM ➔ QSVM y kernel cuántico (XOR) | A |
+| 1.2 Fiebre en el Fregadero | SVM ➔ modelo cuántico como método de kernel (XOR) | A |
 | 2.2 Doble Hueso ⭐ estrella | Monte Carlo ➔ Quantum Amplitude Estimation | A |
 | 2.1 Siéntate, Gira o Despega | Descenso de gradiente ➔ regla de parameter-shift | B |
 | 1.3 Chef Catástrofe | Kernel clásico ➔ feature map cuántico (anillo) | B |
@@ -55,7 +69,7 @@ aparece solo en los minijuegos cuya dificultad fija la incluye.
 
 ## Rediseño del 2.2 «Doble Hueso» (estrella)
 
-Quark debe estimar en qué túnel es más probable el hueso.
+Q-Boby debe estimar en qué túnel es más probable el hueso.
 Con el chip simple (Monte Carlo) olfatea muchas veces: cada olfateo gasta
 batería y la precisión sube lento (error ~ 1/√N).
 Con el chip cuántico (QAE) llega a la misma precisión con muchos menos
@@ -63,7 +77,7 @@ olfateos (error ~ 1/N). Gráfica en vivo con ambas curvas.
 QAE simple implementado a mano (1-2 qubits, potencias de Grover y máxima
 verosimilitud), sin depender de `qiskit-algorithms`.
 Chispa aclara que en hardware ruidoso actual el ruido se come esa ventaja.
-Se eliminan los "Quarks fantasma" por ambos puentes (metáfora engañosa).
+Se eliminan los "perritos fantasma" por ambos puentes (metáfora engañosa).
 
 ## Ganchos de adicción
 
@@ -84,11 +98,16 @@ secundario.
 Nunca se afirma ventaja cuántica en los minijuegos de clasificación.
 Ahí la lección es "una recta no basta, hay que curvar el espacio",
 y lo cuántico es una forma de curvarlo (feature maps, kernels).
+Base verificada: Schuld (2021), *Supervised quantum machine learning models
+are kernel methods*, arXiv:2101.11020 (en `papers/`). Un modelo cuántico es
+un modelo lineal sobre los estados que codifican los datos: la codificación
+fija el kernel y la medición traza la frontera. Por eso en el 1.2 los
+Giro-Sensores codifican y el Cable Gemelo cambia lo que se mide.
 Chispa lo dice: "Una red neuronal clásica también podría;
 aquí lo hacemos con qubits para ver cómo piensan".
 La única ventaja real que se presenta es la de QAE (2.2).
 Corregir en minijuegos.md: "H explora varias posibilidades a la vez"
-(mito del paralelismo; usar "moneda cuántica"), "Quarks fantasma" (2.2)
+(mito del paralelismo; usar "moneda cuántica"), "perritos fantasma" (2.2)
 y la Esfera de Bloch "envolviendo el mapa" (1.3; Bloch es de un solo qubit).
 Cápsulas "¡Ajá!" y citas a papers se verifican con la skill de Qiskit
 y documentación oficial antes de escribirlas.
@@ -120,8 +139,14 @@ Despliegue obligatorio: es un extra, no un requisito.
 
 Backend: Python con uv, FastAPI y Qiskit 2.x corriendo en vivo
 (`StatevectorSampler` / `Statevector`, sin hardware real).
-Recibe el circuito del jugador y los datos del minijuego; devuelve
-predicciones, acierto, mapa de decisión y diagrama del circuito.
+Recibe el circuito del jugador; lee los datos del minijuego de `content/`.
+Endpoints REST separados por recurso (predicciones, mapa de decisión,
+rareza, Rayos-X): contrato en el breadboard.
+Modelo del motor compartido: lectura fija (el jugador diseña el circuito
+y se lee la probabilidad de un resultado). Verificado: en el XOR da 50 %
+sin CX y 100 % con CX. Mapa 32×32 con `Statevector` en ~250 ms.
+Chip simple (la regla) calculado en el frontend. Estado con zustand,
+álbumes en `localStorage`, Rayos-X en texto, comando único con `concurrently`.
 Frontend: Vite, TypeScript y React Three Fiber (`@react-three/drei`),
 cámara ortográfica isométrica. La consola del cerebro es una capa React
 sobre el canvas. Assets low-poly CC0 (por ejemplo Kenney).
@@ -138,7 +163,7 @@ y frontend en Cloudflare Pages. Qiskit no corre en Cloudflare Workers.
 # Restricciones
 
 Hackathon IBM Quantum (Qiskit Fall Fest 2026, EdTech), ~3 horas.
-Equipo de 4 agentes de IA trabajando en paralelo.
+Equipo de 3 agentes de IA trabajando en paralelo.
 Qiskit es obligatorio y es el núcleo del juego.
 Un solo estilo visual: «Taller Retro-Pop de Villa Qubit».
 Cada reto entendible sin conocimientos previos; máximo 14 palabras
@@ -152,12 +177,15 @@ Primeros 15 minutos, entre todos: fijar el contrato de la API
 (circuito del jugador ➔ predicciones, acierto, mapa, diagrama)
 y el formato de configuración de minijuego. El frontend arranca con mocks.
 
-1. QML (`backend/`): FastAPI con Qiskit, clasificador y kernel del motor
-   compartido, QAE (2.2), parameter-shift (2.1), medición de rareza, pruebas.
-2. Cerebro (`frontend/src/brain/`): consola Game Boy, cables, fichas
-   arrastrables, perillas, radar 2D, interruptor simple/cuántico.
-3. Mundo (`frontend/src/world/`): escena isométrica, Buddy, Quark, Chispa
-   y animaciones de desastres.
-4. Contenido y meta (`content/`, `frontend/src/meta/`): configuraciones
-   de los 8 minijuegos, cromos revisados, álbumes, estrellas, guion
-   del video; integración desde la hora 2.
+Tres agentes (propuesta; el detalle por pieza está en la sección 10
+del breadboard):
+
+1. QML y contenido (`backend/`, `content/`): FastAPI con Qiskit, motor
+   compartido, QAE (2.2), parameter-shift (2.1), rareza, pruebas, y los JSON
+   de los minijuegos con sus datos verificados. Recibe los textos del carril 3.
+2. Cerebro e integración (`frontend/src/brain/`, `frontend/src/api/`,
+   `frontend/src/state/`): consola Game Boy, fichas, perillas, radar 2D,
+   interruptor, cliente de la API, store y bucle de juego.
+3. Mundo y meta (`frontend/src/world/`, `frontend/src/meta/`): casa y
+   parque isométricos, Q-Anacleto, Q-Boby, Chispa, desastres, cromos,
+   álbumes, textos y guion del video.

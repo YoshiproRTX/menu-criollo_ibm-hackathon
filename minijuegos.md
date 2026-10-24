@@ -31,9 +31,9 @@ Al abrir la cabecita del personaje aparece una consola translúcida estilo jugue
 
 ## 1.3. Personajes
 
-### 🤖 Buddy — Robot doméstico (Nivel 1)
+### 🤖 Q-Anacleto — Robot doméstico humanoide (Nivel 1)
 
-Robot redondito, parecido a una tostadora de los años 60.
+Robot humanoide de estilo retro de los años 60.
 
 **Características:**
 - Brazos de acordeón.
@@ -41,12 +41,12 @@ Robot redondito, parecido a una tostadora de los años 60.
 - Pantalla LED como rostro: `(^‿^)`, `O_o`, `@_@`.
 - Aunque destruya la cocina, siempre termina haciendo una reverencia orgullosa.
 
-### 🐶 Quark — Perrito robótico (Nivel 2)
+### 🐶 Q-Boby — Perrito robótico (Nivel 2)
 
 Un corgi-beagle metálico con:
 
 - Orejas flotantes magnéticas.
-- Cola-antena que cambia de color cuando entra en superposición.
+- Cola-antena que cambia de color cuando su cerebro cuántico está en superposición.
 - Orejas que apuntan en direcciones diferentes cuando experimenta dudas estadísticas.
 
 ### 🧚‍♀️ Chispa — Personaje guía
@@ -56,6 +56,13 @@ Una pequeña luciérnaga-dron con gafas de aviador, posada sobre la llave ingles
 **Personalidad:** humorística y directa.
 
 No da discursos largos; solamente ofrece bromas y pistas rápidas de dos líneas.
+
+## 1.4. Escenarios
+
+| Escenario | Personaje | Habitaciones o zonas | Minijuegos |
+|---|---|---|---|
+| 🏠 La casa | Q-Anacleto | Sala (inicio) → cocina, recorrido natural. Lavandería para el 1.4. Baño y habitación son habitaciones simples, sin minijuego por ahora. | Sala: 1.1 · Cocina: 1.2 y 1.3 · Lavandería: 1.4 |
+| 🌳 El parque | Q-Boby | Un parque genérico para perros | 2.1 a 2.4 |
 
 ---
 
@@ -153,7 +160,7 @@ Puede encontrarse pegada a una nevera o a un cartel del parque.
 
 🍌 Cáscara → 🗑️ Basura
 
-**Botón principal:** ▶ ¡HAZLO, BUDDY!
+**Botón principal:** ▶ ¡HAZLO, Q-ANACLETO!
 
 La intención es que cualquier persona desde los 10 años comprenda inmediatamente qué debe hacer.
 
@@ -189,7 +196,7 @@ Contiene tres líneas que explican el concepto científico utilizado.
 
 **Ejemplo:**
 
-«¡Acabas de usar Entrelazamiento Cuántico para crear un Quantum Kernel!».
+«¡Tus Giro-Sensores codificaron los datos y tu Cable Gemelo cambió lo que mide el robot: así funciona un modelo cuántico de kernel!».
 
 Incluye un botón opcional:
 
@@ -207,7 +214,7 @@ Cada minijuego tiene **una sola dificultad fija** (⭐, ⭐⭐ o ⭐⭐⭐), sol
 
 ---
 
-# 🏠 4. Minijuegos del Nivel 1: Buddy, el robot doméstico
+# 🏠 4. Minijuegos del Nivel 1: Q-Anacleto, el robot doméstico
 
 ## 4.1. Minijuego 1.1: «¡Operación Pelusa Rebelde!»
 
@@ -221,7 +228,7 @@ La alfombra contiene:
 - Cenizas.
 - Al gato Sr. Bigotes durmiendo.
 
-El jugador puede colocar objetos de prueba en la sala y encender el ventilador de techo antes de ordenar a Buddy que barra.
+El jugador puede colocar objetos de prueba en la sala y encender el ventilador de techo antes de ordenar a Q-Anacleto que barra.
 
 ### Sensores
 
@@ -230,7 +237,7 @@ El jugador puede colocar objetos de prueba en la sala y encender el ventilador d
 
 ### Errores cómicos
 
-- Buddy toma la escoba al revés.
+- Q-Anacleto toma la escoba al revés.
 - Intenta barrer al gato dentro del recogedor y termina con el gato pegado a su cara LED.
 - Arropa una bola de polvo con una mantita y le ofrece croquetas.
 
@@ -263,7 +270,7 @@ Una cinta transportadora de cocina, inspirada en *Overcooked!*, transporta:
 - Cáscaras de sandía.
 - Servilletas mojadas.
 
-El jugador puede acelerar la cinta mientras Buddy decide qué debe lavarse y qué debe desecharse.
+El jugador puede acelerar la cinta mientras Q-Anacleto decide qué debe lavarse y qué debe desecharse.
 
 ### Sensores
 
@@ -283,16 +290,18 @@ La distribución forma un **patrón cruzado XOR**.
 
 ### Errores cómicos
 
-- Buddy grita «¡TRIPLE!» y lanza la vajilla fina de la abuela al basurero: «¡CRASH!».
+- Q-Anacleto grita «¡TRIPLE!» y lanza la vajilla fina de la abuela al basurero: «¡CRASH!».
 - Lava con esponja, jabón y perfume una cáscara de plátano y luego la guarda en la vitrina.
 
 ### Concepto educativo
 
-**Problema XOR clásico vs. entrelazamiento CX + Quantum Kernel.**
+**Problema XOR clásico vs. modelo cuántico como método de kernel.**
 
 La regla lineal del Cerebro Simple no logra separar correctamente los grupos cruzados.
 
-Al activar el Cerebro Cuántico y conectar el Cable Gemelo CX, el mapa se transforma visualmente en cuatro regiones diagonales.
+Al activar el Cerebro Cuántico, los Giro-Sensores codifican humedad y peso en los dos qubits, y el robot lee el qubit 1. Sin Cable Gemelo, ese qubit solo «ve» el peso (50 % de acierto). Al conectar el Cable Gemelo CX, el qubit 1 pasa a reflejar la combinación de ambos sensores y el mapa se transforma visualmente en cuatro regiones diagonales (100 % de acierto, verificado con Qiskit).
+
+Base: Schuld (2021), *Supervised quantum machine learning models are kernel methods*, arXiv:2101.11020. La codificación fija el kernel y la medición traza una frontera lineal sobre los estados cuánticos; el CX, al ir después de la codificación, forma parte de la medición.
 
 Chispa aclara que una red neuronal clásica pequeña también resuelve XOR: lo que falla es la recta, no lo clásico.
 
@@ -329,7 +338,7 @@ Las configuraciones alejadas producen resultados:
 
 ### Errores cómicos
 
-- Buddy toca una campanita francesa y sirve un disco carbonizado en llamas, activando el rociador del techo.
+- Q-Anacleto toca una campanita francesa y sirve un disco carbonizado en llamas, activando el rociador del techo.
 - Vierte mezcla cruda directamente en el bolsillo del jugador.
 
 ### Concepto educativo
@@ -348,6 +357,8 @@ El feature map lleva los datos a un espacio donde la frontera puede cerrarse, y 
 
 (No se usa la metáfora de la Esfera de Bloch: describe un solo qubit, no el mapa de decisión de un circuito de dos.)
 
+⚠️ **Pendiente de rediseño:** verificado con Qiskit, la isla central ya aparece con solo dos Giro-Sensores RY leyendo `00`, sin H, RZ ni CX. Hay que decidir qué ficha «desbloquea» la isla para que la lección sea cierta (ver [siguiente-sesion.md](siguiente-sesion.md)).
+
 ### Dificultad fija
 
 ⭐ Taller: panqueques caseros, región central grande.
@@ -363,13 +374,13 @@ Una lavadora gigante gira en pantalla y forma dos espirales entrelazadas:
 - Camisas blancas.
 - Calcetines rojos que destiñen.
 
-Buddy introduce sus pinzas en el tambor giratorio para extraer únicamente los calcetines rojos.
+Q-Anacleto introduce sus pinzas en el tambor giratorio para extraer únicamente los calcetines rojos.
 
 ### Errores cómicos
 
 ¡Explosión de espuma rosada!
 
-Buddy aparece desfilando como modelo, usando ropa encogida al tamaño de un chihuahua y teñida de rosa fosforescente.
+Q-Anacleto aparece desfilando como modelo, usando ropa encogida al tamaño de un chihuahua y teñida de rosa fosforescente.
 
 ### Concepto educativo
 
@@ -389,7 +400,7 @@ El objetivo es modificar el espacio de representación hasta ajustarse al patró
 
 ---
 
-# 🐶 5. Minijuegos del Nivel 2: Quark, el perrito robótico
+# 🐶 5. Minijuegos del Nivel 2: Q-Boby, el perrito robótico
 
 ## 5.1. Minijuego 2.1: «¡Siéntate, Gira o Despega!»
 
@@ -402,17 +413,17 @@ El jugador controla:
 - Un **Silbato Musical**, con sonidos graves y agudos.
 - Una **Mano Virtual**, que puede apuntar hacia arriba o abajo.
 
-Mediante estos controles debe enseñar a Quark a:
+Mediante estos controles debe enseñar a Q-Boby a:
 
 - Sentarse.
 - Dar la pata.
 - Girar.
 
-Sobre la cabeza de Quark aparece un **Termómetro de Mareo**, que representa la función de pérdida (*Loss / Error*).
+Sobre la cabeza de Q-Boby aparece un **Termómetro de Mareo**, que representa la función de pérdida (*Loss / Error*).
 
 ### Errores cómicos
 
-- Al escuchar «¡Siéntate!», Quark enciende sus propulsores y queda colgado de la lámpara.
+- Al escuchar «¡Siéntate!», Q-Boby enciende sus propulsores y queda colgado de la lámpara.
 - Al recibir la orden «¡Avanza!», gira como un helicóptero hasta que su cabecita se desenrosca y cae a la alfombra, donde continúa ladrando feliz.
 
 ### Concepto educativo
@@ -451,13 +462,13 @@ Este botón permite observar cómo un optimizador ajusta automáticamente los pa
 
 En el parque hay varios túneles. Cada uno esconde el hueso con cierta probabilidad desconocida, y las pistas de olor son ruidosas.
 
-Quark debe estimar esas probabilidades con la precisión suficiente para elegir el mejor túnel.
+Q-Boby debe estimar esas probabilidades con la precisión suficiente para elegir el mejor túnel.
 
 Cada olfateo (consulta) gasta batería de su cola-antena, y la batería es limitada.
 
 ### Errores cómicos
 
-Con pocos olfateos, el Cerebro Simple se equivoca: Quark entra muy seguro al túnel vacío y sale con una rana sobre la nariz.
+Con pocos olfateos, el Cerebro Simple se equivoca: Q-Boby entra muy seguro al túnel vacío y sale con una rana sobre la nariz.
 
 Si insiste en olfatear de más, se queda sin batería a mitad del parque y se duerme roncando sobre el barro.
 
@@ -465,8 +476,8 @@ Si insiste en olfatear de más, se queda sin batería a mitad del parque y se du
 
 **Monte Carlo vs. Quantum Amplitude Estimation (QAE).**
 
-- **Cerebro Simple (Monte Carlo):** Quark entra y sale del túnel muchas veces y promedia. El error baja lento, como 1/√N: para ganar el doble de precisión necesita cuatro veces más olfateos.
-- **Cerebro Cuántico (QAE):** Quark codifica la probabilidad en la amplitud de un qubit y la amplifica con el operador de Grover. El error baja como 1/N: llega a la misma precisión con muchos menos olfateos.
+- **Cerebro Simple (Monte Carlo):** Q-Boby entra y sale del túnel muchas veces y promedia. El error baja lento, como 1/√N: para ganar el doble de precisión necesita cuatro veces más olfateos.
+- **Cerebro Cuántico (QAE):** Q-Boby codifica la probabilidad en la amplitud de un qubit y la amplifica con el operador de Grover. El error baja como 1/N: llega a la misma precisión con muchos menos olfateos.
 
 Una gráfica en vivo muestra ambas curvas de precisión contra batería gastada.
 
@@ -492,7 +503,7 @@ El ritmo sigue patrones como:
 
 Hay vallas de neón y trampolines que suben y bajan, formando un tablero de ajedrez de ondas musicales.
 
-Quark debe decidir:
+Q-Boby debe decidir:
 
 - Cuándo saltar.
 - Cuándo agacharse.
@@ -500,7 +511,7 @@ Quark debe decidir:
 
 ### Errores cómicos
 
-- Quark se agacha sobre un resorte y sale disparado hacia las nubes, dejando su silueta en el cielo.
+- Q-Boby se agacha sobre un resorte y sale disparado hacia las nubes, dejando su silueta en el cielo.
 - Salta tres veces sobre suelo plano y termina de cabeza dentro de un carrito de algodón de azúcar, con una peluca rosa.
 
 ### Concepto educativo
@@ -532,7 +543,7 @@ La competencia ocurre en un estadio lleno de espectadores y cámaras.
 
 El jugador lanza un frisbee con trayectoria curva.
 
-Quark debe superar:
+Q-Boby debe superar:
 
 - Vallas.
 - Gestos.
@@ -541,7 +552,7 @@ Quark debe superar:
 
 ### Errores cómicos
 
-Si el jugador utiliza el Cerebro Simple o construye un circuito cuántico excesivamente largo, la estática afecta a Quark.
+Si el jugador utiliza el Cerebro Simple o construye un circuito cuántico excesivamente largo, la estática afecta a Q-Boby.
 
 En lugar de atrapar el frisbee:
 

@@ -2,7 +2,7 @@
 
 ## Contexto
 
-Quantum Buddy es el nombre provisional del videojuego para Qiskit Fall Fest 2026,
+«Q-Anacleto y Q-Boby» es el nombre provisional del videojuego para Qiskit Fall Fest 2026,
 categoría EdTech (IEEE Computer Society PUCP). Equipo de cuatro integrantes,
 unas tres horas de desarrollo; público principiante en computación cuántica.
 **goal.md es la fuente de verdad** de alcance, prioridades y arquitectura;
