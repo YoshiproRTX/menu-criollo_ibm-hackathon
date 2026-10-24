@@ -1,3 +1,6 @@
+> Alcance, prioridades y decisiones: ver [goal.md](goal.md), que manda sobre
+> este documento. Aquí se describe el diseño de cada minijuego.
+
 # 🎨 1. Temática y diseño visual: «El Taller Retro-Pop de Villa Qubit»
 
 Para que sea educativo sin parecer jamás una clase escolar, la estética ideal es **Ciencia Ficción de Juguete (Toyetic Cartoon)**: una mezcla entre el carisma de *WALL-E*, el caos colorido de *Overcooked!* y el humor rápido de *WarioWare*.
@@ -60,6 +63,8 @@ No da discursos largos; solamente ofrece bromas y pistas rápidas de dos líneas
 
 Cada minijuego dispone de un **interruptor gigante** en la cabeza del compañero para comparar Machine Learning clásico y Quantum Machine Learning (QML).
 
+**Regla de honestidad:** en los minijuegos de clasificación la lección es «una recta no basta, hay que curvar el espacio». El Cerebro Cuántico es *una* forma de curvarlo (feature maps y kernels cuánticos), no una forma mejor: una red neuronal clásica también podría. Chispa lo dice en voz alta. La única ventaja cuántica real que presenta el juego es la de Quantum Amplitude Estimation (minijuego 2.2).
+
 ## 2.1. 📏 Modo 1: Cerebro Simple
 
 **Equivalencia:** ML clásico — regla lineal / perceptrón.
@@ -98,7 +103,7 @@ El jugador puede colocar diferentes fichas magnéticas.
 
 | Elemento | Operación cuántica | Función propuesta |
 |---|---|---|
-| 🌀 Ficha Prisma | H — Hadamard | Crear superposición y explorar posibilidades. |
+| 🌀 Ficha Prisma | H — Hadamard | «Moneda cuántica»: crea superposición; al medir, cada resultado sale con la probabilidad que dictan sus amplitudes. |
 | 🎛️ Ficha Giro-Sensor | RX / RY / RZ | Codificar datos de los sensores mediante rotaciones. |
 | ⚡ Cable Gemelo | CX / RZZ | Entrelazar qubits y representar combinaciones entre características. |
 | 🎚️ Perillas Doradas | Parámetros \(\theta\) | Ajustar parámetros del circuito. |
@@ -106,9 +111,9 @@ El jugador puede colocar diferentes fichas magnéticas.
 
 Las **Perillas Doradas** y el **Dial de Vistazos** se incorporan en el Nivel 2.
 
-## 2.3. 🌩️ Dificultad experta: Tormenta NISQ
+## 2.3. 🌩️ Tormenta NISQ
 
-Esta dificultad aparece en todos los retos.
+No es un modo de juego ni un selector de dificultad: aparece solo en los minijuegos cuya dificultad fija la incluye (2.4). Sus efectos visuales pueden simularse.
 
 ### Concepto
 
@@ -192,6 +197,14 @@ Incluye un botón opcional:
 
 Permite inspeccionar el circuito y el código real.
 
+El cromo tiene **rareza** (común, rara, holográfica o legendaria) que sale de una medición real del circuito ganador (regla de Born). Se revela sola con una animación de destello, sin palanca.
+
+Las cápsulas «¡Ajá!» se verifican con la skill de Qiskit y documentación oficial antes de escribirlas.
+
+## 3.4. Dificultad
+
+Cada minijuego tiene **una sola dificultad fija** (⭐, ⭐⭐ o ⭐⭐⭐), solo informativa. No hay selector. Cada sección indica cuál es (propuesta, ajustable por el equipo).
+
 ---
 
 # 🏠 4. Minijuegos del Nivel 1: Buddy, el robot doméstico
@@ -223,25 +236,19 @@ El jugador puede colocar objetos de prueba en la sala y encender el ventilador d
 
 ### Concepto educativo
 
-**Margen lineal SVM vs. rotación angular RY.**
+**Margen lineal SVM vs. codificación por rotación RY** (tutorial).
 
-En la dificultad inicial, el polvo es frío y pequeño, mientras que el gato es grande y tibio.
+El polvo es frío y pequeño, mientras que el gato es grande y tibio.
 
 El Cerebro Simple consigue clasificarlos correctamente.
 
 Chispa explica que, cuando una recta es suficiente, no hace falta gastar batería cuántica.
 
-Al aumentar la dificultad, el ventilador mezcla cenizas tibias y crea una distribución en forma de media luna.
+Luego invita a probar el Cerebro Cuántico: los Giro-Sensores RY convierten cada sensor en una rotación del qubit, la primera pieza de cualquier modelo de QML.
 
-La regla recta comienza a fallar y el jugador necesita utilizar los Giro-Sensores RY.
+### Dificultad fija
 
-### Dificultades
-
-| Dificultad | Descripción |
-|---|---|
-| ⭐ Taller | Grupos fáciles de separar. El Cerebro Simple consigue la victoria. |
-| ⭐⭐ Hora Punta | Ventilador y chimenea encendida. Aparece una distribución curva que requiere el Cerebro Cuántico. |
-| ⭐⭐⭐ Tormenta NISQ | Alfombra con estática eléctrica. Alcanzar 95 % de precisión sin utilizar cables CX. |
+⭐ Taller: grupos fáciles de separar. El Cerebro Simple consigue la victoria.
 
 ## 4.2. Minijuego 1.2: «¡Fiebre en el Fregadero!»
 
@@ -287,13 +294,11 @@ La regla lineal del Cerebro Simple no logra separar correctamente los grupos cru
 
 Al activar el Cerebro Cuántico y conectar el Cable Gemelo CX, el mapa se transforma visualmente en cuatro regiones diagonales.
 
-### Dificultades
+Chispa aclara que una red neuronal clásica pequeña también resuelve XOR: lo que falla es la recta, no lo clásico.
 
-| Dificultad | Descripción |
-|---|---|
-| ⭐ Taller | Cuatro esquinas claramente identificadas. Se desbloquea el primer Cable Gemelo. |
-| ⭐⭐ Hora Punta | El patrón XOR aparece rotado y llegan platos sorpresa. |
-| ⭐⭐⭐ Tormenta NISQ | Vapor sobre los sensores. Máximo dos cables CX antes de que Buddy comience a marearse. |
+### Dificultad fija
+
+⭐ Taller: cuatro esquinas claramente identificadas. Se desbloquea el primer Cable Gemelo.
 
 ## 4.3. Minijuego 1.3: «¡Chef Catástrofe: En su Punto!»
 
@@ -329,7 +334,7 @@ Las configuraciones alejadas producen resultados:
 
 ### Concepto educativo
 
-**Fronteras abiertas vs. islas cerradas en la Esfera de Bloch.**
+**Fronteras abiertas vs. islas cerradas: kernel clásico vs. feature map cuántico.**
 
 El Cerebro Simple no puede encerrar una región circular utilizando una única recta.
 
@@ -339,15 +344,13 @@ El Cerebro Cuántico propone combinar:
 - Rotaciones RY y RZ.
 - ⚡ Cable Gemelo.
 
-El mapa se transforma visualmente como una naranja para representar una región circular alrededor de la configuración ideal.
+El feature map lleva los datos a un espacio donde la frontera puede cerrarse, y en el radar aparece una isla redonda alrededor de la configuración ideal.
 
-### Dificultades
+(No se usa la metáfora de la Esfera de Bloch: describe un solo qubit, no el mapa de decisión de un circuito de dos.)
 
-| Dificultad | Descripción |
-|---|---|
-| ⭐ Taller | Panqueques caseros. Región central grande. |
-| ⭐⭐ Hora Punta | Soufflé francés. Margen de error pequeño; requiere ajustar el multiplicador de giro. |
-| ⭐⭐⭐ Tormenta NISQ | Picos de corriente y pocas mediciones disponibles. |
+### Dificultad fija
+
+⭐ Taller: panqueques caseros, región central grande.
 
 ## 4.4. Minijuego 1.4: «¡Lavandería en Remolino!»
 
@@ -380,13 +383,9 @@ El jugador conecta capas consecutivas:
 
 El objetivo es modificar el espacio de representación hasta ajustarse al patrón.
 
-### Dificultades
+### Dificultad fija
 
-| Dificultad | Descripción |
-|---|---|
-| ⭐ Lavado suave | Espiral de media vuelta. |
-| ⭐⭐ Centrifugado turbo | Espiral doble completa. |
-| ⭐⭐⭐ Sobrecarga NISQ | Conseguir la clasificación sin superar el límite de ruido. |
+⭐⭐ Centrifugado turbo: espiral doble completa, que una sola capa no alcanza a separar.
 
 ---
 
@@ -418,7 +417,7 @@ Sobre la cabeza de Quark aparece un **Termómetro de Mareo**, que representa la 
 
 ### Concepto educativo
 
-**Descenso de gradiente / redes neuronales vs. clasificador variacional VQC.**
+**Descenso de gradiente clásico vs. gradiente cuántico (regla de parameter-shift) en un clasificador variacional VQC.**
 
 En Cerebro Simple, el jugador dispone de una única perilla lineal.
 
@@ -438,65 +437,46 @@ Posteriormente, el jugador desbloquea:
 
 **🎺 Silbato Auto-Entrenar**
 
-Este botón permite observar cómo un optimizador ajusta automáticamente los parámetros.
+Este botón permite observar cómo un optimizador ajusta automáticamente los parámetros. El gradiente se calcula de verdad con la regla de parameter-shift: dos ejecuciones del circuito por perilla, con el ángulo desplazado ±π/2.
 
-### Dificultades
+### Dificultad fija
 
-| Dificultad | Descripción |
-|---|---|
-| ⭐ Taller | Dos trucos dentro de casa. |
-| ⭐⭐ Hora Punta | Tres trucos con una ardilla distrayendo desde la ventana. |
-| ⭐⭐⭐ Tormenta NISQ | Optimización con fluctuaciones causadas por ruido cuántico. |
+⭐ Taller: dos trucos dentro de casa.
 
-## 5.2. Minijuego 2.2: «¡El Dilema del Doble Hueso!»
+## 5.2. Minijuego 2.2: «¡El Dilema del Doble Hueso!» ⭐ Minijuego estrella
 
-**Tarea:** Superar obstáculos e indecisión.
+**Tarea:** Estimar en qué túnel es más probable encontrar el hueso.
 
 ### Reto e interacción
 
-En el parque existen dos puentes secos:
+En el parque hay varios túneles. Cada uno esconde el hueso con cierta probabilidad desconocida, y las pistas de olor son ruidosas.
 
-- Izquierda: −1.
-- Derecha: +1.
+Quark debe estimar esas probabilidades con la precisión suficiente para elegir el mejor túnel.
 
-En el centro, identificado con 0, hay un charco gigante de barro lleno de ranas.
-
-Más adelante hay dos túneles. Uno contiene un premio doble, pero las pistas de olor son ruidosas.
+Cada olfateo (consulta) gasta batería de su cola-antena, y la batería es limitada.
 
 ### Errores cómicos
 
-El Cerebro Simple calcula el promedio de ambos puentes:
+Con pocos olfateos, el Cerebro Simple se equivoca: Quark entra muy seguro al túnel vacío y sale con una rana sobre la nariz.
 
-\[
-\frac{-1+1}{2}=0
-\]
-
-Quark corre directamente hacia el centro y cae de cabeza en el charco, saliendo con una rana sobre la nariz.
+Si insiste en olfatear de más, se queda sin batería a mitad del parque y se duerme roncando sobre el barro.
 
 ### Concepto educativo
 
-**Promedio clásico vs. superposición H, medición y shots.**
+**Monte Carlo vs. Quantum Amplitude Estimation (QAE).**
 
-Al colocar la Ficha Prisma H:
+- **Cerebro Simple (Monte Carlo):** Quark entra y sale del túnel muchas veces y promedia. El error baja lento, como 1/√N: para ganar el doble de precisión necesita cuatro veces más olfateos.
+- **Cerebro Cuántico (QAE):** Quark codifica la probabilidad en la amplitud de un qubit y la amplifica con el operador de Grover. El error baja como 1/N: llega a la misma precisión con muchos menos olfateos.
 
-- Aparecen dos Quarks fantasma en superposición.
-- Cada uno representa uno de los caminos.
-- Al activar la campana de medición, Quark aparece en uno de los puentes.
+Una gráfica en vivo muestra ambas curvas de precisión contra batería gastada.
 
-Después, el jugador utiliza el Dial de Vistazos para comparar:
+Es la **única ventaja cuántica real y demostrada** del juego (aceleración cuadrática). Chispa aclara que en el hardware ruidoso actual el ruido todavía se come esa ventaja.
 
-- 16 shots.
-- 512 shots.
+Implementación prevista: QAE simple hecho a mano con 1-2 qubits (potencias de Grover y estimación por máxima verosimilitud), sin depender de `qiskit-algorithms`.
 
-El objetivo es recopilar suficientes mediciones para interpretar las pistas y elegir el túnel premiado.
+### Dificultad fija
 
-### Dificultades
-
-| Dificultad | Descripción |
-|---|---|
-| ⭐ Taller | Esquivar el charco central. |
-| ⭐⭐ Hora Punta | Elegir el túnel premiado utilizando diferentes cantidades de shots. |
-| ⭐⭐⭐ Tormenta NISQ | Batería limitada: cada shot consume energía de la cola de Quark. |
+⭐⭐ Hora Punta: batería limitada; solo el Cerebro Cuántico alcanza la precisión pedida antes de agotarla.
 
 ## 5.3. Minijuego 2.3: «¡Pista de Agilidad Láser-Musical!»
 
@@ -538,13 +518,9 @@ Visualmente:
 - Las ondas asociadas a decisiones incorrectas se cancelan.
 - Las asociadas a decisiones correctas se refuerzan.
 
-### Dificultades
+### Dificultad fija
 
-| Dificultad | Descripción |
-|---|---|
-| ⭐ Taller | Pista 2×2 guiada. |
-| ⭐⭐ Hora Punta | Tablero 4×4 rápido. |
-| ⭐⭐⭐ Tormenta NISQ | Altavoz gigante con desfase magnético. |
+⭐ Taller: pista 2×2 guiada.
 
 ## 5.4. Minijuego 2.4: «¡La Gran Copa Canina de Villa Qubit!»
 
@@ -579,47 +555,17 @@ En lugar de atrapar el frisbee:
 
 El jugador debe diseñar un circuito cuántico compacto y eficiente para superar los desafíos sin generar un exceso de ruido.
 
-### Dificultades
+### Dificultad fija
 
-| Dificultad | Descripción |
-|---|---|
-| ⭐ Liga Barrial | Competencia inicial. |
-| ⭐⭐ Liga Nacional | Competencia sin pistas. |
-| ⭐⭐⭐ Copa Mundial NISQ | Límite estricto de compuertas cuánticas. |
+⭐⭐⭐ Copa Mundial NISQ: límite estricto de compuertas cuánticas, con Tormenta NISQ.
 
 ---
 
-# 🔥 6. Bonus de retención: «¡El Cortocircuito del Día!»
+# 🔥 6. Ganchos de retención
 
-## 6.1. Concepto
+- **Celebración inmediata estilo gambling:** «¡CLACK!» al encajar fichas, el mapa que se dobla en vivo, caritas de 😱 a 😄 y destellos al ganar.
+- **Álbum de cromos:** un cromo de concepto por minijuego, con rareza que sale de una medición real (ver 3.3, paso 4).
+- **Álbum de desastres:** cada error cómico distinto que provoca el jugador se colecciona, sin rareza. Invita a equivocarse a propósito y experimentar con el circuito.
+- **Estrellas de pericia (secundario):** resolver, superar un porcentaje de acierto y usar el circuito más corto.
 
-En el menú principal aparece un botón con una sirena cómica.
-
-Cada 24 horas genera una emergencia absurda nueva, igual para todos los jugadores de ese día.
-
-## 6.2. Duración
-
-Cada desafío está diseñado para completarse en aproximadamente **3 a 5 minutos**.
-
-## 6.3. Recompensas
-
-Resolver la emergencia permite:
-
-- Mantener una racha diaria 🔥.
-- Obtener Tuercas Doradas.
-- Desbloquear accesorios para Buddy y Quark.
-
-### Accesorios posibles
-
-- 👨‍🍳 Gorro de Chef.
-- 🕶️ Gafas de Schrödinger.
-- 🦸 Capa de Super-Qubit.
-- 🐤 Patito de hule para la antena.
-
----
-
-# 7. Pregunta pendiente de selección
-
-¿Cuáles de estos minijuegos son los favoritos del equipo para conservarlos?
-
-También queda abierta la posibilidad de ajustar las mecánicas o el humor de alguno de ellos.
+Descartado (ver No goals en [goal.md](goal.md)): «¡El Cortocircuito del Día!», rachas diarias, Tuercas Doradas y accesorios.
