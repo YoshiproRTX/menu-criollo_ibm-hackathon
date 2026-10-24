@@ -7,6 +7,12 @@
       "skillPath": "skills/engineering/ask-matt/SKILL.md",
       "computedHash": "d1c5b4151720e96135154bd593ac4986a1030a2bc81e2aaf129f8b11224af9a9"
     },
+    "breadboarding": {
+      "source": "rjs/shaping-skills",
+      "sourceType": "github",
+      "skillPath": "breadboarding/SKILL.md",
+      "computedHash": "3462698edf8a72d9651a3c46beba378f7e08cf416b1cbfe6e4649c2460176951"
+    },
     "code-review": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -102,6 +108,12 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
       "computedHash": "1d35d0afa3ded88c9324d38db08b2cff91cd03e0e11d64786bee41385cd7b9fb"
+    },
+    "shaping": {
+      "source": "rjs/shaping-skills",
+      "sourceType": "github",
+      "skillPath": "shaping/SKILL.md",
+      "computedHash": "9756afea557c899e0d124b3c912b7a14d28d6bc4c037367d97c67b0ea8b29443"
     },
     "tdd": {
       "source": "mattpocock/skills",
