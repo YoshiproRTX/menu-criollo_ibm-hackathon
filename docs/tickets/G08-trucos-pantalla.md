@@ -4,7 +4,7 @@ titulo: 2.1 Trucos, pantalla
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: B
-status: blocked
+status: done
 bloqueado_por: [D01, G07]
 paralelizable_con: [G06]
 timebox_min: 30
@@ -35,9 +35,9 @@ Leer antes: README de tickets (interfaz entre carriles), spec historias 42–44,
 
 ## Criterios de aceptación
 
-- [ ] Mover perillas cambia el termómetro con la `perdida` de la API.
-- [ ] El silbato anima exactamente el `historial` devuelto.
-- [ ] Ganar llama `onWin` con las fichas de las perillas.
+- [x] Mover perillas cambia el termómetro con la `perdida` de la API.
+- [x] El silbato anima exactamente el `historial` devuelto.
+- [x] Ganar llama `onWin` con las fichas de las perillas.
 
 ## Notas
 

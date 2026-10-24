@@ -60,7 +60,7 @@ const RobotQAnacleto: React.FC<{
         <meshStandardMaterial color="#ffd166" />
       </mesh>
       {/* Cara LED flotante */}
-      <Html position={[0, 1.42, 0.3]} center distanceFactor={12}>
+      <Html position={[0, 1.42, 0.3]} center zIndexRange={[10, 0]}>
         <div
           style={{
             background: '#0b1030',
@@ -142,7 +142,7 @@ const RobotQBoby: React.FC<{
           emissiveIntensity={0.7}
         />
       </mesh>
-      <Html position={[0.42, 1.28, 0]} center distanceFactor={12}>
+      <Html position={[0.42, 1.28, 0]} center zIndexRange={[10, 0]}>
         <div
           style={{
             background: '#0b1030',
@@ -168,7 +168,7 @@ const StationBadge: React.FC<{
   activo: boolean;
   onClick: () => void;
 }> = ({ position, titulo, activo, onClick }) => (
-  <Html position={position} center distanceFactor={14}>
+  <Html position={position} center zIndexRange={[10, 0]}>
     <button
       type="button"
       onClick={onClick}
@@ -380,7 +380,7 @@ export const World: React.FC = () => {
               <RoundedBox args={[1.5, 0.5, 0.85]} radius={0.14} position={[0.4, 0.32, 0.3]}>
                 <meshStandardMaterial color="#ffffff" />
               </RoundedBox>
-              <Html position={[0.4, 1.0, 0.3]} center distanceFactor={15}>
+              <Html position={[0.4, 1.0, 0.3]} center zIndexRange={[10, 0]}>
                 <span
                   style={{
                     fontSize: 10.5,
@@ -399,7 +399,7 @@ export const World: React.FC = () => {
               <RoundedBox args={[2.2, 0.45, 1.6]} radius={0.1} position={[0, 0.3, 0]}>
                 <meshStandardMaterial color="#F2B79E" />
               </RoundedBox>
-              <Html position={[0, 0.95, 0]} center distanceFactor={15}>
+              <Html position={[0, 0.95, 0]} center zIndexRange={[10, 0]}>
                 <span
                   style={{
                     fontSize: 10.5,
@@ -538,7 +538,7 @@ export const World: React.FC = () => {
                   key={step.id}
                   position={[xPos, 0, 0]}
                   center
-                  distanceFactor={13}
+                  zIndexRange={[10, 0]}
                 >
                   <div
                     style={{

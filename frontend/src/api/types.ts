@@ -91,7 +91,7 @@ export type MetodoEstimacion = 'monte_carlo' | 'qae';
 export interface EstimatesRequest {
   metodo: MetodoEstimacion;
   tunel: 'a' | 'b' | string;
-  presupuesto: number;
+  presupuesto?: number;
   semilla?: number;
 }
 

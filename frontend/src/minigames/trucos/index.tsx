@@ -9,7 +9,7 @@ type Config = {
   ordenes: { id: string; x: number[]; truco: string }[];
   trucos: Record<string, { emoji: string; texto: string }>; desastres: { id: string }[];
 };
-type Prediction = { conjunto: string; perdida: number; acierto: number; predicciones: { id: string; p_accion: number; prediccion: string; correcto: boolean }[]; meta: { simulador: string } };
+type Prediction = { conjunto: string; perdida?: number; acierto: number; predicciones: { id: string; p_accion: number; prediccion: string; correcto: boolean }[]; meta: { simulador: string } };
 type Props = { config: unknown; onWin: (circuito?: { fichas: GoldenTile[] }) => void; onDisaster: (id: string) => void; chispaSay: (text: string) => void };
 
 export default function Trucos({ config: input, onWin, onDisaster, chispaSay }: Props) {

@@ -51,12 +51,13 @@ export const Level2Host: React.FC<{
       <div
         style={{
           position: 'fixed',
-          top: 78,
+          top: 76,
           right: 18,
           zIndex: 35,
-          width: 'min(540px, 94vw)',
-          maxHeight: 'calc(100vh - 160px)',
+          width: 'min(840px, 95vw)',
+          maxHeight: 'calc(100vh - 155px)',
           overflowY: 'auto',
+          userSelect: 'auto',
         }}
       >
         <Suspense

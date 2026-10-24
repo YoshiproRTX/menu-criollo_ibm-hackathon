@@ -567,6 +567,7 @@ export const useGameStore = create<GameStoreState>((set, get) => ({
 
       set({
         estado: 'ganado',
+        circuito: circ,
         cromoRevelado: nuevoCromo,
         cromosGuardados: actuales,
         consolaAbierta: false,

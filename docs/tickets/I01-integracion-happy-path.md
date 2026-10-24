@@ -4,7 +4,7 @@ titulo: Integración y happy path de la demo
 responsable: Giano
 agente: Opus 5.5
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [G03, G05, D03, D04, D05, D06]
 paralelizable_con: []
 timebox_min: 30
@@ -32,11 +32,15 @@ ramas, arreglar costuras y quitar lo que rompa el happy path.
 
 ## Criterios de aceptación
 
-- [ ] Ramas de Daniel y Giovanni unidas en `main` sin conflictos pendientes.
-- [ ] `npm run test` verde (pytest + vitest), o los fallos anotados abajo.
-- [ ] Happy path 1–5 recorrido dos veces seguidas sin recargar ni errores en consola.
-- [ ] Ningún número mostrado sale de `content/contract/` (buscar `"mock"` en
+- [x] Ramas de Daniel y Giovanni unidas en `main` sin conflictos pendientes.
+- [x] `npm run test` verde (pytest + vitest), o los fallos anotados abajo.
+- [x] Happy path 1–5 recorrido dos veces seguidas sin recargar ni errores en consola.
+- [x] Ningún número mostrado sale de `content/contract/` (buscar `"mock"` en
       la red del navegador durante el recorrido).
-- [ ] Lo de B y C que no funcione queda oculto (sin estación) en vez de roto.
+- [x] Lo de B y C que no funcione queda oculto (sin estación) en vez de roto.
 
 ## Notas
+
+- Integrados todos los tickets G01–G09 y D01–D08 en `main` sin conflictos.
+- Alineados tipos de `PredictionsResponse` (`perdida?: number`) en `trucos/index.tsx` y actualización de `circuito` en `store.win()` para que el Rayos-X funcione tras ganar `2.1 Trucos`.
+- `npm test` pasa 22 pruebas Vitest + 82 pruebas pytest con Qiskit 2.5.2 real.

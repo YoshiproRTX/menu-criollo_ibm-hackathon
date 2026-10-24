@@ -4,10 +4,10 @@
   "version": "0.1.0",
   "description": "Q-Anacleto y Q-Boby — Qiskit Fall Fest 2026 (EdTech)",
   "scripts": {
-    "setup": "npm install && npm --prefix frontend install && (uv sync --directory backend || echo \"Aviso: backend/ o uv aun no disponible; puedes usar npm run dev:mock\")",
-    "dev": "concurrently -n backend,frontend -c cyan,magenta \"uv run --directory backend uvicorn app.main:app --port 8000\" \"npm --prefix frontend run dev\"",
+    "setup": "npm install && npm --prefix frontend install && python -m uv sync --directory backend",
+    "dev": "concurrently -n backend,frontend -c cyan,magenta \"python -m uv run --directory backend uvicorn app.main:app --port 8000\" \"npm --prefix frontend run dev\"",
     "dev:mock": "npm --prefix frontend run dev:mock",
-    "test": "npm --prefix frontend run test && (uv run --directory backend pytest || echo \"Aviso: pytest backend aun no disponible\")"
+    "test": "npm --prefix frontend run test && python -m uv run --directory backend pytest -m \"not slow\""
   },
   "devDependencies": {
     "concurrently": "^9.1.2"

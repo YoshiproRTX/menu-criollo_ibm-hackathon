@@ -4,7 +4,7 @@ titulo: 2.2 Doble Hueso, pantalla
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: A
-status: blocked
+status: done
 bloqueado_por: [D01]
 bloqueo_suave: [G04]
 paralelizable_con: [G02, G03, D02, D03, D04, D05]
@@ -49,11 +49,11 @@ Mientras G04 no esté, usar el cliente en modo mock de D01.
 
 ## Criterios de aceptación
 
-- [ ] Con el backend real, una ronda de cada chip anima trayectorias que
+- [x] Con el backend real, una ronda de cada chip anima trayectorias que
       coinciden punto a punto con la respuesta de la API.
-- [ ] Ganar llama `onWin`; elegir mal llama `onDisaster("rana")`.
+- [x] Ganar llama `onWin`; elegir mal llama `onDisaster("rana")`.
 - [x] Prueba Vitest de la función pura que elige el túnel y decide victoria.
-- [ ] Se ve bien a 1280×720 (resolución del video).
+- [x] Se ve bien a 1280×720 (resolución del video).
 
 ## Notas
 
