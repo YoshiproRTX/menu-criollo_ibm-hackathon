@@ -235,3 +235,10 @@ Tres agentes (el detalle por pieza está en la sección 10 del breadboard):
 3. Mundo y meta (`frontend/src/world/`, `frontend/src/meta/`): casa y
    parque isométricos, Q-Anacleto, Q-Boby, Chispa, desastres, cromos,
    álbumes, textos y guion del video.
+
+**Actualización (2026-10-24):** el trabajo se reparte finalmente entre dos
+personas con sus agentes y un integrador. Giovanni: carril 1 más las
+pantallas propias del 2.2 y el 2.1. Daniel: carriles 2 y 3. Giano: integración
+final. Tickets, acuerdos congelados (ids, puertos, npm como gestor del
+frontend, campos aditivos `tipo` y `rango`) y orquestación en
+[docs/tickets](docs/tickets/README.md) y [PATH.md](PATH.md).
