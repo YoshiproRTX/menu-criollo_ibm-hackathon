@@ -4,7 +4,7 @@ titulo: Consola del cerebro y radar
 responsable: Daniel
 agente: 4 argon
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [D02]
 paralelizable_con: [D04, D05, G03, G04, G05]
 timebox_min: 45
@@ -51,10 +51,13 @@ Leer antes: breadboard §3–§4 (P2, U10–U18), spec historias 13–27,
 
 ## Criterios de aceptación
 
-- [ ] Con el backend real en 1.2: dos Giro-Sensores → mapa sin XOR; añadir
+- [x] Con el backend real en 1.2: dos Giro-Sensores → mapa sin XOR; añadir
       Cable Gemelo → mapa XOR y todas las caritas 😄, en < 0.5 s.
-- [ ] Un 422 se ve como rechazo y no rompe el estado.
-- [ ] La gelatina corre fluida (sin trabas visibles a 60 fps).
-- [ ] **¡Prueba otra vez!** cierra la consola y dispara `runTask`.
+- [x] Un 422 se ve como rechazo y no rompe el estado.
+- [x] La gelatina corre fluida (sin trabas visibles a 60 fps).
+- [x] **¡Prueba otra vez!** cierra la consola y dispara `runTask`.
 
 ## Notas
+
+- `RadarGelatina.tsx` porta la interpolación `easeOutBack` de 400 ms y las 48 franjas con temblor amortiguado de `experiments/gelatina/index.html` usando un canvas auxiliar 32×32.
+- `BrainConsole.tsx` soporta tanto arrastrar fichas (HTML5 drag & drop) como clic en ficha + clic en ranura, y sintetiza el sonido «¡CLACK!» con WebAudio (`sound.ts`).

@@ -4,7 +4,7 @@ titulo: Parque, Q-Boby y montaje del Nivel 2
 responsable: Daniel
 agente: 4 argon
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [D04]
 bloqueo_suave: [G05]
 paralelizable_con: [D03, D05]
@@ -37,9 +37,11 @@ spec historias 5 y 45–50, `docs/ui-concept.md`.
 
 ## Criterios de aceptación
 
-- [ ] Del cromo del 1.2, **Continuar** llega al parque con la estación de
+- [x] Del cromo del 1.2, **Continuar** llega al parque con la estación de
       Doble Hueso.
-- [ ] Con G05 integrado, ganar el 2.2 revela su cromo y lo guarda en el álbum.
-- [ ] Un desastre del 2.2 aparece en el álbum de desastres.
+- [x] Con G05 integrado, ganar el 2.2 revela su cromo y lo guarda en el álbum.
+- [x] Un desastre del 2.2 aparece en el álbum de desastres.
 
 ## Notas
+
+- `Level2Host.tsx` usa `import.meta.glob('../minigames/*/index.tsx')` con `React.lazy` para montar automáticamente `doble-hueso` (G05) y `trucos` (G08) con `PantallaNivel2Props` sin escribir en las carpetas de Giovanni, e incluye el host de prueba en modo mock.

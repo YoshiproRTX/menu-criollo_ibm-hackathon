@@ -4,7 +4,7 @@ titulo: Store, bucle de juego y regla lineal
 responsable: Daniel
 agente: 4 argon
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [D01]
 paralelizable_con: [G02, G03, G04, G05]
 timebox_min: 30
@@ -59,13 +59,16 @@ tickets, spec §«Decisiones de pruebas» punto 2.
 
 ## Criterios de aceptación
 
-- [ ] Vitest con el cliente sustituido por los mocks del contrato:
-  - [ ] `runTask` con chip simple usa la regla y con el cuántico usa `predictions`.
-  - [ ] `checkWin` respeta el umbral del JSON.
-  - [ ] Un mismo fallo registra el desastre una sola vez.
-  - [ ] La victoria llama a `drawRarity` y guarda el cromo.
-  - [ ] Un 422 en `placeFicha` deja el circuito como estaba.
-- [ ] `classifyLinear` probada como función pura (1.1: existe una regla que
+- [x] Vitest con el cliente sustituido por los mocks del contrato:
+  - [x] `runTask` con chip simple usa la regla y con el cuántico usa `predictions`.
+  - [x] `checkWin` respeta el umbral del JSON.
+  - [x] Un mismo fallo registra el desastre una sola vez.
+  - [x] La victoria llama a `drawRarity` y guarda el cromo.
+  - [x] Un 422 en `placeFicha` deja el circuito como estaba.
+- [x] `classifyLinear` probada como función pura (1.1: existe una regla que
       llega a 100 % con los datos del JSON; 1.2: ninguna de una grilla supera 0.8).
 
 ## Notas
+
+- El store exporta `setStoreDebounceMsForTests(0)` para que las pruebas unitarias corran sin esperar los 150 ms del debounce real.
+- Incluye estado compartido para modales (`consolaAbierta`, `albumAbierto`, `xrayAbierto`) y Tormenta NISQ (`tormentaActiva`).

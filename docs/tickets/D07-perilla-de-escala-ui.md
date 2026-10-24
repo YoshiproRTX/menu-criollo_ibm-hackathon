@@ -4,7 +4,7 @@ titulo: Perilla de escala en la consola
 responsable: Daniel
 agente: 4 argon
 prioridad: B
-status: ready-for-agent
+status: done
 bloqueado_por: [D03]
 bloqueo_suave: [G06]
 paralelizable_con: [G06]
@@ -30,7 +30,9 @@ Leer antes: breadboard U26 y N23, spec §«Minijuego 1.3» e historias 40–40c.
 
 ## Criterios de aceptación
 
-- [ ] En 1.3, con escala 1.5 no se gana; con ~3.5 en ambos Giro-Sensores se gana.
-- [ ] En 1.2 no aparece ninguna perilla.
+- [x] En 1.3, con escala 1.5 no se gana; con ~3.5 en ambos Giro-Sensores se gana.
+- [x] En 1.2 no aparece ninguna perilla.
 
 ## Notas
+
+- `PerillaEscala.tsx` permite arrastrar circular/verticalmente o usar el control deslizante con el rango y paso de `config.perilla_escala`, mostrando el valor en `rad` y disparando `setEscala` al soltar.

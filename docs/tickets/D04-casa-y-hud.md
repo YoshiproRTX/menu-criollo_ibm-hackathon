@@ -4,7 +4,7 @@ titulo: Casa isométrica, Q-Anacleto y HUD
 responsable: Daniel
 agente: 4 argon
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [D02]
 paralelizable_con: [D03, D05, G03, G04, G05]
 timebox_min: 45
@@ -46,10 +46,13 @@ Leer antes: breadboard §3–§4 (P0, P1, U0–U9, N12), spec historias 1–12,
 
 ## Criterios de aceptación
 
-- [ ] Sala → cocina sin recargar; baño, habitación y lavandería visibles.
-- [ ] En 1.2 con chip simple, al menos un desastre visible y aviso
+- [x] Sala → cocina sin recargar; baño, habitación y lavandería visibles.
+- [x] En 1.2 con chip simple, al menos un desastre visible y aviso
       «¡Nuevo desastre!»; Chispa sugiere abrir el cerebro.
-- [ ] La acción animada de cada objeto coincide con la predicción del store.
-- [ ] Se ve bien a 1280×720.
+- [x] La acción animada de cada objeto coincide con la predicción del store.
+- [x] Se ve bien a 1280×720.
 
 ## Notas
+
+- `World.tsx` modela sala, cocina, lavandería, baño y habitación con primitivas de Three.js/drei y la paleta de `docs/ui-concept.md`.
+- `outcome.ts` (`buildOutcomeSteps`) asegura que cada paso animado en la cinta provenga exactamente de `ultimoResultado.predicciones`.

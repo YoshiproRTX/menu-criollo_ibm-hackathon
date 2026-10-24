@@ -4,7 +4,7 @@ titulo: Cromo, Rayos-X y álbumes
 responsable: Daniel
 agente: 4 argon
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [D02]
 paralelizable_con: [D03, D04, G03, G04, G05]
 timebox_min: 30
@@ -40,9 +40,12 @@ README de tickets (orden del recorrido).
 
 ## Criterios de aceptación
 
-- [ ] Ganar 1.2 revela el cromo con rareza y probabilidades de la API.
-- [ ] Rayos-X muestra diagrama y código reales.
-- [ ] Recargar la página conserva cromos y desastres.
-- [ ] Continuar desde 1.1 abre 1.2; desde 1.2 (sin chef) abre el parque.
+- [x] Ganar 1.2 revela el cromo con rareza y probabilidades de la API.
+- [x] Rayos-X muestra diagrama y código reales.
+- [x] Recargar la página conserva cromos y desastres.
+- [x] Continuar desde 1.1 abre 1.2; desde 1.2 (sin chef) abre el parque.
 
 ## Notas
+
+- `CromoModal.tsx` incluye volteo animado, estilos por rareza (común, rara, holográfica, legendaria), barras de probabilidades de Born y visor Rayos-X con botón de copiado.
+- `AlbumModal.tsx` muestra la colección persistida en `localStorage` (`qab.cromos` y `qab.desastres`).

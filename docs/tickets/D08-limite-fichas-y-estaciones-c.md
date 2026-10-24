@@ -4,7 +4,7 @@ titulo: Límite de fichas, Tormenta NISQ y estaciones C
 responsable: Daniel
 agente: 4 argon
 prioridad: C
-status: ready-for-agent
+status: done
 bloqueado_por: [D03, D06]
 bloqueo_suave: [G09]
 paralelizable_con: [G09]
@@ -33,8 +33,11 @@ Leer antes: spec §«Minijuego 2.4» e historias 52–52a.
 
 ## Criterios de aceptación
 
-- [ ] En 2.4, la sexta ficha dispara la Tormenta NISQ sin llamada a la API.
-- [ ] 1.4, 2.3 y 2.4 se pueden ganar desde su estación con los circuitos de
+- [x] En 2.4, la sexta ficha dispara la Tormenta NISQ sin llamada a la API.
+- [x] 1.4, 2.3 y 2.4 se pueden ganar desde su estación con los circuitos de
       `experiments/verificacion.md`.
 
 ## Notas
+
+- `placeFicha` comprueba `config.limite_fichas` antes de llamar a la API y activa `tormentaActiva` más el desastre del JSON al intentar colocar una ficha de más.
+- La Barra de Estática en `BrainConsole.tsx` incluye el aviso explícito de que es decorativa y el robot decide siempre con el circuito real sin ruido.

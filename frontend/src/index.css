@@ -1,0 +1,106 @@
+:root {
+  /* Paleta conceptual de docs/ui-concept.md */
+  --color-azul-pastel: #B9D8F2;
+  --color-blanco-calido: #FAF8F2;
+  --color-azul-grisaceo: #DEE7ED;
+  --color-azul-tinta: #243B53;
+  --color-cian-suave: #78DDD9;
+  --color-verde-salvia: #B8CDBB;
+  --color-melocoton-suave: #F2B79E;
+
+  /* Paleta interior de la Consola del Cerebro (Game Boy espacial) */
+  --consola-fondo: #0b1030;
+  --consola-panel: #141a3a;
+  --consola-tinta: #eef0ff;
+  --consola-tinta-2: #b9bfe6;
+  --polo-positivo: #1197b3;
+  --polo-negativo: #d93a90;
+
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--color-azul-tinta);
+  background-color: var(--color-blanco-calido);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--color-blanco-calido);
+  color: var(--color-azul-tinta);
+  user-select: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+}
+
+@keyframes shake-reject {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px) rotate(-1.5deg); }
+  40% { transform: translateX(8px) rotate(1.5deg); }
+  60% { transform: translateX(-6px) rotate(-1deg); }
+  80% { transform: translateX(6px) rotate(1deg); }
+}
+
+@keyframes spark-flash {
+  0% {
+    transform: scale(0.7);
+    box-shadow: 0 0 0 0 rgba(120, 221, 217, 0.9);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 0 24px 8px rgba(120, 221, 217, 0.65);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(120, 221, 217, 0);
+  }
+}
+
+@keyframes card-flip-in {
+  0% {
+    transform: perspective(900px) rotateY(90deg) scale(0.82);
+    opacity: 0;
+  }
+  65% {
+    transform: perspective(900px) rotateY(-8deg) scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: perspective(900px) rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes storm-shake {
+  0%, 100% { transform: translate(0, 0); }
+  15% { transform: translate(-10px, 6px) rotate(-1deg); }
+  30% { transform: translate(10px, -6px) rotate(1deg); }
+  45% { transform: translate(-8px, -4px) rotate(-1.5deg); }
+  60% { transform: translate(8px, 5px) rotate(1.5deg); }
+  75% { transform: translate(-5px, 3px); }
+}

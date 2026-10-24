@@ -4,7 +4,7 @@ titulo: Esqueleto frontend y comando único
 responsable: Daniel
 agente: 4 argon
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: []
 paralelizable_con: [G01]
 timebox_min: 25
@@ -48,12 +48,15 @@ Leer antes: `docs/tickets/README.md` (acuerdos congelados), breadboard §8 y §9
 
 ## Criterios de aceptación
 
-- [ ] `npm run setup && npm run dev` levanta ambos; si el backend no existe
+- [x] `npm run setup && npm run dev` levanta ambos; si el backend no existe
       aún, `npm run dev:mock` funciona solo.
-- [ ] La página muestra el canvas isométrico y un indicador con
+- [x] La página muestra el canvas isométrico y un indicador con
       `getHealth()` (versión de Qiskit o «mock»).
-- [ ] Prueba Vitest: el cliente en modo mock devuelve la forma de
+- [x] Prueba Vitest: el cliente en modo mock devuelve la forma de
       `predictions` y lanza error tipado ante un 422 simulado.
-- [ ] Avisar a Giovanni que el cliente y el esqueleto están listos (desbloquea G05).
+- [x] Avisar a Giovanni que el cliente y el esqueleto están listos (desbloquea G05).
 
 ## Notas
+
+- `dev:mock` usa `vite --mode mock` con `.env.mock` (`VITE_MOCK=1`) para compatibilidad directa en Windows PowerShell/cmd y Unix sin añadir `cross-env`.
+- `postEstimates` y `postTrain` soportan tanto `(body)` como `(id, body)` para facilitar la integración de G05 y G08.
