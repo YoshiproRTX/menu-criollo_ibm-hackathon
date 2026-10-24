@@ -1,8 +1,9 @@
 # Goal
 
-Un videojuego corto y divertido donde el jugador entrena a un robot torpe
+Un videojuego 3D corto y divertido donde el jugador entrena a un robot torpe
 (QAnacleto / Qboby) ajustando su "cerebro cuántico" hecho con Qiskit,
 y aprende conceptos básicos de Quantum Machine Learning mientras juega.
+Vista isométrica.
 
 # Cómo se ve el éxito
 
