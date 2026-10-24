@@ -1,0 +1,93 @@
+# Python: entornos y bytecode
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+
+# Pruebas, análisis y cobertura
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+coverage/
+
+# Empaquetado y compilación
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+pip-wheel-metadata/
+
+# Qiskit y experimentos: solo salidas reproducibles/locales
+*.log
+*.tmp
+*.temp
+logs/
+.cache/
+.ipynb_checkpoints/
+/experiments/generated/
+/experiments/checkpoints/
+/experiments/cache/
+# Mantener datasets, assets y resultados seleccionados fuera de estas rutas.
+
+# Node.js y frontend
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+.yarn/install-state.gz
+.next/
+.nuxt/
+.output/
+.vite/
+.parcel-cache/
+.turbo/
+*.tsbuildinfo
+
+# Secretos y configuración privada local
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.key
+*.pem
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+credentials.json
+secrets.json
+/secrets/
+/.qiskit/
+/.aws/
+/.codex/auth.json
+/.codex/config.toml
+
+# Sistema operativo y preferencias personales de editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+~$*
+*.swp
+*.swo
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+
+# Se versionan AGENTS.md, .agents/skills/, docs/, fuentes, assets,
+# datasets, manifests y lockfiles necesarios para reproducibilidad.
