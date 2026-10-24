@@ -12,6 +12,12 @@ carcasa clara y ambientes domésticos acogedores. El espíritu de «Taller Retro
 de Villa Qubit» se expresa mediante formas simples, colores amables y una ligera
 sensación de objeto tangible. El acabado se siente moderno y cuidado.
 
+La dirección puede resumirse como **robótica doméstica de luz suave**: acercar
+la tecnología mediante materiales familiares y pequeños detalles expresivos.
+La revisión con [Visual Reference](../.agents/skills/visual-reference/SKILL.md)
+identifica como rasgo distintivo el contraste entre carcasas frías y un hogar
+cálido, unido por volúmenes redondeados y una iluminación suave.
+
 [Pokémon Quest](https://pokemonquest.pokemon.com/en-us/) funciona como inspiración
 general para la claridad, el encanto lúdico y la organización modular solicitados.
 La identidad propia de Quantum Buddy surge de su azul pastel, sus robots y su
@@ -44,6 +50,12 @@ ligero relieve. Bordes finos en azul grisáceo y sombras difusas aportan separac
 sin contornos negros pesados. Las superficies de lectura serían mayormente
 opacas para mantener estabilidad sobre los escenarios.
 
+Las referencias distinguen el metal satinado del humanoide de las carcasas más
+suaves del perrito y del guía. La UI puede recoger esa diferencia con reflejos
+anchos y leves en los bordes, manteniendo lisas las zonas de lectura. La madera,
+los tejidos y los azulejos aportan riqueza al mundo; su traducción a la interfaz
+es una sensación de calidez y tactilidad, sin trasladar sus patrones como fondos.
+
 Los botones comparten esa apariencia de pieza amable y tangible: silueta sencilla,
 texto breve y un volumen sutil. Su énfasis procede del contraste y del color,
 sin brillo intenso permanente. Las tarjetas o módulos pertenecen a la misma
@@ -60,6 +72,11 @@ gestos visuales, sin convertir cada elemento en un personaje.
 El **azul pastel** define la identidad de la UI. Los neutros claros le dan aire
 y los tonos cálidos permiten convivir con la casa. Estos valores son orientativos,
 no colores extraídos de las imágenes ni una especificación cerrada.
+
+Se propone un conjunto de **siete colores**: un principal, tres neutros de
+soporte y tres colores de apoyo o acento. El azul pastel interpreta los armarios
+de la cocina; el cian retoma las luces del guía y del perrito; salvia y melocotón
+conectan con el sofá, las plantas y los materiales cálidos del hogar.
 
 | Color | Referencia orientativa | Intención visual |
 | --- | --- | --- |
@@ -91,6 +108,17 @@ explicativos necesitan regularidad y lectura cómoda. Una familia coherente,
 pocos pesos y una jerarquía clara serían suficientes. Se favorecen frases cortas,
 acentos bien resueltos y números distinguibles. No se impone una fuente concreta.
 
+- **Títulos:** peso seminegrita y escala claramente mayor que el cuerpo, con
+  curvas suaves y sin letras excesivamente anchas o de aspecto infantil.
+- **Cuerpo:** peso regular, interlineado holgado y formas abiertas que faciliten
+  leer explicaciones breves.
+- **Texto secundario:** menor énfasis mediante peso o escala moderados,
+  conservando contraste; evitar trazos finos y tonos pastel para el texto.
+
+Las imágenes no establecen una tipografía de UI: los rótulos de las hojas de
+personaje son anotaciones de referencia. Esta jerarquía es una recomendación
+para acompañar su estética, no una fuente identificada en los assets.
+
 ## 6. Relación entre UI y el mundo del juego
 
 El [perrito robótico](../imagenes/WhatsApp%20Image%202026-10-24%20at%201.21.52%20PM.jpeg)
@@ -114,6 +142,12 @@ ya contiene armarios azul claro, superficies crema, cobre y pequeños objetos
 expresivos. Es el vínculo más directo con la paleta propuesta. Se mantiene el
 mismo lenguaje de UI en ambos espacios, dejando que la personalidad de cada
 ambiente provenga de sus materiales y su iluminación.
+
+La tensión entre el acabado tecnológico de los personajes y la abundancia de
+objetos domésticos se resuelve con superficies de UI serenas y pocos acentos.
+El brillo cian tiene presencia puntual, como en antenas y uniones de los robots;
+la luz cálida conserva el protagonismo ambiental. Así, la interfaz acompaña a
+los compañeros y a la casa sin introducir una tercera estética dominante.
 
 ## 7. Tratamiento visual del componente cuántico
 
