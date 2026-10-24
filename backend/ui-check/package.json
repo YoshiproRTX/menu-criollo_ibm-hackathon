@@ -1,0 +1,17 @@
+{
+  "name": "giovanni-ui-validation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "prepare:ui": "node prepare.mjs",
+    "test": "node prepare.mjs && vitest run --root .generated",
+    "check": "node prepare.mjs && tsc --project tsconfig.json",
+    "build": "node prepare.mjs && vite build .generated --outDir ../dist",
+    "dev": "node prepare.mjs && vite .generated --host 127.0.0.1 --port 5174 --strictPort"
+  },
+  "dependencies": { "react": "^19.0.0", "react-dom": "^19.0.0" },
+  "devDependencies": {
+    "@types/react": "^19.0.0", "@types/react-dom": "^19.0.0",
+    "typescript": "^5.8.0", "vite": "^7.0.0", "vitest": "^3.2.0"
+  }
+}

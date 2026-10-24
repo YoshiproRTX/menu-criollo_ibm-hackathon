@@ -1,0 +1,331 @@
+{
+  "id": "pista",
+  "tipo": "clasificacion",
+  "titulo": "¡Pista de Agilidad Láser-Musical!",
+  "nivel": 2,
+  "escenario": "parque",
+  "habitacion": "pista",
+  "dificultad": 1,
+  "sensores": [
+    "ritmo",
+    "baldosa"
+  ],
+  "rango": [
+    0,
+    1
+  ],
+  "codificacion": {
+    "escala": 3.141592653589793
+  },
+  "lectura": {
+    "qubits": [
+      1
+    ],
+    "resultado": "0",
+    "accion": "saltar",
+    "otra": "agacharse"
+  },
+  "ranuras": 4,
+  "fichas_permitidas": [
+    "prisma",
+    "giro_z",
+    "cable_gemelo"
+  ],
+  "objetos": {
+    "valla": {
+      "emoji": "🚧",
+      "accion": "saltar"
+    },
+    "resorte": {
+      "emoji": "🎵",
+      "accion": "agacharse"
+    }
+  },
+  "victoria": {
+    "acierto_minimo": 0.9
+  },
+  "objeto_estrella": "valla",
+  "desastres": [
+    {
+      "id": "algodon",
+      "objeto": "resorte",
+      "accion_erronea": "saltar",
+      "texto": "¡Peluca de algodón de azúcar!"
+    }
+  ],
+  "chispa": {
+    "inicio": "¡Salta la valla y sigue el ritmo!",
+    "primer_fallo": "Mira qué ejemplo confundió tu compañero.",
+    "primera_ficha": "¡CLACK! Observa qué cambia al conectar las piezas.",
+    "victoria": "¡Lo lograste! La decisión salió de tu circuito."
+  },
+  "cromo": {
+    "concepto": "Distribuciones → fase e interferencia",
+    "titulo": "¡Pista de Agilidad Láser-Musical!",
+    "lineas": [
+      "RZ cambia fases; por sí sola no cambia estas probabilidades.",
+      "El Prisma final convierte la fase en interferencia visible.",
+      "La decisión se calcula con el circuito real."
+    ]
+  },
+  "ejemplos": [
+    {
+      "id": "valla-1",
+      "objeto": "valla",
+      "x": [
+        0.12741071908303597,
+        0.19156152580266572
+      ]
+    },
+    {
+      "id": "valla-2",
+      "objeto": "valla",
+      "x": [
+        0.3307328731555945,
+        0.21742629402064464
+      ]
+    },
+    {
+      "id": "valla-3",
+      "objeto": "valla",
+      "x": [
+        0.26944833202954255,
+        0.29248925284962457
+      ]
+    },
+    {
+      "id": "valla-4",
+      "objeto": "valla",
+      "x": [
+        0.7205458586857969,
+        0.7847450838319109
+      ]
+    },
+    {
+      "id": "valla-5",
+      "objeto": "valla",
+      "x": [
+        0.7628721171257287,
+        0.7918443117419699
+      ]
+    },
+    {
+      "id": "valla-6",
+      "objeto": "valla",
+      "x": [
+        0.711866834064196,
+        0.6635897209392069
+      ]
+    },
+    {
+      "id": "resorte-1",
+      "objeto": "resorte",
+      "x": [
+        0.18867280642896242,
+        0.7167110050347445
+      ]
+    },
+    {
+      "id": "resorte-2",
+      "objeto": "resorte",
+      "x": [
+        0.2821497216792051,
+        0.7377414607830216
+      ]
+    },
+    {
+      "id": "resorte-3",
+      "objeto": "resorte",
+      "x": [
+        0.22607162115868387,
+        0.7392191176603649
+      ]
+    },
+    {
+      "id": "resorte-4",
+      "objeto": "resorte",
+      "x": [
+        0.8159854119930855,
+        0.21547006614822278
+      ]
+    },
+    {
+      "id": "resorte-5",
+      "objeto": "resorte",
+      "x": [
+        0.8406799001349049,
+        0.1763444292544878
+      ]
+    },
+    {
+      "id": "resorte-6",
+      "objeto": "resorte",
+      "x": [
+        0.7144658891571573,
+        0.3013001590645605
+      ]
+    }
+  ],
+  "prueba": [
+    {
+      "id": "valla-1",
+      "objeto": "valla",
+      "x": [
+        0.28106961244098505,
+        0.19866944301525838
+      ]
+    },
+    {
+      "id": "valla-2",
+      "objeto": "valla",
+      "x": [
+        0.24345796069814163,
+        0.2074642164341146
+      ]
+    },
+    {
+      "id": "valla-3",
+      "objeto": "valla",
+      "x": [
+        0.3010612766165412,
+        0.28238443882161474
+      ]
+    },
+    {
+      "id": "valla-4",
+      "objeto": "valla",
+      "x": [
+        0.20721344220380983,
+        0.2738310006595638
+      ]
+    },
+    {
+      "id": "valla-5",
+      "objeto": "valla",
+      "x": [
+        0.22797123777551867,
+        0.2456850053350438
+      ]
+    },
+    {
+      "id": "valla-6",
+      "objeto": "valla",
+      "x": [
+        0.7538768907015665,
+        0.7161573454024935
+      ]
+    },
+    {
+      "id": "valla-7",
+      "objeto": "valla",
+      "x": [
+        0.7755004369708969,
+        0.7776169438698058
+      ]
+    },
+    {
+      "id": "valla-8",
+      "objeto": "valla",
+      "x": [
+        0.7755558993492117,
+        0.8162783824257654
+      ]
+    },
+    {
+      "id": "valla-9",
+      "objeto": "valla",
+      "x": [
+        0.7336955314485801,
+        0.6610284381929883
+      ]
+    },
+    {
+      "id": "valla-10",
+      "objeto": "valla",
+      "x": [
+        0.7206556796784175,
+        0.7620442133564282
+      ]
+    },
+    {
+      "id": "resorte-1",
+      "objeto": "resorte",
+      "x": [
+        0.25131914282657986,
+        0.7847212825035043
+      ]
+    },
+    {
+      "id": "resorte-2",
+      "objeto": "resorte",
+      "x": [
+        0.29838506784714125,
+        0.7429446061495459
+      ]
+    },
+    {
+      "id": "resorte-3",
+      "objeto": "resorte",
+      "x": [
+        0.2433777916277859,
+        0.6907555478900296
+      ]
+    },
+    {
+      "id": "resorte-4",
+      "objeto": "resorte",
+      "x": [
+        0.3119857312294838,
+        0.7341638054827299
+      ]
+    },
+    {
+      "id": "resorte-5",
+      "objeto": "resorte",
+      "x": [
+        0.1850015388088645,
+        0.6831375670930324
+      ]
+    },
+    {
+      "id": "resorte-6",
+      "objeto": "resorte",
+      "x": [
+        0.725114053402287,
+        0.3433239526110225
+      ]
+    },
+    {
+      "id": "resorte-7",
+      "objeto": "resorte",
+      "x": [
+        0.7963527762071655,
+        0.14835746582569448
+      ]
+    },
+    {
+      "id": "resorte-8",
+      "objeto": "resorte",
+      "x": [
+        0.7425831335456515,
+        0.26583757799460106
+      ]
+    },
+    {
+      "id": "resorte-9",
+      "objeto": "resorte",
+      "x": [
+        0.7875934394850357,
+        0.27061976833439394
+      ]
+    },
+    {
+      "id": "resorte-10",
+      "objeto": "resorte",
+      "x": [
+        0.7115555092831144,
+        0.2747131845134251
+      ]
+    }
+  ]
+}

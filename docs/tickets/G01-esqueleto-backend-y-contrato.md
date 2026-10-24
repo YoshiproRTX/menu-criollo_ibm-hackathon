@@ -4,7 +4,7 @@ titulo: Esqueleto backend y contrato congelado
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: []
 paralelizable_con: [D01]
 timebox_min: 20
@@ -43,11 +43,39 @@ skill `qiskit` (SKILL.md).
 
 ## Criterios de aceptación
 
-- [ ] `uv run uvicorn app.main:app --port 8000` desde `backend/` arranca sin errores.
-- [ ] `GET /api/health` → `{ "ok": true, "qiskit": "2.5.2" }`.
-- [ ] `POST /api/minigames/no-existe/predictions` → `404` con `detail` en español.
-- [ ] Los 8 archivos de `content/contract/` existen y respetan la §8.
-- [ ] `uv run pytest` pasa con al menos la prueba de health y la del 404.
+- [x] `uv run uvicorn app.main:app --port 8000` desde `backend/` arranca sin errores.
+- [x] `GET /api/health` → `{ "ok": true, "qiskit": "2.5.2" }`.
+- [x] `POST /api/minigames/no-existe/predictions` → `404` con `detail` en español.
+- [x] Los 8 archivos de `content/contract/` existen y respetan la §8.
+- [x] `uv run pytest` pasa con al menos la prueba de health y la del 404.
 - [ ] Avisar a Daniel (por chat del equipo) que los fixtures están listos.
 
 ## Notas
+
+- Completado técnicamente el 24 de octubre de 2026. Cambios limitados a
+  `backend/`, `content/` y este ticket. Sin commits ni push.
+- Proyecto uv y lockfile reproducible; comprobado con Python 3.13.7 y
+  Qiskit 2.5.2. Arranque ASGI real verificado en localhost:8000, con HTTP
+  200/404/501. Suite completa: **33 passed**.
+- Cargador con caché acotada, rutas relativas al repositorio, rechazo de
+  traversal y copias independientes para los consumidores. Configuración
+  mínima de fregadero tomada del ejemplo de la §9; los datos verificados
+  corresponden a G02.
+- Los ocho fixtures son sintéticos y llevan `meta.simulador: "mock"` y
+  `meta.ms: 0`, incluso xray, rareza y error-422 (campos aditivos exigidos
+  por este ticket). Los endpoints existentes siguen en 501; nunca sirven
+  esos mocks como resultados del modelo. Train usa dos ángulos por punto
+  del historial; las estimaciones incluyen un último punto coherente con
+  `consultas_usadas`.
+- Dependencias solo del stack aprobado. Starlette emite una advertencia
+  de deprecación por TestClient con httpx; las pruebas pasan. No se añadió
+  httpx2 ni se ocultó la advertencia.
+- Aviso externo a Daniel **pendiente de envío humano**: no hay un canal de
+  chat del equipo identificado en esta sesión. Mensaje listo para compartir:
+  **«G01 listo: fixtures en content/contract/, fregadero mínimo en
+  content/minigames/ y backend en app.main:app. Health devuelve Qiskit 2.5.2.
+  Los ocho fixtures llevan simulador mock; puedes usarlos en D01.»**
+  La casilla de ese aviso permanece abierta; `done` registra la implementación
+  y verificación terminadas, sin afirmar que el aviso externo fue enviado.
+- Siguiente ola: G02 y G04, en sesiones separadas según PATH.md. Esta sesión
+  implementa exclusivamente G01.

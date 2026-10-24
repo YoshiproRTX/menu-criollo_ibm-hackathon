@@ -1,0 +1,28 @@
+{
+  "metodo": "monte_carlo",
+  "tunel": "a",
+  "trayectoria": [
+    {
+      "consultas": 10,
+      "estimacion": 0.4,
+      "error": 0.1
+    },
+    {
+      "consultas": 40,
+      "estimacion": 0.35,
+      "error": 0.05
+    },
+    {
+      "consultas": 190,
+      "estimacion": 0.32,
+      "error": 0.02
+    }
+  ],
+  "estimacion": 0.32,
+  "consultas_usadas": 190,
+  "meta": {
+    "qiskit": "2.5.2",
+    "simulador": "mock",
+    "ms": 0
+  }
+}

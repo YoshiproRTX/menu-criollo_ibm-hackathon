@@ -1,0 +1,367 @@
+{
+  "id": "pelusa",
+  "tipo": "clasificacion",
+  "titulo": "¡Operación Pelusa Rebelde!",
+  "nivel": 1,
+  "escenario": "casa",
+  "habitacion": "sala",
+  "dificultad": 1,
+  "sensores": [
+    "tamaño",
+    "calor"
+  ],
+  "rango": [
+    0,
+    1
+  ],
+  "codificacion": {
+    "escala": 3.141592653589793
+  },
+  "lectura": {
+    "qubits": [
+      1
+    ],
+    "resultado": "0",
+    "accion": "barrer",
+    "otra": "ignorar"
+  },
+  "ranuras": 2,
+  "fichas_permitidas": [
+    "giro_y"
+  ],
+  "objetos": {
+    "polvo": {
+      "emoji": "☁️",
+      "accion": "barrer"
+    },
+    "gato": {
+      "emoji": "🐱",
+      "accion": "ignorar"
+    }
+  },
+  "victoria": {
+    "acierto_minimo": 0.9
+  },
+  "objeto_estrella": "polvo",
+  "desastres": [
+    {
+      "id": "gato",
+      "objeto": "gato",
+      "accion_erronea": "barrer",
+      "texto": "¡Sr. Bigotes no es pelusa!"
+    },
+    {
+      "id": "mantita",
+      "objeto": "polvo",
+      "accion_erronea": "ignorar",
+      "texto": "Le puso mantita al polvo."
+    }
+  ],
+  "chispa": {
+    "inicio": "Barre el polvo; deja dormir al gato.",
+    "primer_fallo": "Mira qué ejemplo confundió tu compañero.",
+    "primera_ficha": "¡CLACK! Observa qué cambia al conectar las piezas.",
+    "victoria": "Si una recta basta, no hace falta lo cuántico. ¡Prueba los Giro-Sensores!"
+  },
+  "cromo": {
+    "concepto": "SVM lineal → codificación RY",
+    "titulo": "¡Operación Pelusa Rebelde!",
+    "lineas": [
+      "Si una recta basta, lo clásico también gana.",
+      "RY convierte un sensor en una rotación.",
+      "Codificar datos no es entrenar un modelo."
+    ]
+  },
+  "ejemplos": [
+    {
+      "id": "polvo-1",
+      "objeto": "polvo",
+      "x": [
+        0.22870187264031314,
+        0.37085418465147657
+      ]
+    },
+    {
+      "id": "polvo-2",
+      "objeto": "polvo",
+      "x": [
+        0.057093501015105436,
+        0.38492908069326015
+      ]
+    },
+    {
+      "id": "polvo-3",
+      "objeto": "polvo",
+      "x": [
+        0.196214623027509,
+        0.18600171324998774
+      ]
+    },
+    {
+      "id": "polvo-4",
+      "objeto": "polvo",
+      "x": [
+        0.13576346252877106,
+        0.16337467867339273
+      ]
+    },
+    {
+      "id": "polvo-5",
+      "objeto": "polvo",
+      "x": [
+        0.18210837132740396,
+        0.31671073436417263
+      ]
+    },
+    {
+      "id": "polvo-6",
+      "objeto": "polvo",
+      "x": [
+        0.24672509853143765,
+        0.30106288194049463
+      ]
+    },
+    {
+      "id": "polvo-7",
+      "objeto": "polvo",
+      "x": [
+        0.06441532865847899,
+        0.12432303058468766
+      ]
+    },
+    {
+      "id": "polvo-8",
+      "objeto": "polvo",
+      "x": [
+        0.3243042539431722,
+        0.3275108292365328
+      ]
+    },
+    {
+      "id": "gato-1",
+      "objeto": "gato",
+      "x": [
+        0.9746571201178112,
+        0.8467852667918891
+      ]
+    },
+    {
+      "id": "gato-2",
+      "objeto": "gato",
+      "x": [
+        0.7180486931956355,
+        0.8528217963849819
+      ]
+    },
+    {
+      "id": "gato-3",
+      "objeto": "gato",
+      "x": [
+        0.8502715411416265,
+        0.7671859942143135
+      ]
+    },
+    {
+      "id": "gato-4",
+      "objeto": "gato",
+      "x": [
+        0.7344101341942494,
+        0.7502224177445779
+      ]
+    },
+    {
+      "id": "gato-5",
+      "objeto": "gato",
+      "x": [
+        0.7882401038575658,
+        0.8214028089291858
+      ]
+    },
+    {
+      "id": "gato-6",
+      "objeto": "gato",
+      "x": [
+        0.8099597555198972,
+        0.8767796731471703
+      ]
+    },
+    {
+      "id": "gato-7",
+      "objeto": "gato",
+      "x": [
+        0.7380411397425481,
+        0.7876882047528343
+      ]
+    },
+    {
+      "id": "gato-8",
+      "objeto": "gato",
+      "x": [
+        0.8399073901961965,
+        0.6808529168148655
+      ]
+    }
+  ],
+  "prueba": [
+    {
+      "id": "polvo-1",
+      "objeto": "polvo",
+      "x": [
+        0.1054987162823187,
+        0.331086360026049
+      ]
+    },
+    {
+      "id": "polvo-2",
+      "objeto": "polvo",
+      "x": [
+        0.24139523771051516,
+        0.23699958519900885
+      ]
+    },
+    {
+      "id": "polvo-3",
+      "objeto": "polvo",
+      "x": [
+        0.23154939188836413,
+        0.19597247769725473
+      ]
+    },
+    {
+      "id": "polvo-4",
+      "objeto": "polvo",
+      "x": [
+        0.2190678561638856,
+        0.20158986442707758
+      ]
+    },
+    {
+      "id": "polvo-5",
+      "objeto": "polvo",
+      "x": [
+        0.2151030773322975,
+        0.3288871570306725
+      ]
+    },
+    {
+      "id": "polvo-6",
+      "objeto": "polvo",
+      "x": [
+        0.17282958039902613,
+        0.3179819047953538
+      ]
+    },
+    {
+      "id": "polvo-7",
+      "objeto": "polvo",
+      "x": [
+        0.11726405273758796,
+        0.2269207384279861
+      ]
+    },
+    {
+      "id": "polvo-8",
+      "objeto": "polvo",
+      "x": [
+        0.09082059228799134,
+        0.24195311316968304
+      ]
+    },
+    {
+      "id": "polvo-9",
+      "objeto": "polvo",
+      "x": [
+        0.20629232666601852,
+        0.23421898696822294
+      ]
+    },
+    {
+      "id": "polvo-10",
+      "objeto": "polvo",
+      "x": [
+        0.1785859426634063,
+        0.3572155752083179
+      ]
+    },
+    {
+      "id": "gato-1",
+      "objeto": "gato",
+      "x": [
+        0.9139034269473927,
+        0.652749519604278
+      ]
+    },
+    {
+      "id": "gato-2",
+      "objeto": "gato",
+      "x": [
+        0.8939291594604716,
+        0.6121544309703206
+      ]
+    },
+    {
+      "id": "gato-3",
+      "objeto": "gato",
+      "x": [
+        0.7412416599330364,
+        0.7361243523262595
+      ]
+    },
+    {
+      "id": "gato-4",
+      "objeto": "gato",
+      "x": [
+        0.8088848482137042,
+        0.6662066659196604
+      ]
+    },
+    {
+      "id": "gato-5",
+      "objeto": "gato",
+      "x": [
+        0.7422024976474594,
+        0.756132305499475
+      ]
+    },
+    {
+      "id": "gato-6",
+      "objeto": "gato",
+      "x": [
+        0.7445261821293828,
+        0.6987039368591761
+      ]
+    },
+    {
+      "id": "gato-7",
+      "objeto": "gato",
+      "x": [
+        0.8533010761779177,
+        0.8245376842268736
+      ]
+    },
+    {
+      "id": "gato-8",
+      "objeto": "gato",
+      "x": [
+        0.7951955975135935,
+        0.7514558330073795
+      ]
+    },
+    {
+      "id": "gato-9",
+      "objeto": "gato",
+      "x": [
+        0.7984321506268207,
+        0.7136409365379861
+      ]
+    },
+    {
+      "id": "gato-10",
+      "objeto": "gato",
+      "x": [
+        0.7590885428726766,
+        0.6669804328063303
+      ]
+    }
+  ]
+}

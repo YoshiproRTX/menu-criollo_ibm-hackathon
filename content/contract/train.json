@@ -1,0 +1,25 @@
+{
+  "historial": [
+    {
+      "iteracion": 0,
+      "theta": [
+        0.2,
+        0.4
+      ],
+      "perdida": 0.5
+    },
+    {
+      "iteracion": 1,
+      "theta": [
+        0.3,
+        0.45
+      ],
+      "perdida": 0.4
+    }
+  ],
+  "meta": {
+    "qiskit": "2.5.2",
+    "simulador": "mock",
+    "ms": 0
+  }
+}

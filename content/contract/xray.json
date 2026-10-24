@@ -1,0 +1,9 @@
+{
+  "diagrama": "     ┌─────────┐     \nq_0: ┤ Ry(π·x₀) ├──■──\n     ├─────────┤┌─┴─┐\nq_1: ┤ Ry(π·x₁) ├┤ X ├\n     └─────────┘└───┘",
+  "codigo": "# Ejemplo sintetico de contrato, no un resultado de ejecucion.\nfrom math import pi\nfrom qiskit import QuantumCircuit\n\nhumedad, peso = 0.86, 0.95\nqc = QuantumCircuit(2)\nqc.ry(pi * humedad, 0)\nqc.ry(pi * peso, 1)\nqc.cx(0, 1)\n",
+  "meta": {
+    "qiskit": "2.5.2",
+    "simulador": "mock",
+    "ms": 0
+  }
+}

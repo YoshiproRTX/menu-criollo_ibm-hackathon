@@ -4,7 +4,7 @@ titulo: 2.2 Doble Hueso, pantalla
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: A
-status: ready-for-agent
+status: blocked
 bloqueado_por: [D01]
 bloqueo_suave: [G04]
 paralelizable_con: [G02, G03, D02, D03, D04, D05]
@@ -52,7 +52,13 @@ Mientras G04 no esté, usar el cliente en modo mock de D01.
 - [ ] Con el backend real, una ronda de cada chip anima trayectorias que
       coinciden punto a punto con la respuesta de la API.
 - [ ] Ganar llama `onWin`; elegir mal llama `onDisaster("rana")`.
-- [ ] Prueba Vitest de la función pura que elige el túnel y decide victoria.
+- [x] Prueba Vitest de la función pura que elige el túnel y decide victoria.
 - [ ] Se ve bien a 1280×720 (resolución del video).
 
 ## Notas
+
+- Código preparado en frontend/src/minigames/doble-hueso/: dos chips, dos consultas, batería, series SVG sin suavizar, semilla URL y callbacks onWin/onDisaster. Vitest prueba elección, empates y semillas; prueba HTTP real confirma animación exacta y consumo de 180 consultas. Cifras históricas ≈95 %/77 % atribuidas al experimento de 1000 corridas; mocks identificados.
+
+- Bloqueo: D01 sigue ready-for-agent; faltan frontend/package.json y frontend/src/api/client.ts. D06 debe montar el componente. Firmas previstas documentadas en backend/ui-check/README.md; no se modificó el carril Daniel.
+- TypeScript, build, render y lógica verificados en un banco aislado con adaptador HTTP exclusivo de validación. Revisión visual a 1280×720 pendiente: el navegador falló dos veces al arrancar con setup refresh had errors. No se afirma haber completado esa inspección.
+- Validación del carril: 84 pruebas backend y 12 pruebas UI, dos con HTTP real; TypeScript y build aprobados. Sin commits ni push.

@@ -4,7 +4,7 @@ titulo: 2.2 Doble Hueso, backend QAE y Monte Carlo
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [G01]
 paralelizable_con: [G02, G03, D01, D02, D03, D04, D05]
 timebox_min: 35
@@ -47,13 +47,16 @@ Leer antes: `experiments/qae/resultados.md` y `experiments/qae/qae_spike.py`
 
 ## Criterios de aceptación
 
-- [ ] P(1) de Qᵏ·A coincide con sin²((2k+1)θ) (k = 0…8, tolerancia 1e-9).
-- [ ] Con 30 shots por potencia y 50 semillas, pendiente log-log del RMSE de
+- [x] P(1) de Qᵏ·A coincide con sin²((2k+1)θ) (k = 0…8, tolerancia 1e-9).
+- [x] Con 30 shots por potencia y 50 semillas, pendiente log-log del RMSE de
       MLAE ≤ −0.85 y de Monte Carlo entre −0.6 y −0.4 (prueba lenta permitida,
       marcarla `@pytest.mark.slow` si pasa de 20 s).
-- [ ] Con la batería de 180 (90 por túnel) y 200 semillas, QAE elige bien el
+- [x] Con la batería de 180 (90 por túnel) y 200 semillas, QAE elige bien el
       túnel en ≥ 0.92 y Monte Carlo en ≤ 0.85.
-- [ ] Una llamada tarda < 100 ms; forma igual a `content/contract/estimates.*.json`.
-- [ ] Mismo `semilla` → misma trayectoria.
+- [x] Una llamada tarda < 100 ms; forma igual a `content/contract/estimates.*.json`.
+- [x] Mismo `semilla` → misma trayectoria.
 
 ## Notas
+
+- Portado del spike: A y Grover explícitos, grilla MLAE de 20 000 ángulos y Sampler real. Generator compartido entre PUBs y semillas independientes por túnel para evitar correlaciones artificiales. En 200 semillas con 90 consultas/túnel: QAE 95,5 %, Monte Carlo 77 %. En 50 semillas con 30 shots/potencia: pendientes RMSE −1,02924 y −0,53469. No se seleccionaron semillas a posteriori. QAE medido: 9 ms. Presupuesto es un máximo: k=0 presente, truncamiento si no cabe y consultas_usadas exactas. Configuración, textos, citas y rareza real incluidos. Pruebas: test_qae.py y test_qae_statistics.py.
+- Validación del carril: 84 pruebas backend y 12 pruebas UI, dos con HTTP real; TypeScript y build aprobados. Sin commits ni push.

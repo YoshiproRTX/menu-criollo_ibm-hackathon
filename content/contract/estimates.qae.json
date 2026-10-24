@@ -1,0 +1,28 @@
+{
+  "metodo": "qae",
+  "tunel": "a",
+  "trayectoria": [
+    {
+      "consultas": 10,
+      "estimacion": 0.27,
+      "error": 0.03
+    },
+    {
+      "consultas": 40,
+      "estimacion": 0.31,
+      "error": 0.01
+    },
+    {
+      "consultas": 190,
+      "estimacion": 0.31,
+      "error": 0.01
+    }
+  ],
+  "estimacion": 0.31,
+  "consultas_usadas": 190,
+  "meta": {
+    "qiskit": "2.5.2",
+    "simulador": "mock",
+    "ms": 0
+  }
+}

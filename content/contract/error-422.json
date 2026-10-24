@@ -1,0 +1,8 @@
+{
+  "detail": "Ficha no permitida en este minijuego.",
+  "meta": {
+    "qiskit": "2.5.2",
+    "simulador": "mock",
+    "ms": 0
+  }
+}

@@ -4,7 +4,7 @@ titulo: Mapa de decisión, Rayos-X y rareza
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [G02]
 paralelizable_con: [G04, G05, D02, D03, D04, D05, D06]
 timebox_min: 30
@@ -38,16 +38,19 @@ Leer antes: README de tickets, breadboard §8, spec §«Decisiones de pruebas».
 
 ## Criterios de aceptación
 
-- [ ] `decision-map` del 1.2 devuelve `resolucion²` valores en [0, 1] y, para
+- [x] `decision-map` del 1.2 devuelve `resolucion²` valores en [0, 1] y, para
       los centros de celda, coincide con `predictions` sobre esos puntos
       (prueba con una grilla pequeña).
-- [ ] Mapa 32×32 en < 500 ms en local (medido en `meta.ms`).
-- [ ] El `codigo` del Rayos-X, ejecutado con `exec`, produce un circuito cuyo
+- [x] Mapa 32×32 en < 500 ms en local (medido en `meta.ms`).
+- [x] El `codigo` del Rayos-X, ejecutado con `exec`, produce un circuito cuyo
       `Operator` es equivalente al del backend.
-- [ ] Rareza: las probabilidades suman 1 y coinciden con el `Statevector`; con
+- [x] Rareza: las probabilidades suman 1 y coinciden con el `Statevector`; con
       `semilla` fija el `resultado` es reproducible; `rareza` es coherente con
       `resultado`.
-- [ ] Formas iguales a `content/contract/` (salvo `meta.simulador`).
-- [ ] `uv run pytest` verde.
+- [x] Formas iguales a `content/contract/` (salvo `meta.simulador`).
+- [x] `uv run pytest` verde.
 
 ## Notas
+
+- Mapa de centros de celda, rango del JSON y resolución 1–64, con evolución Statevector y operadores Qiskit reutilizados. Mapa 32×32 medido en 76 ms. Rayos-X autocontenido y Operator equivalente. Rareza Born de 1 shot real, reproducible con semilla y despacho por tipo. Pruebas: test_quantum_resources.py, incluyendo lectura asimétrica y rareza de los minijuegos especiales.
+- Validación del carril: 84 pruebas backend y 12 pruebas UI, dos con HTTP real; TypeScript y build aprobados. Sin commits ni push.

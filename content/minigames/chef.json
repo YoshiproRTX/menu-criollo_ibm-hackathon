@@ -1,0 +1,433 @@
+{
+  "id": "chef",
+  "tipo": "clasificacion",
+  "titulo": "¡Chef Catástrofe: En su Punto!",
+  "nivel": 1,
+  "escenario": "casa",
+  "habitacion": "cocina",
+  "dificultad": 1,
+  "sensores": [
+    "desviacion_fuego",
+    "desviacion_espesor"
+  ],
+  "rango": [
+    -1,
+    1
+  ],
+  "codificacion": {
+    "escala": 1.5
+  },
+  "lectura": {
+    "qubits": [
+      0,
+      1
+    ],
+    "resultado": "00",
+    "accion": "listo",
+    "otra": "revisar"
+  },
+  "ranuras": 1,
+  "fichas_permitidas": [
+    "giro_y",
+    "prisma",
+    "cable_gemelo"
+  ],
+  "objetos": {
+    "panqueque": {
+      "emoji": "🥞",
+      "accion": "listo"
+    },
+    "crudo": {
+      "emoji": "🥣",
+      "accion": "revisar"
+    }
+  },
+  "victoria": {
+    "acierto_minimo": 0.9
+  },
+  "objeto_estrella": "panqueque",
+  "desastres": [
+    {
+      "id": "crudo",
+      "objeto": "crudo",
+      "accion_erronea": "listo",
+      "texto": "¡Mezcla cruda en tu bolsillo!"
+    }
+  ],
+  "chispa": {
+    "inicio": "¡Sirve solo los panqueques en su punto!",
+    "primer_fallo": "Isla gigante: estás sirviendo mezcla cruda.",
+    "primera_ficha": "¡CLACK! Observa qué cambia al conectar las piezas.",
+    "victoria": "Un kernel clásico también tiene su perilla de ancho."
+  },
+  "cromo": {
+    "concepto": "Ancho del kernel → escala de codificación",
+    "titulo": "¡Chef Catástrofe: En su Punto!",
+    "lineas": [
+      "Dos giros dibujan una isla de panqueques listos.",
+      "La escala controla su tamaño; demasiado giro crea islas fantasma.",
+      "Un kernel clásico también tiene ancho (Schuld, 2021)."
+    ]
+  },
+  "perilla_escala": {
+    "min": 0.5,
+    "max": 8,
+    "paso": 0.25
+  },
+  "ejemplos": [
+    {
+      "id": "panqueque-1",
+      "objeto": "panqueque",
+      "x": [
+        0.31934264169858295,
+        -0.08843407984146934
+      ]
+    },
+    {
+      "id": "panqueque-2",
+      "objeto": "panqueque",
+      "x": [
+        0.059623965499344456,
+        0.3086204251841471
+      ]
+    },
+    {
+      "id": "panqueque-3",
+      "objeto": "panqueque",
+      "x": [
+        -0.16234042975936513,
+        -0.20020221356201162
+      ]
+    },
+    {
+      "id": "panqueque-4",
+      "objeto": "panqueque",
+      "x": [
+        -0.14952939831735557,
+        -0.07814956841516696
+      ]
+    },
+    {
+      "id": "panqueque-5",
+      "objeto": "panqueque",
+      "x": [
+        0.10596165835448157,
+        -0.2924138914182801
+      ]
+    },
+    {
+      "id": "panqueque-6",
+      "objeto": "panqueque",
+      "x": [
+        0.06862893888347288,
+        -0.07035474105660855
+      ]
+    },
+    {
+      "id": "panqueque-7",
+      "objeto": "panqueque",
+      "x": [
+        0.29525496425995335,
+        0.048791148756026415
+      ]
+    },
+    {
+      "id": "panqueque-8",
+      "objeto": "panqueque",
+      "x": [
+        0.16535029446272365,
+        0.16924796626941285
+      ]
+    },
+    {
+      "id": "crudo-1",
+      "objeto": "crudo",
+      "x": [
+        -0.17234175922892714,
+        0.9559124379718325
+      ]
+    },
+    {
+      "id": "crudo-2",
+      "objeto": "crudo",
+      "x": [
+        -0.9139917218374147,
+        0.48732782454638723
+      ]
+    },
+    {
+      "id": "crudo-3",
+      "objeto": "crudo",
+      "x": [
+        -0.4713077778710997,
+        -0.8783284996602367
+      ]
+    },
+    {
+      "id": "crudo-4",
+      "objeto": "crudo",
+      "x": [
+        -0.6408995720212995,
+        0.5018105381873206
+      ]
+    },
+    {
+      "id": "crudo-5",
+      "objeto": "crudo",
+      "x": [
+        0.8174090494377295,
+        0.550785312973999
+      ]
+    },
+    {
+      "id": "crudo-6",
+      "objeto": "crudo",
+      "x": [
+        -0.7630414935324139,
+        -0.1607154740112049
+      ]
+    },
+    {
+      "id": "crudo-7",
+      "objeto": "crudo",
+      "x": [
+        -0.48431962140788043,
+        -0.9367639714444205
+      ]
+    },
+    {
+      "id": "crudo-8",
+      "objeto": "crudo",
+      "x": [
+        -0.4175992226369487,
+        0.8567737704794518
+      ]
+    },
+    {
+      "id": "crudo-9",
+      "objeto": "crudo",
+      "x": [
+        -0.7720639351527026,
+        0.7956319041270241
+      ]
+    },
+    {
+      "id": "crudo-10",
+      "objeto": "crudo",
+      "x": [
+        -0.8170022434574413,
+        -0.9233833651154761
+      ]
+    },
+    {
+      "id": "crudo-11",
+      "objeto": "crudo",
+      "x": [
+        -0.7757609462340012,
+        0.5052546015505359
+      ]
+    },
+    {
+      "id": "crudo-12",
+      "objeto": "crudo",
+      "x": [
+        0.8681771130043816,
+        -0.8086243655391243
+      ]
+    }
+  ],
+  "prueba": [
+    {
+      "id": "panqueque-1",
+      "objeto": "panqueque",
+      "x": [
+        0.19069482496154344,
+        0.23205665242284312
+      ]
+    },
+    {
+      "id": "panqueque-2",
+      "objeto": "panqueque",
+      "x": [
+        -0.04969241471155961,
+        -0.27988211722406087
+      ]
+    },
+    {
+      "id": "panqueque-3",
+      "objeto": "panqueque",
+      "x": [
+        -0.0014576294433008563,
+        0.07957242677149545
+      ]
+    },
+    {
+      "id": "panqueque-4",
+      "objeto": "panqueque",
+      "x": [
+        -0.22492264337470114,
+        -0.013773989862220226
+      ]
+    },
+    {
+      "id": "panqueque-5",
+      "objeto": "panqueque",
+      "x": [
+        0.13799166269054153,
+        0.042766995480963965
+      ]
+    },
+    {
+      "id": "panqueque-6",
+      "objeto": "panqueque",
+      "x": [
+        -0.21500580020891014,
+        -0.09541438608505737
+      ]
+    },
+    {
+      "id": "panqueque-7",
+      "objeto": "panqueque",
+      "x": [
+        -0.027526208649557127,
+        -0.17788789798316618
+      ]
+    },
+    {
+      "id": "panqueque-8",
+      "objeto": "panqueque",
+      "x": [
+        -0.01310166942624491,
+        0.05869024743423501
+      ]
+    },
+    {
+      "id": "panqueque-9",
+      "objeto": "panqueque",
+      "x": [
+        0.06800677786363729,
+        -0.2310138709710059
+      ]
+    },
+    {
+      "id": "panqueque-10",
+      "objeto": "panqueque",
+      "x": [
+        -0.15942387872856578,
+        -0.043021253699241147
+      ]
+    },
+    {
+      "id": "crudo-1",
+      "objeto": "crudo",
+      "x": [
+        -0.8008341525669436,
+        0.8545467327807492
+      ]
+    },
+    {
+      "id": "crudo-2",
+      "objeto": "crudo",
+      "x": [
+        -0.7918899024542334,
+        0.7580008022495999
+      ]
+    },
+    {
+      "id": "crudo-3",
+      "objeto": "crudo",
+      "x": [
+        0.3930010732404108,
+        -0.49195767323635065
+      ]
+    },
+    {
+      "id": "crudo-4",
+      "objeto": "crudo",
+      "x": [
+        0.8070251352762425,
+        0.7561528996558424
+      ]
+    },
+    {
+      "id": "crudo-5",
+      "objeto": "crudo",
+      "x": [
+        0.6512073762770378,
+        -0.991005351757775
+      ]
+    },
+    {
+      "id": "crudo-6",
+      "objeto": "crudo",
+      "x": [
+        0.9032411752305298,
+        0.9258770418924194
+      ]
+    },
+    {
+      "id": "crudo-7",
+      "objeto": "crudo",
+      "x": [
+        -0.8371613740710699,
+        0.8858022569270689
+      ]
+    },
+    {
+      "id": "crudo-8",
+      "objeto": "crudo",
+      "x": [
+        -0.43263924415532307,
+        0.6251497759675928
+      ]
+    },
+    {
+      "id": "crudo-9",
+      "objeto": "crudo",
+      "x": [
+        0.7292085480368589,
+        -0.6436243369296477
+      ]
+    },
+    {
+      "id": "crudo-10",
+      "objeto": "crudo",
+      "x": [
+        -0.31586576992031135,
+        0.9136890238506994
+      ]
+    },
+    {
+      "id": "crudo-11",
+      "objeto": "crudo",
+      "x": [
+        0.5684976750591979,
+        0.40433652482935845
+      ]
+    },
+    {
+      "id": "crudo-12",
+      "objeto": "crudo",
+      "x": [
+        -0.5312345563616603,
+        0.46485104774424824
+      ]
+    },
+    {
+      "id": "crudo-13",
+      "objeto": "crudo",
+      "x": [
+        -0.9212802460939913,
+        -0.4718640085850827
+      ]
+    },
+    {
+      "id": "crudo-14",
+      "objeto": "crudo",
+      "x": [
+        -0.5013786956204735,
+        -0.8856713756283876
+      ]
+    }
+  ]
+}

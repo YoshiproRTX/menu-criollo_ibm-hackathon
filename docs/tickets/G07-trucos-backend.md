@@ -4,7 +4,7 @@ titulo: 2.1 Trucos, backend parameter-shift
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: B
-status: ready-for-agent
+status: done
 bloqueado_por: [G01]
 paralelizable_con: [G06]
 timebox_min: 25
@@ -40,10 +40,13 @@ Leer antes: `experiments/parameter_shift/resultados.md` y `verificar_2_1.py`
 
 ## Criterios de aceptación
 
-- [ ] El gradiente por parameter-shift coincide con diferencias finitas (< 1e-6).
-- [ ] `train` desde `theta_inicial` del JSON termina con pérdida < 0.01 y
+- [x] El gradiente por parameter-shift coincide con diferencias finitas (< 1e-6).
+- [x] `train` desde `theta_inicial` del JSON termina con pérdida < 0.01 y
       acierto 1.0 en < 500 ms (30 iteraciones).
-- [ ] La pérdida del `historial` no sube en más de 0.01 entre iteraciones.
-- [ ] `theta` fuera de rango → 422.
+- [x] La pérdida del `historial` no sube en más de 0.01 entre iteraciones.
+- [x] `theta` fuera de rango → 422.
 
 ## Notas
+
+- Modelo portado del experimento: silbato/mano iguales→sentarse, diferentes→girar. Predictions devuelve pérdida y P(truco correcto); train conserva las 31 entradas reales desde iteración 0. Gradiente por ±π/2 sobre probabilidades y regla de la cadena, sin diferencias finitas en producto. Operator Qiskit reutilizado para entradas binarias y equivalente a los circuitos completos. Ángulos envueltos en [-π,π]. Entrenamiento medido: 101 ms; pérdida final 0,00028768636; acierto 1.0. Pruebas: test_gradients.py y rareza sobre la primera orden en test_quantum_resources.py.
+- Validación del carril: 84 pruebas backend y 12 pruebas UI, dos con HTTP real; TypeScript y build aprobados. Sin commits ni push.

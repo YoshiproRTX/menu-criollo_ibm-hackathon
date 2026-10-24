@@ -1,0 +1,59 @@
+{
+  "id": "doble-hueso",
+  "tipo": "doble-hueso",
+  "nivel": 2,
+  "escenario": "parque",
+  "titulo": "¡El Dilema del Doble Hueso!",
+  "dificultad": 2,
+  "tuneles": [
+    {
+      "id": "a",
+      "p": 0.3,
+      "emoji": "🕳️"
+    },
+    {
+      "id": "b",
+      "p": 0.36,
+      "emoji": "🕳️"
+    }
+  ],
+  "bateria": 180,
+  "qae": {
+    "potencias": [
+      0,
+      1,
+      2,
+      4
+    ],
+    "shots_por_potencia": 5
+  },
+  "monte_carlo": {
+    "paso": 10
+  },
+  "chispa": {
+    "inicio": "¿Qué túnel esconde más huesos? ¡Cuida tu batería!",
+    "primer_fallo": "¡Una rana! Prueba el otro chip.",
+    "victoria": "¡Elegiste el túnel con mayor probabilidad!",
+    "comparacion": "La ventaja es en consultas, no en tiempo: aquí todo corre en una laptop.",
+    "ruido": "En chips ruidosos, el error deja de bajar pasado cierto punto (Tanaka et al., 2021)."
+  },
+  "desastres": [
+    {
+      "id": "rana",
+      "texto": "¡Rana en la nariz!"
+    },
+    {
+      "id": "barro",
+      "texto": "Sin batería: Q-Boby ronca en el barro."
+    }
+  ],
+  "cromo": {
+    "titulo": "Olfato amplificado",
+    "concepto": "Monte Carlo → QAE",
+    "lineas": [
+      "Ambos chips consultan el mismo oráculo.",
+      "QAE puede ahorrar consultas, no tiempo de laptop (Brassard et al., 2002).",
+      "MLAE combina mediciones de distintas amplificaciones (Suzuki et al., 2020)."
+    ]
+  }
+}

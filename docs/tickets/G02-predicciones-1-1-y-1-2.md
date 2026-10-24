@@ -4,7 +4,7 @@ titulo: Predicciones reales en 1.1 y 1.2
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: A
-status: ready-for-agent
+status: done
 bloqueado_por: [G01]
 paralelizable_con: [G04, D01, D02, D03, D04, D05]
 timebox_min: 35
@@ -51,14 +51,17 @@ desastres, textos de Chispa y cromo), skills `qiskit` y `circuit-dev`.
 
 ## Criterios de aceptación
 
-- [ ] Pruebas pytest con `TestClient` sobre los JSON reales:
-  - [ ] 1.2, `prueba`: `giro_y` en ambos cables → acierto ≤ 0.6; añadiendo
+- [x] Pruebas pytest con `TestClient` sobre los JSON reales:
+  - [x] 1.2, `prueba`: `giro_y` en ambos cables → acierto ≤ 0.6; añadiendo
         `cable_gemelo` (RY·RY → CX) → acierto = 1.0.
-  - [ ] 1.2: ningún circuito sin `cable_gemelo` de hasta 4 ranuras llega a 0.9
+  - [x] 1.2: ningún circuito sin `cable_gemelo` de hasta 4 ranuras llega a 0.9
         (búsqueda exhaustiva, o al menos el mejor conocido de `verificacion.md`).
-  - [ ] 1.1: un solo `giro_y` en el cable 1 → acierto ≥ 0.9; circuito vacío → 0.5.
-  - [ ] Cada caso de 422 de la lista anterior.
-  - [ ] La forma de la respuesta coincide con `content/contract/predictions.json`.
-- [ ] Respuesta en < 100 ms para 20 objetos.
+  - [x] 1.1: un solo `giro_y` en el cable 1 → acierto ≥ 0.9; circuito vacío → 0.5.
+  - [x] Cada caso de 422 de la lista anterior.
+  - [x] La forma de la respuesta coincide con `content/contract/predictions.json`.
+- [x] Respuesta en < 100 ms para 20 objetos.
 
 ## Notas
+
+- Statevector real y validaciones 422 implementadas. Datos con semilla 21 y orden original del rng, comparados con el experimento independiente. Fregadero RY·RY→CX: acierto 1.0; sin CX no gana. Pelusa: vacío 0.5, RY1 ganador; regla clásica sencilla también gana. Latencia medida: 7 ms para 20 objetos. Pruebas: test_predictions.py, test_exported_data.py y test_content_lessons.py. Aviso externo a Daniel pendiente de envío humano.
+- Validación del carril: 84 pruebas backend y 12 pruebas UI, dos con HTTP real; TypeScript y build aprobados. Sin commits ni push.

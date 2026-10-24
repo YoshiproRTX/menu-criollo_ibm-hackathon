@@ -1,0 +1,17 @@
+{
+  "conjunto": "prueba",
+  "predicciones": [
+    {
+      "id": "plato-1",
+      "p_accion": 0.97,
+      "prediccion": "lavar",
+      "correcto": true
+    }
+  ],
+  "acierto": 1,
+  "meta": {
+    "qiskit": "2.5.2",
+    "simulador": "mock",
+    "ms": 0
+  }
+}

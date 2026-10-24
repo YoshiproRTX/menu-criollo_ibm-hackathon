@@ -1,0 +1,345 @@
+{
+  "id": "fregadero",
+  "tipo": "clasificacion",
+  "titulo": "¡Fiebre en el Fregadero!",
+  "nivel": 1,
+  "escenario": "casa",
+  "habitacion": "cocina",
+  "dificultad": 1,
+  "sensores": [
+    "humedad",
+    "peso"
+  ],
+  "rango": [
+    0,
+    1
+  ],
+  "codificacion": {
+    "escala": 3.141592653589793
+  },
+  "lectura": {
+    "qubits": [
+      1
+    ],
+    "resultado": "0",
+    "accion": "lavar",
+    "otra": "basura"
+  },
+  "ranuras": 4,
+  "fichas_permitidas": [
+    "giro_y",
+    "prisma",
+    "cable_gemelo"
+  ],
+  "objetos": {
+    "plato": {
+      "emoji": "🍽️",
+      "accion": "lavar"
+    },
+    "cucharita": {
+      "emoji": "🥄",
+      "accion": "lavar"
+    },
+    "sandia": {
+      "emoji": "🍉",
+      "accion": "basura"
+    },
+    "servilleta": {
+      "emoji": "🧻",
+      "accion": "basura"
+    }
+  },
+  "victoria": {
+    "acierto_minimo": 0.9
+  },
+  "objeto_estrella": "plato",
+  "desastres": [
+    {
+      "id": "triple",
+      "objeto": "plato",
+      "accion_erronea": "basura",
+      "texto": "¡TRIPLE! Vajilla de la abuela al basurero."
+    },
+    {
+      "id": "vitrina",
+      "objeto": "sandia",
+      "accion_erronea": "lavar",
+      "texto": "¡Cáscara lavada y perfumada para la vitrina!"
+    }
+  ],
+  "chispa": {
+    "inicio": "¡Lava lo que sirve, tira lo demás!",
+    "primer_fallo": "Mira qué ejemplo confundió tu compañero.",
+    "primera_ficha": "¡CLACK! Observa qué cambia al conectar las piezas.",
+    "victoria": "Una red neuronal clásica también podría. ¡Aquí experimentaste con qubits!"
+  },
+  "cromo": {
+    "concepto": "SVM → modelo cuántico como método de kernel",
+    "titulo": "¡Fiebre en el Fregadero!",
+    "lineas": [
+      "Los Giro-Sensores codifican humedad y peso.",
+      "El Cable Gemelo cambia lo que mide el robot.",
+      "Una red clásica también resuelve XOR (Schuld, 2021)."
+    ]
+  },
+  "ejemplos": [
+    {
+      "id": "cucharita-1",
+      "objeto": "cucharita",
+      "x": [
+        0.05187109775953918,
+        0.0
+      ]
+    },
+    {
+      "id": "cucharita-2",
+      "objeto": "cucharita",
+      "x": [
+        0.0,
+        0.0160434090572663
+      ]
+    },
+    {
+      "id": "cucharita-3",
+      "objeto": "cucharita",
+      "x": [
+        0.04245398740375499,
+        0.11368276019030006
+      ]
+    },
+    {
+      "id": "plato-1",
+      "objeto": "plato",
+      "x": [
+        0.978116334432856,
+        0.9679062186975667
+      ]
+    },
+    {
+      "id": "plato-2",
+      "objeto": "plato",
+      "x": [
+        1.0,
+        0.9323597873341337
+      ]
+    },
+    {
+      "id": "plato-3",
+      "objeto": "plato",
+      "x": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "sandia-1",
+      "objeto": "sandia",
+      "x": [
+        0.05551398102891307,
+        0.9904308034501016
+      ]
+    },
+    {
+      "id": "sandia-2",
+      "objeto": "sandia",
+      "x": [
+        0.05916657396881936,
+        1.0
+      ]
+    },
+    {
+      "id": "sandia-3",
+      "objeto": "sandia",
+      "x": [
+        0.03999247995481077,
+        0.9776013801930775
+      ]
+    },
+    {
+      "id": "servilleta-1",
+      "objeto": "servilleta",
+      "x": [
+        0.8651941603449363,
+        0.07575698830575571
+      ]
+    },
+    {
+      "id": "servilleta-2",
+      "objeto": "servilleta",
+      "x": [
+        0.9717399227479144,
+        0.0
+      ]
+    },
+    {
+      "id": "servilleta-3",
+      "objeto": "servilleta",
+      "x": [
+        1.0,
+        0.02705371498842493
+      ]
+    }
+  ],
+  "prueba": [
+    {
+      "id": "cucharita-1",
+      "objeto": "cucharita",
+      "x": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "cucharita-2",
+      "objeto": "cucharita",
+      "x": [
+        0.0,
+        0.07940894443769787
+      ]
+    },
+    {
+      "id": "cucharita-3",
+      "objeto": "cucharita",
+      "x": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "cucharita-4",
+      "objeto": "cucharita",
+      "x": [
+        0.0,
+        0.11351203304241801
+      ]
+    },
+    {
+      "id": "cucharita-5",
+      "objeto": "cucharita",
+      "x": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "id": "plato-1",
+      "objeto": "plato",
+      "x": [
+        0.8892777334731654,
+        1.0
+      ]
+    },
+    {
+      "id": "plato-2",
+      "objeto": "plato",
+      "x": [
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "id": "plato-3",
+      "objeto": "plato",
+      "x": [
+        1.0,
+        0.9358151757177067
+      ]
+    },
+    {
+      "id": "plato-4",
+      "objeto": "plato",
+      "x": [
+        1.0,
+        0.99911538036242
+      ]
+    },
+    {
+      "id": "plato-5",
+      "objeto": "plato",
+      "x": [
+        0.9839233644315845,
+        1.0
+      ]
+    },
+    {
+      "id": "sandia-1",
+      "objeto": "sandia",
+      "x": [
+        0.10196608407280884,
+        0.9278846904514582
+      ]
+    },
+    {
+      "id": "sandia-2",
+      "objeto": "sandia",
+      "x": [
+        0.0,
+        0.9946782319831695
+      ]
+    },
+    {
+      "id": "sandia-3",
+      "objeto": "sandia",
+      "x": [
+        0.0,
+        0.9348433096528653
+      ]
+    },
+    {
+      "id": "sandia-4",
+      "objeto": "sandia",
+      "x": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "sandia-5",
+      "objeto": "sandia",
+      "x": [
+        0.10702681074656328,
+        1.0
+      ]
+    },
+    {
+      "id": "servilleta-1",
+      "objeto": "servilleta",
+      "x": [
+        1.0,
+        0.09965899012940398
+      ]
+    },
+    {
+      "id": "servilleta-2",
+      "objeto": "servilleta",
+      "x": [
+        0.8407221818639016,
+        0.0
+      ]
+    },
+    {
+      "id": "servilleta-3",
+      "objeto": "servilleta",
+      "x": [
+        0.9435681444856763,
+        0.0
+      ]
+    },
+    {
+      "id": "servilleta-4",
+      "objeto": "servilleta",
+      "x": [
+        0.9208481820485713,
+        0.005589920306925906
+      ]
+    },
+    {
+      "id": "servilleta-5",
+      "objeto": "servilleta",
+      "x": [
+        0.8972488273721678,
+        0.0
+      ]
+    }
+  ]
+}

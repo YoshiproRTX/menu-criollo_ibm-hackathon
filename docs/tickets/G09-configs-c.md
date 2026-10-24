@@ -4,7 +4,7 @@ titulo: Configuraciones C (1.4, 2.3, 2.4)
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: C
-status: ready-for-agent
+status: done
 bloqueado_por: [G03]
 paralelizable_con: [D08]
 timebox_min: 25
@@ -34,8 +34,11 @@ Leer antes: `experiments/verificacion.md` (tabla Q5 y detalle de cada uno),
 
 ## Criterios de aceptación
 
-- [ ] 1.4: el ganador de 7 fichas de `verificacion.md` da ≥ 0.9 en `prueba`.
-- [ ] 2.3: H·H → RZ·RZ → CX → H da 1.0; sin `prisma`, ≤ 0.6.
-- [ ] 2.4: el ganador de 5 fichas da ≥ 0.9; 6 fichas → 422.
+- [x] 1.4: el ganador de 7 fichas de `verificacion.md` da ≥ 0.9 en `prueba`.
+- [x] 2.3: H·H → RZ·RZ → CX → H da 1.0; sin `prisma`, ≤ 0.6.
+- [x] 2.4: el ganador de 5 fichas da ≥ 0.9; 6 fichas → 422.
 
 ## Notas
+
+- Lavandería, Pista y Copa exportadas con las semillas y consumo de rng acordados. Ganadores reales de 7, 6 y 5 fichas verificados; Pista sin Prisma no gana y Copa rechaza seis fichas. Lavandería conserva camisa como acción positiva, conforme a Q5, y calcetín como otra clase. Decisiones sin ruido; límite como regla y estática decorativa. Sin escenas propias. Pruebas: test_content_lessons.py. B/C autorizados expresamente por el usuario.
+- Validación del carril: 84 pruebas backend y 12 pruebas UI, dos con HTTP real; TypeScript y build aprobados. Sin commits ni push.

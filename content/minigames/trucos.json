@@ -1,0 +1,84 @@
+{
+  "id": "trucos",
+  "tipo": "trucos",
+  "nivel": 2,
+  "escenario": "parque",
+  "titulo": "¡Siéntate, Gira o Despega!",
+  "dificultad": 1,
+  "ordenes": [
+    {
+      "id": "orden-1",
+      "x": [
+        0,
+        0
+      ],
+      "truco": "sentarse"
+    },
+    {
+      "id": "orden-2",
+      "x": [
+        1,
+        0
+      ],
+      "truco": "girar"
+    },
+    {
+      "id": "orden-3",
+      "x": [
+        0,
+        1
+      ],
+      "truco": "girar"
+    },
+    {
+      "id": "orden-4",
+      "x": [
+        1,
+        1
+      ],
+      "truco": "sentarse"
+    }
+  ],
+  "trucos": {
+    "sentarse": {
+      "emoji": "🐕",
+      "texto": "Sentarse"
+    },
+    "girar": {
+      "emoji": "🌀",
+      "texto": "Girar"
+    }
+  },
+  "perillas": {
+    "min": -3.1416,
+    "max": 3.1416
+  },
+  "theta_inicial": [
+    2.4,
+    -1.9
+  ],
+  "train": {
+    "iteraciones": 30,
+    "tasa": 1.0
+  },
+  "chispa": {
+    "inicio": "¡Enseña a Q-Boby a sentarse y girar!",
+    "primer_fallo": "¡Se convirtió en helicóptero! Ajusta las dos perillas.",
+    "victoria": "Entrenar ajusta los parámetros; inferir solo los usa."
+  },
+  "desastres": [
+    {
+      "id": "helicoptero",
+      "texto": "¡Su cabecita gira y sigue ladrando!"
+    }
+  ],
+  "cromo": {
+    "titulo": "Perillas que aprenden",
+    "concepto": "Descenso de gradiente → parameter-shift",
+    "lineas": [
+      "La pérdida mide cuánto se equivoca Q-Boby.",
+      "Parameter-shift evalúa dos desplazamientos por perilla.",
+      "El optimizador clásico usa ese gradiente para ajustar los ángulos."
+    ]
+  }
+}

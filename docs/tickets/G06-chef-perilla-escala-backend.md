@@ -4,7 +4,7 @@ titulo: 1.3 Chef Catástrofe, perilla de escala (backend)
 responsable: Giovanni
 agente: 6.1 sol
 prioridad: B
-status: ready-for-agent
+status: done
 bloqueado_por: [G03]
 paralelizable_con: [G07, D07]
 timebox_min: 20
@@ -31,9 +31,12 @@ spec §«Minijuego 1.3», `minijuegos.md` (1.3).
 
 ## Criterios de aceptación
 
-- [ ] Ningún circuito de una ranura con la escala de fábrica llega a 0.9 en `prueba`.
-- [ ] `giro_y` en ambos cables con `escala: 3.5` llega a ≥ 0.9.
-- [ ] `escala: 9` → 422; `escala` enviada a `fregadero` → 422.
-- [ ] `decision-map` cubre `[-1, 1]²`.
+- [x] Ningún circuito de una ranura con la escala de fábrica llega a 0.9 en `prueba`.
+- [x] `giro_y` en ambos cables con `escala: 3.5` llega a ≥ 0.9.
+- [x] `escala: 9` → 422; `escala` enviada a `fregadero` → 422.
+- [x] `decision-map` cubre `[-1, 1]²`.
 
 ## Notas
+
+- Chef generado con semilla 13, disco de radio 0.45, margen 0.10 y consumo original del rng. Lectura 00, escala inicial 1.5, perilla 0.5–8 y una ranura por cable. Los 11 circuitos de una ranura sin perilla no llegan a 0.9; dos giros con escala 3.5 ganan. Rango [-1,1]² y rechazos de escala verificados en test_content_lessons.py. El usuario autorizó B/C sin esperar el checkpoint A.
+- Validación del carril: 84 pruebas backend y 12 pruebas UI, dos con HTTP real; TypeScript y build aprobados. Sin commits ni push.
